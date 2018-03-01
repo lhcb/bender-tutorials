@@ -304,7 +304,11 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="the--first--two-useless-but-illustrative--examples">The  first  two <em>useless</em>, but <em>illustrative</em>  examples</h1>
+                                <h1 id="the--first--two-almost-useless-but-highly-illustrative-examples">The  first  two almost <em>useless</em>, but highly <em>illustrative</em> examples</h1>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1298632656);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-1298632656"></span></h3></div><div class="panel-body" id="panel-1298632656"><ul>
+<li>Understand the overall structure of Bender <em>module</em> </li>
+</ul>
+</div></div></p>
 <p>Any <em>valid</em> Bender module must have essential parts </p>
 <ul>
 <li>function <code>run</code>  with the predefined signature </li>
@@ -324,7 +328,7 @@
 <p>As one clearly sees, these lines do nothing useful, but they are perfectly enough
 to be classified as the frist Bender code. Moreover the python module with these two function
 can already be submitted to Grid, and Ganga will classify it as valid Bender code.
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8023588854);" id="the-details-for-the-curious-studentsclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students:<span id="heading-8023588854">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-8023588854"><p>Actually Ganga executes at the remote node the following wrapper code</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2085600608);" id="the-details-for-the-curious-studentsclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students:<span id="heading-2085600608">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-2085600608"><p>Actually Ganga executes at the remote node the following wrapper code</p>
 <pre><code class="lang-python">files    = ... <span class="hljs-comment">## this one comes from DIRAC</span>
 catalogs = ... <span class="hljs-comment">## ditto </span>
 params   = ... <span class="hljs-comment">## extra parameters (if needed): this comes from the user</span>
@@ -346,14 +350,28 @@ USERMODULE.run       (  nevents )
 </li>
 </ul>
 </div></div></p>
-<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
-<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist.md"></script>
-
-<script src="https://gist.github.com/benbalter/5555251.js"></script>
-<script src="https://gist.github.com/benbalter/5555251.js?file=gist.md"></script>
-
-
-<p>Such that the whole script looks  as:   <a href="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js" target="_blank">https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js</a></p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9117010438);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-9117010438">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-9117010438"><p>It is highly desirable and recommended to put some &quot;decorations&quot; a top of this minimalistic lines:</p>
+<ul>
+<li>add magic  <code>#!/usr/bin/env python</code> line as the top line of the module/script </li>
+<li>make the script executable: <code>chmod +x ./DoNothing.py</code></li>
+<li>add a python documentation close to the begin of the script<ul>
+<li>fill some useful python attributes with the proper informaton<ul>
+<li><code>__author__</code></li>
+<li><code>__date__</code></li>
+<li><code>__version__</code></li>
+</ul>
+</li>
+<li>do not forget to add documenatio in Doxygen-style and use in  comments following tags <ul>
+<li><code>@file</code></li>
+<li><code>@author</code></li>
+<li>... </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></div></p>
+<p>The whole script <a href="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f" target="_blank">here</a></p>
 
                                 
                                 </section>
@@ -397,7 +415,7 @@ USERMODULE.run       (  nevents )
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first two (useless) code","level":"2.1.2","depth":2,"next":{"title":"Another top level section","level":"3.1","depth":1,"path":"another-section/README.md","ref":"another-section/README.md","articles":[{"title":"A subsection","level":"3.1.1","depth":2,"path":"another-section/subsection.md","ref":"another-section/subsection.md","articles":[{"title":"A subsubsection","level":"3.1.1.1","depth":3,"path":"another-section/subsubsection.md","ref":"another-section/subsubsection.md","articles":[]}]}]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-01T15:40:52.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-01T15:44:17.601Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first two (useless) code","level":"2.1.2","depth":2,"next":{"title":"Another top level section","level":"3.1","depth":1,"path":"another-section/README.md","ref":"another-section/README.md","articles":[{"title":"A subsection","level":"3.1.1","depth":2,"path":"another-section/subsection.md","ref":"another-section/subsection.md","articles":[{"title":"A subsubsection","level":"3.1.1.1","depth":3,"path":"another-section/subsubsection.md","ref":"another-section/subsubsection.md","articles":[]}]}]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-01T15:55:14.225Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-01T15:57:46.557Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
