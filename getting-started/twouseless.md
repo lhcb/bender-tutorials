@@ -24,7 +24,8 @@ def configure (  datafiles ,  catalogs = [] , castor = False , params = {} ) :
 ``` 
 As one clearly sees, these lines do nothing useful, but they are perfectly enough
 to be classified as the frist Bender code. Moreover the python module with these two function
-can already be submitted to Grid, and Ganga will classify it as valid Bender code.
+can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
+Therefore this code is already _"ready-for-Ganga/Grid"_!
 {% discussion "The details for the curious students:" %}
 Actually Ganga executes at the remote node the following wrapper code
 ```python
@@ -43,6 +44,19 @@ Thats all! From this snippet you see:
  - it must have two functions `run` and `configure`  
     - (everythnig else is not used)
 {% enddiscussion %}
+The whole script is here:
+<script source="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist0.md"></script>
+
+In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
+This, formally unnesessary, but very important step can be easily embedded into your module using 
+python's `__main__` clause:
+```
+## 3) steer the job
+if '__main__' == __name__ : 
+    print 'This runs only if module is used as the script! '
+    configure ( [] , [] , params = {} )    
+    run ( 10 ) 
+```
 
 {% discussion "Unnesessary but very useful decorations:" %}
 It is highly desirable and recommended to put some "decorations" a top of this minimalistic lines:
@@ -59,4 +73,3 @@ It is highly desirable and recommended to put some "decorations" a top of this m
       *  ... 
 {% enddiscussion %}
 
-The whole script [here](https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f)
