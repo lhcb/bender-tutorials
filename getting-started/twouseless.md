@@ -1,5 +1,8 @@
-# The  first  two _useless_, but _illustrative_  examples 
-  
+# The  first  two almost _useless_, but highly _illustrative_ examples 
+
+{% objectives "Learning objectives" %}
+* Understand the overall structure of Bender _module_ 
+{% endobjectives %}
 
 Any _valid_ Bender module must have essential parts 
 
@@ -41,12 +44,19 @@ Thats all! From this snippet you see:
     - (everythnig else is not used)
 {% enddiscussion %}
 
+{% discussion "Unnesessary but very useful decorations:" %}
+It is highly desirable and recommended to put some "decorations" a top of this minimalistic lines:
+ - add magic  `#!/usr/bin/env python` line as the top line of the module/script 
+ - make the script executable: `chmod +x ./DoNothing.py`
+ - add a python documentation close to the begin of the script
+   - fill some useful python attributes with the proper informaton
+      * `__author__`
+      * `__date__`
+      * `__version__`
+   - do not forget to add documenatio in Doxygen-style and use in  comments following tags 
+      *  `@file`
+      *  `@author`
+      *  ... 
+{% enddiscussion %}
 
-<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
-<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist.md"></script>
-
-<script src="https://gist.github.com/benbalter/5555251.js"></script>
-<script src="https://gist.github.com/benbalter/5555251.js?file=gist.md"></script>
-
-
-Such that the whole script looks  as:   https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js
+The whole script [here](https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f)
