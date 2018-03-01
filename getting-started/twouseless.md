@@ -42,7 +42,11 @@ Thats all! From this snippet you see:
 {% enddiscussion %}
 
 
+<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
+<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist.md"></script>
 
+<script src="https://gist.github.com/benbalter/5555251.js"></script>
+<script src="https://gist.github.com/benbalter/5555251.js?file=gist.md"></script>
 
 
 Such that the whole script looks  as:   https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js
