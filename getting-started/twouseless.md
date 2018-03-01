@@ -42,7 +42,7 @@ USERMODULE.configure ( files , catalogs ,  params = params )
 USERMODULE.run       (  nevents )
 ```
 Thats all! From this snippet you see:
- - the code must have a stricture of python _module_  
+ - the code must have the structure of python _module_, namely no executable lines should appear in the main body of the file  
     - (note  the difference with respect to the _script_)
  - it must have two functions `run` and `configure`  
     - (everythnig else is not used)
