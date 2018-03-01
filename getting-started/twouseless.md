@@ -87,6 +87,7 @@ It is highly desirable and _recommended_ to put some _"decorations"_ a top of th
       *  `@file`
       *  `@author`
       *  ... 
+
 With all these decorations the modules is [here](https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432)
 {% enddiscussion %}
 
