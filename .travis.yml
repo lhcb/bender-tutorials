@@ -17,7 +17,7 @@ before_script:
 - sleep 3
 script:
 - gitbook pdf
-- cp book.pdf starterkit-lessons.pdf
+- cp book.pdf bender-tutorials.pdf
 - gitbook build
 after_success:
 - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash

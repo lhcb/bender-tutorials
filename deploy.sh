@@ -13,10 +13,10 @@ rev=$(git rev-parse --short HEAD)
 cd _book
 
 git init
-git config user.name "Alex Pearce"
-git config user.email "alex@alexpearce.me"
+git config user.name "Chris Burr"
+git config user.email "c.b@cern.ch"
 
-git remote add upstream "https://$GH_TOKEN@github.com/lhcb/starterkit-lessons.git"
+git remote add upstream "https://$GH_TOKEN@github.com/lhcb/bender-tutorials.git"
 git fetch upstream
 git reset upstream/gh-pages
 
