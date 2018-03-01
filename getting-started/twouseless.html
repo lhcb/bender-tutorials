@@ -305,15 +305,15 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="the--first--two-almost-useless-but-highly-illustrative-examples">The  first  two almost <em>useless</em>, but highly <em>illustrative</em> examples</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3801498695);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-3801498695"></span></h3></div><div class="panel-body" id="panel-3801498695"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3854735144);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-3854735144"></span></h3></div><div class="panel-body" id="panel-3854735144"><ul>
 <li>Understand the overall structure of Bender <em>module</em> using oversimplified examples </li>
 </ul>
 </div></div></p>
 <h2 id="do-nothing"><em>Do-nothing</em></h2>
-<p>Any <em>valid</em> Bender module must have essential parts </p>
+<p>Any <em>valid</em> Bender module must have two essential parts </p>
 <ul>
 <li>function <code>run</code>  with the predefined signature </li>
-<li>function <code>configure</code> with the predefiend dignature </li>
+<li>function <code>configure</code> with the predefined dignature </li>
 </ul>
 <p>For the most trivial (<em>&quot;do-nothing&quot;</em>) scenario function <code>run</code> is</p>
 <pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span> <span class="hljs-params">( nEvents )</span> :</span>
@@ -331,7 +331,7 @@ to be classified as the first Bender code.
 Moreover, the python module with these two function
 can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
 Therefore this code is already <em>&quot;ready-for-Ganga/Grid&quot;</em>!
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6174105359);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-6174105359">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6174105359"><p>Actually Ganga executes at the remote node the following wrapper code</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5345955394);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-5345955394">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-5345955394"><p>Actually Ganga executes at the remote node the following wrapper code</p>
 <pre><code class="lang-python">files    = ... <span class="hljs-comment">## this one comes from DIRAC</span>
 catalogs = ... <span class="hljs-comment">## ditto </span>
 params   = ... <span class="hljs-comment">## extra parameters (if needed): this comes from the user</span>
@@ -374,7 +374,7 @@ python&apos;s <code>__main__</code> clause:</p>
 <pre><code class="lang-bash">lb-run Bender/prod python DoNothing.py
 </code></pre>
 <p>That&apos;s all. Make a try and see what you get!</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6475539929);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-6475539929">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6475539929"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3864706477);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-3864706477">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-3864706477"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
 <ul>
 <li>add magic  <code>#!/usr/bin/env python</code> line as the top line of the module/script </li>
 <li>make the script executable: <code>chmod +x ./DoNothing.py</code></li>
@@ -397,17 +397,13 @@ python&apos;s <code>__main__</code> clause:</p>
 </div></div></p>
 <p>For all subsequent lessons we&apos;ll gradually fill this script<br>with the additional functionality,  step-by-step converting 
 it to something much more useful.   </p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5397883115);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-5397883115">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-5397883115"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of central Bender modules, 
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7151563016);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-7151563016">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7151563016"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of central Bender modules, 
 namely <code>Bender.Main</code> and the only one really important task for the user is to code the function <code>configure</code>.
 The <code>__main__</code> clause usually contains some input data for local tests:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span> :
-    <span class="hljs-comment">## job configuration</span>
-    <span class="hljs-comment">## BKQuery ( &apos;/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping20/WGBandQSelection7/90000000/PSIX.MDST&apos;   )</span>
     inputdata = [
-        <span class="hljs-string">&apos;/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst&apos;</span>,
-        <span class="hljs-string">&apos;/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000282_1.psix.mdst&apos;</span>,
-        ]
-
+        <span class="hljs-string">&apos;/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst&apos;</span> ,
+        <span class="hljs-string">&apos;/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000282_1.psix.mdst&apos;</span> ]
     configure( inputdata , castor = <span class="hljs-keyword">True</span> )
     <span class="hljs-comment">## the event loop </span>
     run(<span class="hljs-number">10000</span>)
@@ -457,7 +453,7 @@ The <code>__main__</code> clause usually contains some input data for local test
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first two (useless) code","level":"2.1.2","depth":2,"next":{"title":"Another top level section","level":"3.1","depth":1,"path":"another-section/README.md","ref":"another-section/README.md","articles":[{"title":"A subsection","level":"3.1.1","depth":2,"path":"another-section/subsection.md","ref":"another-section/subsection.md","articles":[{"title":"A subsubsection","level":"3.1.1.1","depth":3,"path":"another-section/subsubsection.md","ref":"another-section/subsubsection.md","articles":[]}]}]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-01T16:39:16.727Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-01T16:41:21.201Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first two (useless) code","level":"2.1.2","depth":2,"next":{"title":"Another top level section","level":"3.1","depth":1,"path":"another-section/README.md","ref":"another-section/README.md","articles":[{"title":"A subsection","level":"3.1.1","depth":2,"path":"another-section/subsection.md","ref":"another-section/subsection.md","articles":[{"title":"A subsubsection","level":"3.1.1.1","depth":3,"path":"another-section/subsubsection.md","ref":"another-section/subsubsection.md","articles":[]}]}]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-01T16:41:14.214Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-01T16:43:50.659Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
