@@ -4,6 +4,8 @@
 * Understand the overall structure of Bender _module_ using oversimplified examples 
 {% endobjectives %}
 
+## _Do-nothing_
+
 Any _valid_ Bender module must have essential parts 
 
  - function `run`  with the predefined signature 
@@ -76,3 +78,4 @@ It is highly desirable and recommended to put some "decorations" a top of this m
       *  ... 
 {% enddiscussion %}
 
+## _Hello, world!_
