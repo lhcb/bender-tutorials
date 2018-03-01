@@ -19,5 +19,4 @@ def configure (  datafiles ,  catalogs = [] , castor = False , params = {} ) :
     print 'I am configuration step!'
     return 0
 ``` 
-Such that the whole script looks  as:
-<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
+Such that the whole script looks  as:   https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js
