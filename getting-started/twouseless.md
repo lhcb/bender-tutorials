@@ -1,7 +1,7 @@
 # The  first  two almost _useless_, but highly _illustrative_ examples 
 
 {% objectives "Learning objectives" %}
-* Understand the overall structure of Bender _module_ 
+* Understand the overall structure of Bender _module_ using oversimplified examples 
 {% endobjectives %}
 
 Any _valid_ Bender module must have essential parts 
@@ -26,7 +26,7 @@ As one clearly sees, these lines do nothing useful, but they are perfectly enoug
 to be classified as the frist Bender code. Moreover the python module with these two function
 can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
 Therefore this code is already _"ready-for-Ganga/Grid"_!
-{% discussion "The details for the curious students:" %}
+{% discussion "The details for the curious students: how Ganga/Grid treat Bender modules?" %}
 Actually Ganga executes at the remote node the following wrapper code
 ```python
 files    = ... ## this one comes from DIRAC
@@ -45,7 +45,10 @@ Thats all! From this snippet you see:
     - (everythnig else is not used)
 {% enddiscussion %}
 The whole script is here:
+ququ
 <script source="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist0.md"></script>
+ququ1
+<script source="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
 
 In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
 This, formally unnesessary, but very important step can be easily embedded into your module using 
@@ -54,7 +57,7 @@ python's `__main__` clause:
 ## 3) steer the job
 if '__main__' == __name__ : 
     print 'This runs only if module is used as the script! '
-    configure ( [] , [] , params = {} )    
+    configure ( [] , catalogs = [] , params = {} )    
     run ( 10 ) 
 ```
 
