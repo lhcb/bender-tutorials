@@ -6,10 +6,10 @@
 
 ## _Do-nothing_
 
-Any _valid_ Bender module must have essential parts 
+Any _valid_ Bender module must have two essential parts 
 
  - function `run`  with the predefined signature 
- - function `configure` with the predefiend dignature 
+ - function `configure` with the predefined dignature 
 
 For the most trivial (_"do-nothing"_) scenario function `run` is
 ```python
@@ -103,13 +103,9 @@ namely `Bender.Main` and the only one really important task for the user is to c
 The `__main__` clause usually contains some input data for local tests:
 ```python
 if __name__ == '__main__' :
-    ## job configuration
-    ## BKQuery ( '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping20/WGBandQSelection7/90000000/PSIX.MDST'   )
     inputdata = [
-        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst',
-        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000282_1.psix.mdst',
-        ]
-    
+        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst' ,
+        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000282_1.psix.mdst' ]
     configure( inputdata , castor = True )
     ## the event loop 
     run(10000)
