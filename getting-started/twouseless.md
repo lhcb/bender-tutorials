@@ -20,3 +20,4 @@ def configure (  datafiles ,  catalogs = [] , castor = False , params = {} ) :
     return 0
 ``` 
 Such that the whole script looks  as:
+<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
