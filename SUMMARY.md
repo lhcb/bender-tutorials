@@ -7,7 +7,7 @@
 
 * [Getting started](getting-started/README.md)
     * [Examples of formatting](getting-started/formatting-examples.md)
-
+    * [The first two (useless) code](getting-started/twouseless.md)
 ----
 
 * [Another top level section](another-section/README.md)
