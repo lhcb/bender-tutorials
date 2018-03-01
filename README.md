@@ -4,13 +4,12 @@ These are tutorials for Bender application:
 ["User-friently python analysis environment for LHCb"](http://lhcbdoc.web.cern.ch/lhcbdoc/bender).
 
 It is the first attempt to convert existing [TWiki-based tutorials](https://twiki.cern.ch/twiki/bin/view/LHCb/BenderTutorial)
-to GitHub platform, inspired  by the great success of [LHCb StarterKit](https://lhcb.github.io/starterkit-lessons)
+to GitHub platform, inspired  by the great success of [LHCb StarterKit lessons](https://lhcb.github.io/starterkit-lessons)
 
 
 Bender is [LHCb Python-based Physics Analysis Environment](http://lhcbdoc.web.cern.ch/lhcbdoc/bender).
 It combines the physics content of [DaVinci-project](http://cern.ch/LHCb-release-area/DOC/davinci)
-with the interactive python abilities provided by [GaudiPython](http://cern.ch/twiki/bin/view/LHCb/GaudiPython)
-
+with the interactive python abilities provided by [GaudiPython](http://cern.ch/twiki/bin/view/LHCb/GaudiPython).
 It also could be considered as ["Interactive LoKi"](http://cern.ch/lhcb-comp/Analysis/Loki).
 The major functionality comes from ROOT/Reflex dictionaries for the basic C++ classes 
 and the interfaces.  These dictionaries are used primary for POOL persistency and 
