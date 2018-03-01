@@ -55,16 +55,23 @@ ququ1
 In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
 This, formally unnesessary, but very important step can be easily embedded into your module using 
 python's `__main__` clause:
-```
-## 3) steer the job
+```python
 if '__main__' == __name__ : 
     print 'This runs only if module is used as the script! '
     configure ( [] , catalogs = [] , params = {} )    
     run ( 10 ) 
 ```
 
+### How  to run it interactively? 
+
+The answer is trivial:
+```bash
+lb-run Bender/prod python DoNothing.py
+```
+That's all. Make a try and see what you get!
+
 {% discussion "Unnesessary but very useful decorations:" %}
-It is highly desirable and recommended to put some "decorations" a top of this minimalistic lines:
+It is highly desirable and _recommended_ to put some _"decorations"_ a top of this minimalistic lines:
  - add magic  `#!/usr/bin/env python` line as the top line of the module/script 
  - make the script executable: `chmod +x ./DoNothing.py`
  - add a python documentation close to the begin of the script
@@ -76,6 +83,29 @@ It is highly desirable and recommended to put some "decorations" a top of this m
       *  `@file`
       *  `@author`
       *  ... 
+{% enddiscussion %}
+
+For all subsequent lessons we'll gradually fill this script  
+with the additional functionality,  step-by-step converting 
+it to something much more useful.   
+ 
+{% discussion "In practice, ..." %}
+In practice, the prepared and _ready-to-use_ function `run` is imported from some of central Bender modules, 
+namely `Bender.Main` and the only one really important task for the user is to code the function `configure`.
+The `__main__` clause usually contains some input data for local tests:
+```python
+if __name__ == '__main__' :
+    ## job configuration
+    ## BKQuery ( '/LHCb/Collision12/Beam4000GeV-VeloClosed-MagDown/Real Data/Reco14/Stripping20/WGBandQSelection7/90000000/PSIX.MDST'   )
+    inputdata = [
+        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst',
+        '/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000282_1.psix.mdst',
+        ]
+    
+    configure( inputdata , castor = True )
+    ## the event loop 
+    run(10000)
+```
 {% enddiscussion %}
 
 ## _Hello, world!_
