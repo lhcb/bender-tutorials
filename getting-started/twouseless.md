@@ -51,8 +51,6 @@ The whole module is here:
 <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
 
 
-
-
 In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
 This, formally unnesessary, but very important step can be easily embedded into your module using 
 python's `__main__` clause:
@@ -62,7 +60,7 @@ if '__main__' == __name__ :
     configure ( [] , catalogs = [] , params = {} )    
     run ( 10 ) 
 ```
-Note that these lines convert _module_ to _script_, and finally one gets: 
+Note that these lines effectively convert the _module_ into _script_, and finally one gets: 
 <script src="https://gist.github.com/VanyaBelyaev/4d96dbfa8e94379b284ec7364365dde6.js"></script> 
 
 
