@@ -25,7 +25,8 @@ def configure (  datafiles ,  catalogs = [] , castor = False , params = {} ) :
     return 0
 ``` 
 As one clearly sees, these lines do nothing useful, but they are perfectly enough
-to be classified as the frist Bender code. Moreover the python module with these two function
+to be classified as the first Bender code. 
+Moreover, the python module with these two function
 can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
 Therefore this code is already _"ready-for-Ganga/Grid"_!
 {% discussion "The details for the curious students: how Ganga/Grid treat Bender modules?" %}
@@ -47,12 +48,12 @@ Thats all! From this snippet you see:
     - (everythnig else is not used)
 {% enddiscussion %}
 The whole script is here:
-ququ
-<script source="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist0.md"></script>
-ququ1
-<script source="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
-ququ2
-https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f
+ququ  <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist0.md"></script>
+
+ququ1 <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
+
+ququ2 https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f
+
 
 
 In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
@@ -64,6 +65,10 @@ if '__main__' == __name__ :
     configure ( [] , catalogs = [] , params = {} )    
     run ( 10 ) 
 ```
+
+<script src="https://gist.github.com/VanyaBelyaev/4d96dbfa8e94379b284ec7364365dde6.js"></script> 
+
+
 
 ### How  to run it interactively? 
 
