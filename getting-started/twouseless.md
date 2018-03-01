@@ -47,12 +47,9 @@ Thats all! From this snippet you see:
  - it must have two functions `run` and `configure`  
     - (everythnig else is not used)
 {% enddiscussion %}
-The whole script is here:
-ququ  <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js?file=gist0.md"></script>
+The whole module is here:
+<script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
 
-ququ1 <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
-
-ququ2 https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f
 
 
 
@@ -65,9 +62,8 @@ if '__main__' == __name__ :
     configure ( [] , catalogs = [] , params = {} )    
     run ( 10 ) 
 ```
-
+Note that these lines convert _module_ to _script_, and finally one gets: 
 <script src="https://gist.github.com/VanyaBelyaev/4d96dbfa8e94379b284ec7364365dde6.js"></script> 
-
 
 
 ### How  to run it interactively? 
@@ -87,10 +83,11 @@ It is highly desirable and _recommended_ to put some _"decorations"_ a top of th
       * `__author__`
       * `__date__`
       * `__version__`
-   - do not forget to add documenatio in Doxygen-style and use in  comments following tags 
+   - do not forget to add documenation in Doxygen-style and use in  comments following tags 
       *  `@file`
       *  `@author`
       *  ... 
+With all these decorations the modules is [here](https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432)
 {% enddiscussion %}
 
 For all subsequent lessons we'll gradually fill this script  
