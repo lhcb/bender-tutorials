@@ -39,6 +39,8 @@ In particular `initialize` could be used to locate some _tools_ and or pre-defin
 useful code  fragments, e.g. some _expensive_ or non-trivial LoKi-functors.
 
 
+
+
 {% discussion "Where to put the algorithm code?" %}
 It is recommended to put the algorithm code directly in the main body of your module, 
 outside of `configure` function. It allows to have visual separation of 
