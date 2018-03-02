@@ -99,14 +99,16 @@ alg3.decay_mode = '[D0 -> pi- pi+]CC'
 ```
 {% enddiscussion %}
 
-This appriach si easy and rathe rintuitive, but is not so easy to insert the algorithm 
+This appriach is very easy and rather intuitive, but is not so easy to insert the algorithm 
 into existing non-trivial flow of algorithms without  a danger to destroy the flow.
+In this  way one destroys various standard actions, like (pre)filtering, 
+luminosity calculation etc... 
 
 #### _Intelligent approach_ 
 
-For _intelligent_ approach one uses `Selection` wrapper for Bender algotithm,
- `BenderSelection`. This wrapper behaves as any other selection-objects,  
-and it lives in _static configuration_ part of `configure` function:
+For _intelligent_ approach one uses `Selection` wrapper for Bender algotithm, `BenderSelection`. 
+This wrapper behaves as any other selection-objects, and it lives 
+in _static configuration_ part of `configure` function:
 ```python
 from PhysConf.Selections import AutomaticData,  PrintSelection
 particles = AutomaticData  ( 'Phys/SelPsi2KForPsiX/Particles' ) 
@@ -114,6 +116,12 @@ particle  = PrintSelection ( particles )
 
 ## configuration object for Bender algorithm:
 #                              name   , input selections 
-bender    = BenderSelection ( 'Hello' , inputs = [ particle ]  )  
-dv.UserAlgorithms.append ( bender )
+hello = BenderSelection ( 'Hello' , inputs = [ particle ]  )  
+dv.UserAlgorithms.append ( hello )
+```
+As the next step in _dynamic configuration_ part of `configure` function
+one instantiates the  algoritm takinng all the configurtaion from  the selection-object:
+```python
+gaudi = appMgr() 
+alg   = HelloWorld( hello ) 
 ```
