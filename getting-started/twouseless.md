@@ -1,10 +1,14 @@
 # The  first  two almost _useless_, but highly _illustrative_ examples 
 
 {% objectives "Learning objectives" %}
-* Understand the overall structure of Bender _module_ using oversimplified examples 
+* Understand the overall structure of Bender _module_ and the configuration of the application 
 {% endobjectives %}
 
 ## _Do-nothing_
+
+{% objectives "Learning objectives" %}
+* Understand the overall structure of Bender _module_ using the oversimplified example
+{% endobjectives %}
 
 Any _valid_ Bender module must have two essential parts 
 
@@ -86,7 +90,7 @@ It is highly desirable and _recommended_ to put some _"decorations"_ a top of th
       *  `@author`
       *  ... 
 
-With all these decorations the modules is [here](https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432)
+With all these decorations the complete module is [here](https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432)
 {% enddiscussion %}
 
 For all subsequent lessons we'll gradually fill this script  
@@ -94,8 +98,55 @@ with the additional functionality,  step-by-step converting
 it to something much more useful.   
  
 {% discussion "In practice, ..." %}
-In practice, the prepared and _ready-to-use_ function `run` is imported from some of central Bender modules, 
-namely `Bender.Main` and the only one really important task for the user is to code the function `configure`.
+In practice, the prepared and _ready-to-use_ function `run` is imported from some of the main Bender module `Bender.Main`,
+and the only one really important task for the user is to code the function `configure`.
+```
+{% enddiscussion %}
+
+## _DaVinci_
+
+{% objectives "Learning objectives" %}
+* Understand the content of the _configure_ function
+{% endobjectives %}
+
+For the _typical_ case in practice, the function _configure_ (as the name suggests) contains three parts 
+ 1. configuration of `DaVinci` configurable                        (almost  unavoidable)
+ 2. define input data and instantiate Gaudi's application manager  (mandatory) 
+ 3. dynamic configuration of `GaudiPython` components              (optional)
+ 
+For the first part, the instantiation of  DaVinci configurable is alsmost unavoidable step:
+```python
+from    Configurables import DaVinci
+rootInTES = '/Event/PSIX'
+dv = DaVinci ( DataType   = '2012'    ,
+               InputType  = 'MDST'    ,
+               RootInTES  = rootInTES )
+```
+Here we are preparing application to read `PSIX.MDST` - uDST with few useful selections for B&Q Working Group.
+Note that in this part one can use all power of DaVinci/Gaudi `Congifurables`. 
+In practice, for physics analyses, it is veyr convinient to use here `Selection` framework, that 
+allows to configure `DaVinci` in a very compact, safe, robust and nicely  readable way, e.g.
+let's get from Transient Store some `selection` and print its content
+```python
+from PhysConf.Selections import AutomaticData,  PrintSelection
+particles = AutomaticData  ( 'Phys/SelPsi2KForPsiX/Particles' ) 
+particle  = PrintSelection ( particles )  
+```       
+As the last sub-step of (1), one needs to pass the seelction to `DaVinci`
+```python
+dv.UserAlgorithms.append ( particles )
+```
+{% discussion Where is `SelectionSequence` ? %}
+The underlying `SelectionSequence` object will be created automatically. 
+You should not worry about it. 
+```
+{% enddiscussion %}
+  
+
+
+{% discussion "In practice, ..." %}
+In practice, the prepared and _ready-to-use_ function `run` is imported from some of the main Bender module `Bender.Main`,
+and the only one really important task for the user is to code the function `configure`.
 The `__main__` clause usually contains some input data for local tests:
 ```python
 if __name__ == '__main__' :
@@ -107,5 +158,3 @@ if __name__ == '__main__' :
     run(10000)
 ```
 {% enddiscussion %}
-
-## _Hello, world!_
