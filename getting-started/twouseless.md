@@ -109,11 +109,13 @@ and the only one really important task for the user is to code the function `con
 {% endobjectives %}
 
 For the _typical_ case in practice, the function _configure_ (as the name suggests) contains three parts 
- 1. configuration of `DaVinci` configurable                        (almost  unavoidable)
- 2. define input data and instantiate Gaudi's application manager  (mandatory) 
- 3. dynamic configuration of `GaudiPython` components              (optional)
- 
-For the first part, the instantiation of  DaVinci configurable is alsmost unavoidable step:
+ 1. _static configuration_: the configuration of `DaVinci` configurable                        (almost  unavoidable)
+ 2. _input data and application manager_:  define the input data and instantiate Gaudi's application manager  (mandatory) 
+ 3. _dynamic configuration_: the configuration of `GaudiPython` components              (optional)
+
+### _Static configuration_ 
+
+For the first part, the instantiation of DaVinci configurable is almost unavoidable step:
 ```python
 from    Configurables import DaVinci
 rootInTES = '/Event/PSIX'
@@ -131,22 +133,47 @@ from PhysConf.Selections import AutomaticData,  PrintSelection
 particles = AutomaticData  ( 'Phys/SelPsi2KForPsiX/Particles' ) 
 particle  = PrintSelection ( particles )  
 ```       
-As the last sub-step of (1), one needs to pass the seelction to `DaVinci`
+As the last sub-step of (1), one needs to pass the selection object to `DaVinci`
 ```python
 dv.UserAlgorithms.append ( particles )
 ```
 {% discussion Where is `SelectionSequence` ? %}
 The underlying `SelectionSequence` object will be created automatically. 
 You should not worry about it. 
-```
 {% enddiscussion %}
-  
 
 
-{% discussion "In practice, ..." %}
-In practice, the prepared and _ready-to-use_ function `run` is imported from some of the main Bender module `Bender.Main`,
-and the only one really important task for the user is to code the function `configure`.
-The `__main__` clause usually contains some input data for local tests:
+### _Input data and application manager_ 
+
+This part is rather trivial  and almost always standard:
+```python
+from Bender.Main import setData, appMgr 
+## define input data 
+setData  ( inputdata , catalogs , castor )
+## instantiate the application manager 
+gaudi = appMgr()  ## NOTE THIS LINE!  
+```
+while `setData` can appear  anywhere inside `configure` function, 
+the line with `appMgr()` is very special.  After this line, 
+no _static configuration_ can be used anymore. Therefore all the code dealing with 
+`Configurables` and `Selections` must be placed above this line. 
+
+### _Dynamic configuration_
+
+For this particular example, it is not used,  but will be discussed further in conjunction with other lessons.
+
+
+The complete `configure` function is:
+<script src="https://gist.github.com/VanyaBelyaev/f335248a874f65f9dabdbd151a526e47.js"/></script>
+ 
+The prepared and _ready-to-use_ function `run` is imported `Bender.Main`:
+```python
+from Bender.Main import run 
+```
+
+Now our Bender module (well, it is actually pure `DaVinci`, no real Bender here!) is  ready to be used with Ganga/Grid.
+For local interactive tests we can use the trick with `__main__` clause:
+The `__main__` clause in our case contains some input data for local tests:
 ```python
 if __name__ == '__main__' :
     inputdata = [
@@ -156,4 +183,3 @@ if __name__ == '__main__' :
     ## the event loop 
     run(10000)
 ```
-{% enddiscussion %}
