@@ -1,14 +1,14 @@
 # Create the compound particles in Bender
 
 {% prereq "Prequisites" %}
-* One needs to undertand the way how Bender accesses the data 
+* One needs to understand the way how Bender accesses the data 
 {% endprereq %}
 
 {% objectives "Learning objectives" %}
-* Understand how Bender algorithm combines the particles and create compound particles   
+* Understand how Bender algorithm combines the particles and creates the compound particles   
 {% endobjectives %}
 
-##  _Make B_ 
+##  _Make-B_ 
 
 The next example illustrates how one combines the particles and create 
 the compound particles inside the Bender algorithm. 
@@ -79,8 +79,8 @@ for cc in ( bplus , bminus ) :
       ...
       b.save('MyB')
 ```
-The popular alternative is _charge-blind_ loops, 
-that are a bit simpler, but require some accuracy:
+The popular alternative is _charge-blind_ loop, 
+that is a bit simpler, but it requires some accuracy:
 ```python
 psis    = self.select ( 'psi' , 'J/psi(1S) -> mu+ mu-' )
 ## ATTENTION: select both K+ and K-, note ABSPID here
