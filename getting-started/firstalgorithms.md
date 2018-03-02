@@ -40,9 +40,9 @@ useful code  fragments, e.g. some _expensive_ or non-trivial LoKi-functors.
 
 
 {% discussion "Where to put the algorithm code?" %}
-It is recommended to put the algorithm code directly in the main body of yoru module, 
-outside of `configure` function. It allows to have visual separation of algorithmic and 
-configuration parts.  Also it helps for independent reuse of both parts. 
+It is recommended to put the algorithm code directly in the main body of your module, 
+outside of `configure` function. It allows to have visual separation of 
+the algorithmic and configuration parts.  Also it helps for independent reuse of both parts. 
 {% enddiscussion %}
 
 ### How to embedd the algorithm into the application ?
@@ -59,13 +59,33 @@ gaudi = appMgr()
 alg   = HelloWorld('Hello')
 gaudi.addAlgorithm( alg )  
 ```
-For this case one can also just replace the list of top-level Gaudi algorithms with a single `HelloWorld` algorithm:
+For this particular simple case one can also just replace the list of top-level Gaudi algorithms 
+with a single `HelloWorld` algorithm:
 ```python
 gaudi = appMgr() 
 alg   = HelloWorld('Hello')
 gaudi.setAlgorithms( [ alg ] )  
 ```
-
+##### _Dynamic configuration_ optional)
+As it have been said earlier, the part of `configure` function, placed after `gaudi=appMgr()` line corresponds 
+to _dynamic configuration_, and here one can continue to configure the algorthm  further, e.g. 
+```python
+gaudi    = appMgr() 
+alg      = HelloWorld('Hello')
+alg.QUQU = 'qu-qu!'
+gaudi.setAlgorithms( [ alg ] )  
+```
+Later, this new _parameter_ can be acessed e.g. in `analyse` function:
+```python
+```python
+class HelloWorld(Algo):
+    """The most trivial algorithm to print 'Hello,world!'"""
+    def analyse( self ) :   ## IMPORTANT! 
+        """The main 'analysis' method"""        
+        print       'Hello, world! (using native Python)', self.QUQU ## use "parameter"
+        self.Print( 'Hello, World! (using Gaudi)')
+        return SUCCESS      ## IMPORTANT!!! 
+```
 
 
    
