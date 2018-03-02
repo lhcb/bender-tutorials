@@ -26,9 +26,7 @@ class HelloWorld(Algo):
     """The most trivial algorithm to print 'Hello,world!'"""
     def analyse( self ) :   ## IMPORTANT! 
         """The main 'analysis' method"""        
-        ## use the native Python print to stdout:
         print       'Hello, world! (using native Python)'
-        ## use Gaudi-style printout:
         self.Print( 'Hello, World! (using Gaudi)')
         return SUCCESS      ## IMPORTANT!!! 
 ```
@@ -38,7 +36,7 @@ Important note:
 Optionally one can (re)implement other important methods, like `__init__`,
 `initialize` , `finalize`, etc...
 In particular `initialize` could be used to locate some _tools_ and or pre-define some
-useful code  fragments, e.g. some _expensive_ LoKi-functors.
+useful code  fragments, e.g. some _expensive_ or non-trivial LoKi-functors.
 
 
 {% discussion "Where to put the algorithm code?" %}
@@ -50,15 +48,25 @@ configuration parts.  Also it helps for independent reuse of both parts.
 ### How to embedd the algorithm into the application ?
 
 There are two approaches _brute-force_, that works nicely with such primitive code 
-as `HelloWorld` algorithm above and the intelligent/recommended approach, that smoothly insert the algorithm into the overall flow of algorithms, provdied by `DaVinci`
+as `HelloWorld` algorithm above and the intelligent/recommended approach, that smoothly insert the algorithm into the overall flow of algorithms, provided by `DaVinci`
 
 #### _Brute-force_
 
-One can instantiate the algorithm in __configure__ method  **afte** instantiation of application manager, and add the algorithm, into the list of top-level algorithms, known to Gaudi:
+One can instantiate the algorithm in __configure__ method  **after** the instantiation of application manager, 
+and add the algorithm, into the list of top-level algorithms, known to Gaudi:
 ```python
 gaudi = appMgr() 
 alg   = HelloWorld('Hello')
+gaudi.addAlgorithm( alg )  
 ```
+For this case one can also just replace the list of top-level algorithm  with a single `HelloWorld` algorithm:
+```python
+gaudi = appMgr() 
+alg   = HelloWorld('Hello')
+gaudi.setAlgorithms( [ alg ] )  
+```
+
+
 
    
 
