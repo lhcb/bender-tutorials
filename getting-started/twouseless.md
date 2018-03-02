@@ -214,10 +214,12 @@ local look-up on input files at CERN-CASTOR and CERN-EOS storages
 (`root://castorlhcb.cern.ch` and `root://eoslhcb.cern.ch`).
 This look-up is much faster than the first option, 
 but here the success is not guaranteed, since not all files have their replicas at CERN.
-  3. For access to special locations, e.g. some local files, Bender also makes a try to look into 
-     directories specified via environment variable `BENDERDATAPATH`  (column separated list of paths)
-     and also  try to contruct the file names using the content of environment varibale `BENDERDATAPREFIX` 
-     (semicolumn separated list of prefixes used fro constryct the final file name). 
+  3. Third, for access to special locations, e.g. some local files, Bender also makes a try to look into 
+     directories specified via the environment variable `BENDERDATAPATH` (column separated list of paths)
+     and also  try to contruct the file names using the content of environment variable `BENDERDATAPREFIX` 
+     (semicolumn separated list of prefixes used for constryction the final file name).
+     The  file name is constructed using all `(n+1)*(m+1)` variants, where `n` is number of items in 
+     `BENDERDATAPATH` and  `m` is number of items in `BENDERDATAPREFIX`.
      Using the combination of  `BENDERDATAPATH` and `BENDERDATAPREFIX` variables one can make very powerful 
      matching of _short_ file names (e.g. LFN) to the actual file.
      Using these variables one can easily perform 
