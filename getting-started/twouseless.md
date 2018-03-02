@@ -93,7 +93,7 @@ It is highly desirable and _recommended_ to put some _"decorations"_ a top of th
 With all these decorations the complete module is [here](https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432)
 {% enddiscussion %}
 
-For all subsequent lessons we'll gradually fill this script  
+For all subsequent lessons we'll gradually extend this script  
 with the additional functionality,  step-by-step converting 
 it to something much more useful.   
  
@@ -105,7 +105,7 @@ and the only one really important task for the user is to code the function `con
 ## _DaVinci_
 
 {% objectives "Learning objectives" %}
-* Understand the content of the _configure_ function
+* Understand the internal structure of the _configure_ function
 {% endobjectives %}
 
 For the _typical_ case in practice, the function _configure_ (as the name suggests) contains three parts 
@@ -183,3 +183,41 @@ if __name__ == '__main__' :
     ## the event loop 
     run(10000)
 ```
+The complete moodule can be accessed [here](https://gist.github.com/VanyaBelyaev/01cce773db3915883c6f2cc919bfac71)
+
+### How to run it?
+Again, the answer is trivial (and universal):
+```bash
+lb-run Bender/prod python DoNothing.py
+```
+That's all. Make a try and see what you get!
+
+{% challenge "Challenge" %}
+Try to convert any of your `DaVinci` _script_ into Bender _module_ and run it interactively 
+{% endchallenge %}
+
+
+{% discussion What is `castor` ? Why `LFN` is used as input file name?%}
+Bender is smart  enough, and for many cases it can efficiently convert input `LFN` into 
+the real file name.
+  1. First, if you have Grid proxy enabled (`lhcb-proxy-init`) is uses `LHCbDirac` to locate and access the file. 
+This way is not very fast, but for all practial cases  this look-up is almost always successful, 
+however for some cases certain hints could be very useful.
+In particular, you can specify the list of Grid sites to look for data files: 
+```python
+## define input data 
+setData  ( inputdata , catalogs , castor = castor ,  grid = ['RAL','CERN','GRIDKA'] )
+```
+  2. Second, for CERN, one can use option `castor = True`, that activates the 
+local look-up on input files at CERN-CASTOR and CERN-EOS. 
+This look-up is much faster than the first options, but here the success is not guaranteed, 
+since not all files have their replicas at CERN.
+  3. For access to special locations, e.g. some local files, Bender also makes a try to look into 
+     directories specified via environment variable `BENDERDATAPATH`  (column separated list of paths)
+     and also  try to contruct the file names using the content of environment varibale `BENDERDATAPREFIX` 
+     (semicolumn separated list of prefixes used fro constryct the final file name). 
+     Using the combination of  `BENDERDATAPATH` and `BENDERDATAPREFIX` variables one can make very powerful 
+     matching of _short_ file names (e.g. LFN) to the actual file.
+     Using these variables one can easily perform 
+     a local and efficient access to Grid files from some _close_ Tier-1/2 center.   
+{% enddiscussion %}
