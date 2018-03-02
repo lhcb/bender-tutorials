@@ -137,7 +137,7 @@ As the last sub-step of (1), one needs to pass the selection object to `DaVinci`
 ```python
 dv.UserAlgorithms.append ( particles )
 ```
-{% discussion Where is `SelectionSequence` ? %}
+{% discussion "Where is `SelectionSequence` ?" %}
 The underlying `SelectionSequence` object will be created automatically. 
 You should not worry about it. 
 {% enddiscussion %}
