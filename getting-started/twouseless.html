@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>The first two (useless) code · GitBook</title>
+        <title>The first two (almost useless) examples · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../another-section/" />
+    <link rel="next" href="firstalgorithms.html" />
     
     
     <link rel="prev" href="formatting-examples.html" />
@@ -168,7 +168,20 @@
                 <a href="twouseless.html">
             
                     
-                    The first two (useless) code
+                    The first two (almost useless) examples
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="firstalgorithms.html">
+            
+                <a href="firstalgorithms.html">
+            
+                    
+                    The first algorithms
             
                 </a>
             
@@ -289,7 +302,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >The first two (useless) code</a>
+        <a href=".." >The first two (almost useless) examples</a>
     </h1>
 </div>
 
@@ -304,12 +317,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="the--first--two-almost-useless-but-highly-illustrative-examples">The  first  two almost <em>useless</em>, but highly <em>illustrative</em> examples</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5646886025);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-5646886025"></span></h3></div><div class="panel-body" id="panel-5646886025"><ul>
-<li>Understand the overall structure of Bender <em>module</em> using oversimplified examples </li>
+                                <h1 id="the-first-two-almost-useless-but-very-important-examples">The first two <em>almost useless</em>, but <em>very important</em> examples</h1>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1455352276);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-1455352276"></span></h3></div><div class="panel-body" id="panel-1455352276"><ul>
+<li>Understand the overall structure of Bender <em>module</em> and the configuration of the application </li>
 </ul>
 </div></div></p>
 <h2 id="do-nothing"><em>Do-nothing</em></h2>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7493936815);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-7493936815"></span></h3></div><div class="panel-body" id="panel-7493936815"><ul>
+<li>Understand the overall structure of Bender <em>module</em> using the oversimplified example</li>
+</ul>
+</div></div></p>
 <p>Any <em>valid</em> Bender module must have two essential parts </p>
 <ul>
 <li>function <code>run</code>  with the predefined signature </li>
@@ -331,7 +348,7 @@ to be classified as the first Bender code.
 Moreover, the python module with these two function
 can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
 Therefore this code is already <em>&quot;ready-for-Ganga/Grid&quot;</em>!
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(274440954);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-274440954">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-274440954"><p>Actually Ganga executes at the remote node the following wrapper code</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1350839708);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-1350839708">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-1350839708"><p>Actually Ganga executes at the remote node the following wrapper code</p>
 <pre><code class="lang-python">files    = ... <span class="hljs-comment">## this one comes from DIRAC</span>
 catalogs = ... <span class="hljs-comment">## ditto </span>
 params   = ... <span class="hljs-comment">## extra parameters (if needed): this comes from the user</span>
@@ -374,7 +391,7 @@ python&apos;s <code>__main__</code> clause:</p>
 <pre><code class="lang-bash">lb-run Bender/prod python DoNothing.py
 </code></pre>
 <p>That&apos;s all. Make a try and see what you get!</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3536102931);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-3536102931">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-3536102931"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8651173713);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-8651173713">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-8651173713"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
 <ul>
 <li>add magic  <code>#!/usr/bin/env python</code> line as the top line of the module/script </li>
 <li>make the script executable: <code>chmod +x ./DoNothing.py</code></li>
@@ -394,13 +411,70 @@ python&apos;s <code>__main__</code> clause:</p>
 </ul>
 </li>
 </ul>
-<p>With all these decorations the modules is <a href="https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432" target="_blank">here</a></p>
+<p>With all these decorations the complete module is <a href="https://gist.github.com/VanyaBelyaev/1deeb39959f44689f054006c290d1432" target="_blank">here</a></p>
 </div></div></p>
-<p>For all subsequent lessons we&apos;ll gradually fill this script<br>with the additional functionality,  step-by-step converting 
+<p>For all subsequent lessons we&apos;ll gradually extend this script<br>with the additional functionality,  step-by-step converting 
 it to something much more useful.   </p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(870464139);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-870464139">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-870464139"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of central Bender modules, 
-namely <code>Bender.Main</code> and the only one really important task for the user is to code the function <code>configure</code>.
-The <code>__main__</code> clause usually contains some input data for local tests:</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1913961842);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-1913961842">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-1913961842"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of the main Bender module <code>Bender.Main</code>,
+and the only one really important task for the user is to code the function <code>configure</code>.</p>
+</div></div></p>
+<h2 id="davinci"><em>DaVinci</em></h2>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3456732154);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-3456732154"></span></h3></div><div class="panel-body" id="panel-3456732154"><ul>
+<li>Understand the internal structure of the <em>configure</em> function</li>
+</ul>
+</div></div></p>
+<p>For the <em>typical</em> case in practice, the function <em>configure</em> (as the name suggests) contains three parts </p>
+<ol>
+<li><em>static configuration</em>: the configuration of <code>DaVinci</code> configurable                        (almost  unavoidable)</li>
+<li><em>input data and application manager</em>:  define the input data and instantiate Gaudi&apos;s application manager  (mandatory) </li>
+<li><em>dynamic configuration</em>: the configuration of <code>GaudiPython</code> components              (optional)</li>
+</ol>
+<h3 id="static-configuration"><em>Static configuration</em></h3>
+<p>For the first part, the instantiation of DaVinci configurable is almost unavoidable step:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span>    Configurables <span class="hljs-keyword">import</span> DaVinci
+rootInTES = <span class="hljs-string">&apos;/Event/PSIX&apos;</span>
+dv = DaVinci ( DataType   = <span class="hljs-string">&apos;2012&apos;</span>    ,
+               InputType  = <span class="hljs-string">&apos;MDST&apos;</span>    ,
+               RootInTES  = rootInTES )
+</code></pre>
+<p>Here we are preparing application to read <code>PSIX.MDST</code> - uDST with few useful selections for B&amp;Q Working Group.
+Note that in this part one can use all power of DaVinci/Gaudi <code>Congifurables</code>. 
+In practice, for physics analyses, it is veyr convinient to use here <code>Selection</code> framework, 
+that  allows to configure <code>DaVinci</code> in a very compact, safe, robust and nicely  readable way, 
+e.g. let&apos;s get from Transient Store some <code>selection</code> and print its content</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> PhysConf.Selections <span class="hljs-keyword">import</span> AutomaticData,  PrintSelection
+particles = AutomaticData  ( <span class="hljs-string">&apos;Phys/SelPsi2KForPsiX/Particles&apos;</span> ) 
+particle  = PrintSelection ( particles )
+</code></pre>
+<p>As the last sub-step of (1), one needs to pass the selection object to <code>DaVinci</code></p>
+<pre><code class="lang-python">dv.UserAlgorithms.append ( particles )
+</code></pre>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4995548682);" id="where-is-selectionsequence-click-to-expand"><i class="fa fa-bell"></i> Where is `SelectionSequence` ?<span id="heading-4995548682">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-4995548682"><p>The underlying <code>SelectionSequence</code> object will be created automatically. 
+You should not worry about it. </p>
+</div></div></p>
+<h3 id="input-data-and-application-manager"><em>Input data and application manager</em></h3>
+<p>This part is rather trivial  and almost always standard:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> Bender.Main <span class="hljs-keyword">import</span> setData, appMgr 
+<span class="hljs-comment">## define input data </span>
+setData  ( inputdata , catalogs , castor )
+<span class="hljs-comment">## instantiate the application manager </span>
+gaudi = appMgr()  <span class="hljs-comment">## NOTE THIS LINE!</span>
+</code></pre>
+<p>while <code>setData</code> can appear  anywhere inside <code>configure</code> function, 
+the line with <code>appMgr()</code> is very special.  After this line, 
+no <em>static configuration</em> can be used anymore. Therefore all the code dealing with 
+<code>Configurables</code> and <code>Selections</code> must be placed above this line. </p>
+<h3 id="dynamic-configuration"><em>Dynamic configuration</em></h3>
+<p>For this particular example, it is not used,  but will be discussed further in conjunction with other lessons.</p>
+<p>The complete <code>configure</code> function is:</p>
+<script src="https://gist.github.com/VanyaBelyaev/f335248a874f65f9dabdbd151a526e47.js"></script>
+
+<p>The prepared and <em>ready-to-use</em> function <code>run</code> is imported <code>Bender.Main</code>:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> Bender.Main <span class="hljs-keyword">import</span> run
+</code></pre>
+<p>Now our Bender module (well, it is actually pure <code>DaVinci</code>, no real Bender here!) is  ready to be used with Ganga/Grid.
+For local interactive tests we can use the trick with <code>__main__</code> clause:
+The <code>__main__</code> clause in our case contains some input data for local tests:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span> :
     inputdata = [
         <span class="hljs-string">&apos;/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst&apos;</span> ,
@@ -409,8 +483,40 @@ The <code>__main__</code> clause usually contains some input data for local test
     <span class="hljs-comment">## the event loop </span>
     run(<span class="hljs-number">10000</span>)
 </code></pre>
+<p>The complete moodule can be accessed <a href="https://gist.github.com/VanyaBelyaev/01cce773db3915883c6f2cc919bfac71" target="_blank">here</a></p>
+<h3 id="how-to-run-it">How to run it?</h3>
+<p>Again, the answer is trivial (and universal):</p>
+<pre><code class="lang-bash">lb-run Bender/prod python DoNothing.py
+</code></pre>
+<p>That&apos;s all. Make a try and see what you get!</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5216843662);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-5216843662"></span></h3></div><div class="panel-body" id="panel-5216843662"><p>Try to convert any of your existing <code>DaVinci</code> simple <em>script</em> into Bender <em>module</em> and run it interactively.
+You can use the result of this excersize for subsequent lessons. </p>
 </div></div></p>
-<h2 id="hello-world"><em>Hello, world!</em></h2>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(125693085);" id="what-is-castor--why-lfn-is-used-as-input-file-nameclick-to-expand"><i class="fa fa-bell"></i> What is `castor` ? Why `LFN` is used as input file name?<span id="heading-125693085">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-125693085"><p>Bender is smart  enough, and for many cases it can efficiently convert input <code>LFN</code> into 
+the real file name.</p>
+<ol>
+<li>First, if you have Grid proxy enabled (<code>lhcb-proxy-init</code>) is uses internally <code>LHCbDirac</code> to locate and access the file. 
+This way is not very fast, but for all practial cases  this look-up is almost always successful, 
+however for some cases certain hints could be very useful.
+In particular, you can specify the list of Grid sites to look for data files: <pre><code class="lang-python"><span class="hljs-comment">## define input data </span>
+setData  ( inputdata , catalogs , castor = castor ,  grid = [<span class="hljs-string">&apos;RAL&apos;</span>,<span class="hljs-string">&apos;CERN&apos;</span>,<span class="hljs-string">&apos;GRIDKA&apos;</span>] )
+</code></pre>
+</li>
+<li>Second, for CERN, one can use option <code>castor = True</code>, that activates the 
+local look-up on input files at CERN-CASTOR and CERN-EOS storages
+(<code>root://castorlhcb.cern.ch</code> and <code>root://eoslhcb.cern.ch</code>).
+This look-up is much faster than the first option, 
+but here the success is not guaranteed, since not all files have their replicas at CERN.</li>
+<li>For access to special locations, e.g. some local files, Bender also makes a try to look into 
+directories specified via environment variable <code>BENDERDATAPATH</code>  (column separated list of paths)
+and also  try to contruct the file names using the content of environment varibale <code>BENDERDATAPREFIX</code> 
+(semicolumn separated list of prefixes used fro constryct the final file name). 
+Using the combination of  <code>BENDERDATAPATH</code> and <code>BENDERDATAPREFIX</code> variables one can make very powerful 
+matching of <em>short</em> file names (e.g. LFN) to the actual file.
+Using these variables one can easily perform 
+a local and efficient access to Grid files from some <em>close</em> Tier-1/2 center.   </li>
+</ol>
+</div></div></p>
 
                                 
                                 </section>
@@ -443,7 +549,7 @@ The <code>__main__</code> clause usually contains some input data for local test
                 </a>
                 
                 
-                <a href="../another-section/" class="navigation navigation-next " aria-label="Next page: Another top level section">
+                <a href="firstalgorithms.html" class="navigation navigation-next " aria-label="Next page: The first algorithms">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -454,7 +560,7 @@ The <code>__main__</code> clause usually contains some input data for local test
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first two (useless) code","level":"2.1.2","depth":2,"next":{"title":"Another top level section","level":"3.1","depth":1,"path":"another-section/README.md","ref":"another-section/README.md","articles":[{"title":"A subsection","level":"3.1.1","depth":2,"path":"another-section/subsection.md","ref":"another-section/subsection.md","articles":[{"title":"A subsubsection","level":"3.1.1.1","depth":3,"path":"another-section/subsubsection.md","ref":"another-section/subsubsection.md","articles":[]}]}]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-01T16:52:14.077Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-01T16:54:11.969Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first two (almost useless) examples","level":"2.1.2","depth":2,"next":{"title":"The first algorithms","level":"2.1.3","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},"previous":{"title":"Examples of formatting","level":"2.1.1","depth":2,"path":"getting-started/formatting-examples.md","ref":"getting-started/formatting-examples.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-02T12:33:37.732Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-02T12:36:24.761Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
