@@ -225,3 +225,10 @@ but here the success is not guaranteed, since not all files have their replicas 
      Using these variables one can easily perform 
      a local and efficient access to Grid files from some _close_ Tier-1/2 center.   
 {% enddiscussion %}
+
+
+{% keypoints "Keypoints" %}
+Wth these two examples, you should aready be able to 
+* code sove _valid_ (but useless)  Bender modules 
+* run them interactively
+{% endkeypoints %}

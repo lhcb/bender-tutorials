@@ -216,3 +216,9 @@ Add  `select` statements, histos and tuples to your `HelloWorld` algorithm, crea
 {% solution "Solution" %}
 The complete module is accesible [here](https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881)
 {% endchallenge %}
+
+{% keypoints "Keypoints" %}
+Wth these two examples, you should aready be able to 
+* code Bender _algorithms_ and insetr them into overall algorithm flow 
+* loop over data,  fill historgramsn and n-tuples
+{% endkeypoints %}
