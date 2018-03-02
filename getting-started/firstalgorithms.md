@@ -41,4 +41,25 @@ In particular `initialize` could be used to locate some _tools_ and or pre-defin
 useful code  fragments, e.g. some _expensive_ LoKi-functors.
 
 
+{% discussion "Where to put the algorithm code?" %}
+It is recommended to put the algorithm code directly in the main body of yoru module, 
+outside of __configure__ function. It allows to have visual separation of algorithmic and 
+configuration parts.  Also it helps for independent reuse of both parts. 
+{% enddiscussion %}
+
+### How to embedd the algorithm into the application ?
+
+There are two approaches _brute-force_, that works nicely with such primitive code 
+as `HelloWorld` algorithm above and the intelligent/recommended approach, that smoothly insert the algorithm into the overall flow of algorithms, provdied by `DaVinci`
+
+#### _Brute-force_
+
+One can instantiate the algorithm in __configure__ method  **afte** instantiation of application manager, and add the algorithm, into the list of top-level algorithms, known to Gaudi:
+```python
+gaudi = appMgr() 
+alg   = HelloWorld('Hello')
+```
+
+   
+
 
