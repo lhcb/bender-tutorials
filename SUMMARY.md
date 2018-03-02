@@ -13,9 +13,16 @@
 
 ----
 
-* [Another top level section](another-section/README.md)
-    * [A subsection](another-section/subsection.md)
-      * [A subsubsection](another-section/subsubsection.md)
+* [Advanced Bender](advanced-bender/README.md)
+    * [`Fill` family of methods](advanced-bender/fill.md)
+    * [`TisTos` family of methods](advanced-bender/tistos.md)
+
+----
+
+* [Bender & simulation ](simulation/README.md)
+    * [MC truth](simulatition/mctruth.md)
+    * [MC match](simulatition/mcmacth.md)
+    * [processing of `HepMC`](simulatition/hepmc.md)
 
 ----
 
