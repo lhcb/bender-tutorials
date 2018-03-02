@@ -41,7 +41,7 @@ useful code  fragments, e.g. some _expensive_ or non-trivial LoKi-functors.
 
 {% discussion "Where to put the algorithm code?" %}
 It is recommended to put the algorithm code directly in the main body of yoru module, 
-outside of __configure__ function. It allows to have visual separation of algorithmic and 
+outside of `configure` function. It allows to have visual separation of algorithmic and 
 configuration parts.  Also it helps for independent reuse of both parts. 
 {% enddiscussion %}
 
@@ -59,7 +59,7 @@ gaudi = appMgr()
 alg   = HelloWorld('Hello')
 gaudi.addAlgorithm( alg )  
 ```
-For this case one can also just replace the list of top-level algorithm  with a single `HelloWorld` algorithm:
+For this case one can also just replace the list of top-level Gaudi algorithms with a single `HelloWorld` algorithm:
 ```python
 gaudi = appMgr() 
 alg   = HelloWorld('Hello')
