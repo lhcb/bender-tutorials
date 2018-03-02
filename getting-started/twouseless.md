@@ -193,7 +193,8 @@ lb-run Bender/prod python DoNothing.py
 That's all. Make a try and see what you get!
 
 {% challenge "Challenge" %}
-Try to convert any of your `DaVinci` _script_ into Bender _module_ and run it interactively 
+Try to convert any of your existing `DaVinci` simple _script_ into Bender _module_ and run it interactively.
+You can use the result of this excersize for subsequent lessons. 
 {% endchallenge %}
 
 

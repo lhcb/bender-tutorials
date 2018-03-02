@@ -8,8 +8,8 @@ and the `__main__` clause
 
 {% objectives "Learning objectives" %}
 * Understand Bender algorithms
-  * How to use them?
-  * How to embedd them into application?  
+  * How to code them?
+  * How to embedd them into the application?  
 {% endobjectives %}
 
 
@@ -34,6 +34,11 @@ class HelloWorld(Algo):
 ```
 Important note:
  - one _must_ implement the method `analyse` that gets no argument and return `StatusCode`
+
+Optionally one can (re)implement other important methods, like `__init__`,
+`initialize` , `finalize`, etc...
+In particular `initialize` could be used to locate some _tools_ and or pre-define some
+useful code  fragments, e.g. some _expensive_ LoKi-functors.
 
 
 
