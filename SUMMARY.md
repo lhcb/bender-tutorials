@@ -20,9 +20,9 @@
 ----
 
 * [Bender & simulation ](simulation/README.md)
-    * [MC truth](simulatition/mctruth.md)
-    * [MC match](simulatition/mcmatch.md)
-    * [processing of `HepMC`](simulatition/hepmc.md)
+    * [MC truth](simulation/mctruth.md)
+    * [MC match](simulation/mcmatch.md)
+    * [processing of `HepMC`](simulation/hepmc.md)
 
 ----
 
