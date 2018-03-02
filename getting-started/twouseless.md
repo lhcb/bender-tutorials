@@ -125,9 +125,9 @@ dv = DaVinci ( DataType   = '2012'    ,
 ```
 Here we are preparing application to read `PSIX.MDST` - uDST with few useful selections for B&Q Working Group.
 Note that in this part one can use all power of DaVinci/Gaudi `Congifurables`. 
-In practice, for physics analyses, it is veyr convinient to use here `Selection` framework, that 
-allows to configure `DaVinci` in a very compact, safe, robust and nicely  readable way, e.g.
-let's get from Transient Store some `selection` and print its content
+In practice, for physics analyses, it is veyr convinient to use here `Selection` framework, 
+that  allows to configure `DaVinci` in a very compact, safe, robust and nicely  readable way, 
+e.g. let's get from Transient Store some `selection` and print its content
 ```python
 from PhysConf.Selections import AutomaticData,  PrintSelection
 particles = AutomaticData  ( 'Phys/SelPsi2KForPsiX/Particles' ) 

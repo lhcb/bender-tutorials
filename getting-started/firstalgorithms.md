@@ -128,3 +128,9 @@ gaudi = appMgr()
 alg   = HelloWorld( hello ) 
 ```
 
+To complete the module one (as usual) need to combine in the file
+ 1. implementation of `HelloWorld` algorithm
+ 2. `configure` function with proper _static_ and _dynamic_ configurations
+ 3. `__main__` clause
+    
+The complete module can be accessed [here](https://gist.github.com/VanyaBelyaev/82c6b51790a9a692f04569aa51a879d2)
