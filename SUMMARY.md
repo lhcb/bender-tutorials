@@ -9,6 +9,8 @@
     * [Examples of formatting](getting-started/formatting-examples.md)
     * [The first two (almost useless) examples](getting-started/twouseless.md)
     * [The first algorithms](getting-started/firstalgorithms.md)
+    * [Loops & compounds](getting-started/createcompounds.md)
+
 ----
 
 * [Another top level section](another-section/README.md)
