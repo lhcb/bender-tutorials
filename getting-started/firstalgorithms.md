@@ -138,7 +138,7 @@ To complete the module one (as usual) need to combine in the file
     
 The complete module can be accessed [here](https://gist.github.com/VanyaBelyaev/82c6b51790a9a692f04569aa51a879d2)
 
-##  _GetData_ 
+##  _Get data, fill histos & n-tuples_ 
 
 Well, now your Bender algorithm knows how to print `Hello,world!`. 
 Note that it also gets some data: in th epreviosu example we fed 
@@ -211,3 +211,6 @@ dv = DaVinci ( DataType   = '2012'          ,
 ```
 {% enddiscussion %} 
   
+{% challenge "Challenge" %}
+Add  `select` statements, histos and tuples to you `HelloWorld` algorithms and run it.
+{% endchallenge %}
