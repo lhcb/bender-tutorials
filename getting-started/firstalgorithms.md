@@ -66,9 +66,10 @@ gaudi = appMgr()
 alg   = HelloWorld('Hello')
 gaudi.setAlgorithms( [ alg ] )  
 ```
-{% discussion "More on optional _dynamic configuration_" %}
-As it have been said earlier, the part of `configure` function, placed after `gaudi=appMgr()` line corresponds 
-to _dynamic configuration_, and here one can continue the further configuration of the algorthm, e.g. 
+{% discussion "More on an optional _dynamic configuration_" %}
+As it has been said earlier, the part of `configure` function, placed after `gaudi=appMgr()` line 
+corresponds to _dynamic configuration_, 
+and here one can continue the further configuration of the algorthm, e.g. 
 ```python
 gaudi    = appMgr() 
 alg      = HelloWorld('Hello')
@@ -98,4 +99,21 @@ alg3.decay_mode = '[D0 -> pi- pi+]CC'
 ```
 {% enddiscussion %}
 
+This appriach si easy and rathe rintuitive, but is not so easy to insert the algorithm 
+into existing non-trivial flow of algorithms without  a danger to destroy the flow.
 
+#### _Intelligent approach_ 
+
+For _intelligent_ approach one uses `Selection` wrapper for Bender algotithm,
+ `BenderSelection`. This wrapper behaves as any other selection-objects,  
+and it lives in _static configuration_ part of `configure` function:
+```python
+from PhysConf.Selections import AutomaticData,  PrintSelection
+particles = AutomaticData  ( 'Phys/SelPsi2KForPsiX/Particles' ) 
+particle  = PrintSelection ( particles )  
+
+## configuration object for Bender algorithm:
+#                              name   , input selections 
+bender    = BenderSelection ( 'Hello' , inputs = [ particle ]  )  
+dv.UserAlgorithms.append ( bender )
+```
