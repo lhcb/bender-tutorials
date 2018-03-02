@@ -135,3 +135,68 @@ To complete the module one (as usual) need to combine in the file
  4. (`run` function is imported from `Bender.Main` module)
     
 The complete module can be accessed [here](https://gist.github.com/VanyaBelyaev/82c6b51790a9a692f04569aa51a879d2)
+
+##  _GetData_ 
+
+Well, now your Bender algorithm knows how to print `Hello,world!`. 
+Note that it also gets some data: in th epreviosu example we fed 
+it with `particles`-selection. Now try to get this data inside 
+the algorithm and make first simpel manipulations with data
+
+### `select` method 
+The method `select`  is a heart of Bender algorithm. It allows to select/filter 
+the particles that satisfies some criteria from the input particles.
+The basic usage is:
+```python
+myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
+```
+The method returns collection filtered particles  
+The first argument is the tag, that will be associated with    selected particles, 
+the second    argument is the selection  criteria. 
+The tag _*must*_ be unique, and the selection  criteria coudl be in a form of
+  - _predicate_:  LoKi-functor that get the particle as  argument and return the boolean value
+  - _decay descriptor_, e.g.  'Beauty --> J/psi(1S) K+ K-'. Some componenys of the decay descriptor can be  _marked_, and in this case, only the _marked_ partcles will be selected:
+```python
+myB = self.select ( 'beauty' , 'Beauty --> J/psi(1S)  K+  K-')
+myK = self.select ( 'kaons'  , 'Beauty --> J/psi(1S) ^K+ ^K-')
+```
+
+As soon  as one gets  some good, filtered particles there are many possible actions  
+### print it!
+```python
+myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
+print myB 
+```
+### loop
+```python
+myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
+for b in myB : 
+    print 'My Particle:', p 
+    print 'some quantities: ', M(p) , PT(p) , P(p)  
+```
+
+### fill histograms 
+```python
+myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
+for b in myB : 
+    #          what        histo-ID    low-edge  high-edge  #bins 
+    self.plot( PT (p)/GeV , 'pt(B)'  , 0        , 20       ,  50  ) 
+    self.plot( M  (p)/GeV , 'm(B)'   , 5.2      , 5.4      , 100  ) 
+    self.plot( M1 (p)/GeV , 'm(psi)' , 3.0      , 3.2      , 100  )
+    self.plot( M23(p)/GeV , 'm(KK)'  , 1.0      , 1.050    ,  50  )
+```
+
+### fill n-tuple:
+```python
+myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
+t = self.nTuple('TupleName') 
+for b in myB : 
+    t.column_float ( 'pt'    , PT (p)/GeV) 
+    t.column_float ( 'm'     , M  (p)/GeV) 
+    t.column_float ( 'm_psi' , M1 (p)/GeV) 
+    t.column_float ( 'm_kk'  , M23(p)/GeV) 
+    t.write() 
+```
+
+    
+  
