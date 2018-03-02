@@ -141,9 +141,10 @@ The complete module can be accessed [here](https://gist.github.com/VanyaBelyaev/
 ##  _Get data, fill histos & n-tuples_ 
 
 Well, now your Bender algorithm knows how to print `Hello,world!`. 
-Note that it also gets some data: in th epreviosu example we fed 
-it with `particles`-selection. Now try to get this data inside 
-the algorithm and make first simpel manipulations with data
+Note that it also gets some data: in the previous example we fed 
+it with `particles`-selection. 
+Now try to get this data inside 
+the algorithm and make first simpel manipulations with data.
 
 ### `select` method 
 The method `select`  is a heart of Bender algorithm. It allows to select/filter 
@@ -156,28 +157,28 @@ The method returns collection filtered particles
 The first argument is the tag, that will be associated with    selected particles, 
 the second    argument is the selection  criteria. 
 The tag _*must*_ be unique, and the selection  criteria coudl be in a form of
-  - _predicate_:  LoKi-functor that get the particle as  argument and return the boolean value
-  - _decay descriptor_, e.g.  'Beauty --> J/psi(1S) K+ K-'. Some componenys of the decay descriptor can be  _marked_, and in this case, only the _marked_ partcles will be selected:
+  - _LoKi predicate_:  LoKi-functor that get the particle as  argument and return the boolean value
+  - _decay descriptor_, e.g.  `'Beauty --> J/psi(1S) K+ K-'`. Some components of the decay descriptor can be 
+ _marked_, and in this case, only the _marked_ partcles will be selected:
 ```python
-myB = self.select ( 'beauty' , 'Beauty --> J/psi(1S)  K+  K-')
-myK = self.select ( 'kaons'  , 'Beauty --> J/psi(1S) ^K+ ^K-')
+myB = self.select ( 'beauty' , 'Beauty --> J/psi(1S)  K+  K-')   ## get the heads of the decay
+myK = self.select ( 'kaons'  , 'Beauty --> J/psi(1S) ^K+ ^K-')   ## get only kaons 
 ```
 
 As soon  as one gets  some good, filtered particles there are many possible actions  
-### print it!
+ - print it!
 ```python
 myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
 print myB 
 ```
-### loop
+ - loop
 ```python
 myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
 for b in myB : 
     print 'My Particle:', p 
     print 'some quantities: ', M(p) , PT(p) , P(p)  
 ```
-
-### fill histograms 
+ - fill histograms 
 ```python
 myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
 for b in myB : 
@@ -187,8 +188,7 @@ for b in myB :
     self.plot( M1 (p)/GeV , 'm(psi)' , 3.0      , 3.2      , 100  )
     self.plot( M23(p)/GeV , 'm(KK)'  , 1.0      , 1.050    ,  50  )
 ```
-
-### fill n-tuple:
+  - fill n-tuple:
 ```python
 myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
 t = self.nTuple('TupleName') 
