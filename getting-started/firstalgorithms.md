@@ -66,9 +66,9 @@ gaudi = appMgr()
 alg   = HelloWorld('Hello')
 gaudi.setAlgorithms( [ alg ] )  
 ```
-##### _Dynamic configuration_ optional)
+{% discussion "More on optional _dynamic configuration_" %}
 As it have been said earlier, the part of `configure` function, placed after `gaudi=appMgr()` line corresponds 
-to _dynamic configuration_, and here one can continue thr  further configuration of the algorthm, e.g. 
+to _dynamic configuration_, and here one can continue the further configuration of the algorthm, e.g. 
 ```python
 gaudi    = appMgr() 
 alg      = HelloWorld('Hello')
@@ -86,7 +86,16 @@ class HelloWorld(Algo):
         return SUCCESS      ## IMPORTANT!!! 
 ```
 
-
-   
+Such trick is in general a bit fragile, but it is often useful if one has 
+several instances of the algorithm that differ only by some  configuration parameter.
+```python
+alg1 = MyALG ( ... ) 
+alg2 = MyALG ( ... ) 
+alg3 = MyALG ( ... ) 
+alg1.decay_mode = '[D0 -> K-  pi+]CC'
+alg2.decay_mode = '[D0 -> K-  K+ ]CC'
+alg3.decay_mode = '[D0 -> pi- pi+]CC'
+```
+{% enddiscussion %}
 
 
