@@ -99,10 +99,12 @@ alg3.decay_mode = '[D0 -> pi- pi+]CC'
 ```
 {% enddiscussion %}
 
-This appriach is very easy and rather intuitive, but is not so easy to insert the algorithm 
+This approach is very easy and rather intuitive, but is not so easy to insert the algorithm 
 into existing non-trivial flow of algorithms without  a danger to destroy the flow.
 In this  way one destroys various standard actions, like (pre)filtering, 
-luminosity calculation etc... 
+luminosity calculation etc., 
+therfore it could not be recommended for the real physics analyses, but 
+it could be used for some  simple special cases.
 
 #### _Intelligent approach_ 
 
@@ -120,8 +122,9 @@ hello = BenderSelection ( 'Hello' , inputs = [ particle ]  )
 dv.UserAlgorithms.append ( hello )
 ```
 As the next step in _dynamic configuration_ part of `configure` function
-one instantiates the  algoritm takinng all the configurtaion from  the selection-object:
+one instantiates the  algoritm taking all the configuration from  the selection-object:
 ```python
 gaudi = appMgr() 
 alg   = HelloWorld( hello ) 
 ```
+
