@@ -1,4 +1,4 @@
-# The  first  two almost _useless_, but highly _illustrative_ examples 
+# The first two _almost useless_, but _very important_ examples 
 
 {% objectives "Learning objectives" %}
 * Understand the overall structure of Bender _module_ and the configuration of the application 
@@ -200,7 +200,7 @@ Try to convert any of your `DaVinci` _script_ into Bender _module_ and run it in
 {% discussion What is `castor` ? Why `LFN` is used as input file name?%}
 Bender is smart  enough, and for many cases it can efficiently convert input `LFN` into 
 the real file name.
-  1. First, if you have Grid proxy enabled (`lhcb-proxy-init`) is uses `LHCbDirac` to locate and access the file. 
+  1. First, if you have Grid proxy enabled (`lhcb-proxy-init`) is uses internally `LHCbDirac` to locate and access the file. 
 This way is not very fast, but for all practial cases  this look-up is almost always successful, 
 however for some cases certain hints could be very useful.
 In particular, you can specify the list of Grid sites to look for data files: 
@@ -209,9 +209,10 @@ In particular, you can specify the list of Grid sites to look for data files:
 setData  ( inputdata , catalogs , castor = castor ,  grid = ['RAL','CERN','GRIDKA'] )
 ```
   2. Second, for CERN, one can use option `castor = True`, that activates the 
-local look-up on input files at CERN-CASTOR and CERN-EOS. 
-This look-up is much faster than the first options, but here the success is not guaranteed, 
-since not all files have their replicas at CERN.
+local look-up on input files at CERN-CASTOR and CERN-EOS storages
+(`root://castorlhcb.cern.ch` and `root://eoslhcb.cern.ch`).
+This look-up is much faster than the first option, 
+but here the success is not guaranteed, since not all files have their replicas at CERN.
   3. For access to special locations, e.g. some local files, Bender also makes a try to look into 
      directories specified via environment variable `BENDERDATAPATH`  (column separated list of paths)
      and also  try to contruct the file names using the content of environment varibale `BENDERDATAPREFIX` 
