@@ -17,7 +17,8 @@ effectively reused for interactivity.  The main purpose of top-level scripts is 
 orchestration of the Reflex dictionaries and the proper decoration of the available interfaces. 
 
 
-Bender dependencies are   sketched here:[dependencies](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/dependencies.svg) 
+Bender dependencies are   sketched here:
+![dependencies](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/dependencies.svg) 
 
 Doxigen documentation for Bender is accessible [here](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/index.html).
 
