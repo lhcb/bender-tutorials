@@ -100,7 +100,6 @@ it to something much more useful.
 {% discussion "In practice, ..." %}
 In practice, the prepared and _ready-to-use_ function `run` is imported from some of the main Bender module `Bender.Main`,
 and the only one really important task for the user is to code the function `configure`.
-```
 {% enddiscussion %}
 
 ## _DaVinci_
