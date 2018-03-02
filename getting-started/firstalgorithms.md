@@ -3,7 +3,7 @@
 {% prereq "Prequisites" %}
 * One needs to undertand the stucture of Bender _module_ : `run`, `configure` functions 
 and the `__main__` clause
-* One needs to know the sctructire of `configure` function
+* One needs to know the sctructure and the content of `configure` function
 {% endprereq %}
 
 {% objectives "Learning objectives" %}
@@ -31,7 +31,7 @@ class HelloWorld(Algo):
         return SUCCESS      ## IMPORTANT!!! 
 ```
 Important note:
- - one _must_ implement the method `analyse` that gets no argument and return `StatusCode`
+ - one _must_ implement the method `analyse` that gets no argument and returns `StatusCode`
 
 Optionally one can (re)implement other important methods, like `__init__`,
 `initialize` , `finalize`, etc...
@@ -188,7 +188,7 @@ for b in myB :
     self.plot( M1 (p)/GeV , 'm(psi)' , 3.0      , 3.2      , 100  )
     self.plot( M23(p)/GeV , 'm(KK)'  , 1.0      , 1.050    ,  50  )
 ```
-  - fill n-tuple:
+ - fill n-tuple:
 ```python
 myB = self.select ( 'myB' , ('B0' ==  ABSID ) | ('B0' ==  ABSID ) )
 t = self.nTuple('TupleName') 
@@ -212,5 +212,7 @@ dv = DaVinci ( DataType   = '2012'          ,
 {% enddiscussion %} 
   
 {% challenge "Challenge" %}
-Add  `select` statements, histos and tuples to you `HelloWorld` algorithms and run it.
+Add  `select` statements, histos and tuples to your `HelloWorld` algorithm, created earlier, and run it.
+{% solution "Solution" %}
+The complete module is accesible [here](https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881)
 {% endchallenge %}
