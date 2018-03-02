@@ -68,15 +68,14 @@ gaudi.setAlgorithms( [ alg ] )
 ```
 ##### _Dynamic configuration_ optional)
 As it have been said earlier, the part of `configure` function, placed after `gaudi=appMgr()` line corresponds 
-to _dynamic configuration_, and here one can continue to configure the algorthm  further, e.g. 
+to _dynamic configuration_, and here one can continue thr  further configuration of the algorthm, e.g. 
 ```python
 gaudi    = appMgr() 
 alg      = HelloWorld('Hello')
-alg.QUQU = 'qu-qu!'
+alg.QUQU = 'qu-qu!'  ## define and set some "parameter" 
 gaudi.setAlgorithms( [ alg ] )  
 ```
-Later, this new _parameter_ can be acessed e.g. in `analyse` function:
-```python
+Later, this new _parameter_ can be accessed e.g. in `analyse` function:
 ```python
 class HelloWorld(Algo):
     """The most trivial algorithm to print 'Hello,world!'"""
