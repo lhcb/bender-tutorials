@@ -62,12 +62,14 @@ for b in self.loop( 'psi k' , 'B+' ) :
     m.save('MyB')
  
 ```
+Obviously the looping can be combnied with filling of historgams and n-tuples.
+
 {% discussion "How to deal with charge conjugation?" %}
 One can make two loops: 
 ```python
 psis    = self.select ( 'psi' , 'J/psi(1S) -> mu+ mu-' )
 kplus   = self.select ( 'k+'  , ( 'K+' == ID ) & ( PT > 1 * GeV ) &  ( PROBNNk > 0.2 ) )
-kminus  = self.select ( 'k+'  , ( 'K+' == ID ) & ( PT > 1 * GeV ) &  ( PROBNNk > 0.2 ) )
+kminus  = self.select ( 'k-'  , ( 'K-' == ID ) & ( PT > 1 * GeV ) &  ( PROBNNk > 0.2 ) )
 
 bplus   = self.loop( 'psi k+', 'B+' ) ## the first  loop object 
 bminus  = self.loop( 'psi k-', 'B-' ) ## the second loop object 
@@ -99,9 +101,35 @@ for b in self.loop ( 'psi k' , 'B+' )
 {% enddiscussion %}   
 
 
+The saved particles can be extracted back using the method `selected`:
+```python
+myB = self.selected('MyB')
+for b in myB : 
+   print M(b)/GeV  
+```
 
+###  _Configuration_ 
+
+It is clear that  to build `B+ -> J/psi(1S) K+` decays, one needs to  
+feed  the algorithm with J/psi(1S)-mesond and kaons.
+Using `Selection`machinery is the most efficient ansd transaprent way to do it.
+```python
+from PhysConf.Selections import AutomaticData
+jpsi = AutomaticData( '/Event/Dimuon/Phys/FullDSTDiMuonJpsi2MuMuDetachedLine/Particles' )
+    
+from StandardParticles   import StdLooseKaons as kaons     
+bsel = BenderSelection ( 'MakeB' , [ jpsi , kaons ] )
+```
+
+The complete example of creation of `B+ -> J/psi(1S) K+` decays starting from `DIMUON.DST` 
+ is accessible from [here](https://gist.github.com/VanyaBelyaev/c3f2df0e0f23221b4fe7fd74d27fb287)
 
   
+{% keypoints "Keypoints" %}
+Wth these example, you should be able to do  
+* code Bender _algorithm_ that   perofem loopint, combianig anc creation of compound particles 
+{% endkeypoints %}
+
 
 
 
