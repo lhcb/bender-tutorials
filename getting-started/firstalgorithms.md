@@ -199,6 +199,15 @@ for b in myB :
     t.column_float ( 'm_kk'  , M23(p)/GeV) 
     t.write() 
 ```
-
-    
+{% discussion "For n-tuples..." %}
+Sicne n-tuples( ROOT's `TTree` objects) resides in ROOT-file, 
+to use n-tuples, one also need to declare the output file for `TTree`s:
+The easiest   way is to rely  on `TupleFile` property of `DaVinci`:
+```python
+dv = DaVinci ( DataType   = '2012'          ,
+               InputType  = 'MDST'          ,
+               TupleFile  = 'MyTuples.root' ,  ## SEE HERE !!! 
+               RootInTES  = rootInTES       )
+```
+{% enddiscussion %} 
   
