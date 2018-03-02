@@ -198,7 +198,7 @@ You can use the result of this excersize for subsequent lessons.
 {% endchallenge %}
 
 
-{% discussion What is `castor` ? Why `LFN` is used as input file name?%}
+{% discussion "What is `castor` ? Why `LFN` is used as input file name?" %}
 Bender is smart  enough, and for many cases it can efficiently convert input `LFN` into 
 the real file name.
   1. First, if you have Grid proxy enabled (`lhcb-proxy-init`) is uses internally `LHCbDirac` to locate and access the file. 
