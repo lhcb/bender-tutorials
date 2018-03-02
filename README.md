@@ -1,7 +1,7 @@
 # The Bender tutorials [![Build Status](https://travis-ci.org/lhcb/bender-tutorials.svg?branch=master)](https://travis-ci.org/lhcb/bender-tutorials)
 
 These are tutorials for Bender application: 
-["User-friently python analysis environment for LHCb"](http://lhcbdoc.web.cern.ch/lhcbdoc/bender).
+["User-friendly python analysis environment for LHCb"](http://lhcbdoc.web.cern.ch/lhcbdoc/bender).
 
 It is the first attempt to convert existing [TWiki-based tutorials](https://twiki.cern.ch/twiki/bin/view/LHCb/BenderTutorial)
 to GitHub platform, inspired  by the great success of [LHCb StarterKit lessons](https://lhcb.github.io/starterkit-lessons).
