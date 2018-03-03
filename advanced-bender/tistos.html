@@ -552,13 +552,13 @@ E.g. due to  small statistics here, for <code>Hlt1-TIS</code>-lines the choice i
 one clearly see that <code>Hlt1TrackAllL0Decision</code> line is important, but for 
 importance of other lines one csn judge only after the 
 significant increase of the statistics.</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6131327079);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-6131327079">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-6131327079"><p>In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6615074547);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-6615074547">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-6615074547"><p>In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
 And here these files are very useful. 
 The trigger statistics is  saved not only in <code>&lt;ALGNAME&gt;_tistos.txt</code>-file but also in <code>shelve</code>-dbase 
 <code>&lt;ALGNAME&gt;_tistos.db</code>.<br>If really large statistics is required there are some utilities to merge the 
 information from these <code>&lt;ALGNAME&gt;_tistos.db</code> together, e.g. on the output of Ganga jobs.</p>
 </div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6652460591);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-6652460591"></span></h3></div><div class="panel-body" id="panel-6652460591"><ol>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3607084543);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-3607084543"></span></h3></div><div class="panel-body" id="panel-3607084543"><ol>
 <li>Add <code>decisions</code>-function for your previous Bender module with n-tuples. <ul>
 <li>(Do not  forget to instrument the <code>initialize</code> method)</li>
 </ul>
@@ -569,7 +569,7 @@ information from these <code>&lt;ALGNAME&gt;_tistos.db</code> together, e.g. on 
 </ul>
 </li>
 </ol>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3616859119);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-3616859119"></span></h3></div><div class="panel-body" id="panel-3616859119"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(590990035);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-590990035"></span></h3></div><div class="panel-body" id="panel-590990035"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
 and the corresponsing summary table is <a href="https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3" target="_blank">here</a></p>
 </div></div></div></div></p>
 <h2 id="how-to-add-the-tistos-information-to-n-tupletree">How to add the <code>TisTos</code>-information to n-tuple/tree?</h2>
@@ -633,7 +633,7 @@ the method <code>tistos</code> for the given particle, J/psi in our case:</p>
 </code></pre>
 <p>This code adds several variables into  n-tuple/tree, see log-file or use <code>help(Algo.tistos)</code>.
 Also <code>TisTos</code>-information for  <em>global</em> and <em>physics</em> triggers is added.
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5585813682);" id="in-detailsclick-to-expand"><i class="fa fa-bell"></i> In details,<span id="heading-5585813682">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-5585813682"><p>The fragment from log-file:</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7530304813);" id="in-detailsclick-to-expand"><i class="fa fa-bell"></i> In details,<span id="heading-7530304813">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7530304813"><p>The fragment from log-file:</p>
 <pre><code># BenderTools.TisTos        INFO    tisTos: Fill TisTos information into n-tuple
 #    
 #    # for d in particles : 
@@ -757,6 +757,25 @@ Also <code>TisTos</code>-information for  <em>global</em> and <em>physics</em> t
 #    - ``&lt;label&gt;l2phys&apos;
 #    - ``&lt;label&gt;l2glob&apos;
 </code></pre></div></div></p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8409622321);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-8409622321"></span></h3></div><div class="panel-body" id="panel-8409622321"><ol>
+<li>Add <code>tistos</code>-function for your previous Bender module with n-tuples. <ul>
+<li>(Do not  forget to instrument the <code>initialize</code> method)</li>
+</ul>
+</li>
+<li>Run it and observe new variables in n-tuple/tree</li>
+<li>Make a plot of B-mass  for all candidates, and for candiated that are <code>L0-TOS</code>, <code>Hlt-TOS</code> and <code>Hlt2-TOS</code> with respect to the set of selected trigger lines. </li>
+</ol>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(798674914);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-798674914"></span></h3></div><div class="panel-body" id="panel-798674914"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/7ec39d549454388d46292a0bc9e7dbe3" target="_blank">here</a>
+and the corresponsing log-file is <a href="https://gist.github.com/VanyaBelyaev/14522f14672f84c171eac9b29df31f68" target="_blank">here</a>
+To make the corresponsing plot, e.g. start <code>(i)python</code>:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> ROOT
+f = ROOT.TFile(<span class="hljs-string">&apos;TisTosTuples.root&apos;</span>,<span class="hljs-string">&apos;READ&apos;</span>)
+t = f.Get(<span class="hljs-string">&apos;TisTos/MyTuple&apos;</span>)
+t.Draw ( <span class="hljs-string">&apos;m_b&apos;</span>  ,<span class="hljs-string">&apos;&apos;</span> , <span class="hljs-string">&apos;e1&apos;</span> )
+t.Draw ( <span class="hljs-string">&apos;m_b&apos;</span> , <span class="hljs-string">&apos; psi_l0tos_tos &amp;&amp; psi_l1tos_tos &amp;&amp; psi_l2tos_tos&apos;</span> , <span class="hljs-string">&apos;same hist&apos;</span> )
+</code></pre>
+<p>The result is here:<img src="https://lhcb.github.io/bender-tutorials/advanced-bender/img/TisTos.png" alt="alt image text"></p>
+</div></div></div></div></p>
 
                                 
                                 </section>
@@ -800,7 +819,7 @@ Also <code>TisTos</code>-information for  <em>global</em> and <em>physics</em> t
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T14:25:46.078Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T14:28:53.042Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T14:47:22.333Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T14:52:14.637Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
