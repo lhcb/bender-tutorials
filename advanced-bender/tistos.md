@@ -73,8 +73,7 @@ def analyse( self ) :   ## IMPORTANT!
   return SUCCESS   
 ```
 Thats all. Then when jobs runs  it dumps to the log-file the running trigger statistics, 
-and the statistics is dumped into the file `TrgLines_tistos.txt` (`<ALGONAME>_tistos.txt` in general) 
-amd into `shelve`-dbase `TrgLines_tistos.db` (`<ALGONAME>_tistos.db` in general).
+and the statistics is dumped into the file `TrgLines_tistos.txt` (`<ALGNAME>_tistos.txt` in general).
 The summary table looks like:
 ```
 ******************************************************************************************
@@ -110,32 +109,31 @@ Hlt1_TPS psi   #lines:     6 #events 321
  (100.00 +- 0.31 )       TOTAL 
 ```
 Only a short fragment is shown here, one gets similar fragments for all declared 
-particles (`psi`, `K` and `B`) and for all trigegr levels (`L0`, `Hlt1` and `Hlt2`).
+particles (`psi`, `K` and `B`) and for all trigger levels (`L0`, `Hlt1` and `Hlt2`).
 The full table is accessible [here](https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3)
 The content of the summaty table is rather intuitive: it summarizes the fire frequences for 
 varios trugegr lines for three regimes `TIS`, `TOS` and `TPS`. 
-Inspecting such table, one can immediately conclude that 
-the possible choice of trigger `Hlt1-TOS` lines is 
- - `Hlt1DiMuonHighMassDecision`
- - `Hlt1DiMuonLowMassDecision`
- - `Hlt1TrackAllL0Decision`
- - `Hlt1TrackMuonDecision`
-Other `Hlt1-TOS`-lines are  not very relevant. 
-But pleaae note that here only vey small statistics is used (321 event), 
-and with larger statistics some conclusion coudl be corrected.
+Inspecting such table, one immediately concludes that the most relevan `Hlt1-TOS`-line
+is `Hlt1DiMuonHighMassDecision`. Other `Hlt1-TOS`-lines are  less relevant here. 
+But please note that here only very small statistics is used (321 event), 
+and with larger statistics sthe conclusions could be corrected.
 E.g. due to  small statistics here, for `Hlt1-TIS`-lines the choice is not evident:
 one clearly see that `Hlt1TrackAllL0Decision` line is important, but for 
 importance of other lines one csn judge only after the 
 significant increase of the statistics.
 
 {% discussion "What is `<ALGNAME>_tistos.db` file?" %}
+In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
+And here these files are very useful. 
 The trigger statistics is  saved not only in `<ALGNAME>_tistos.txt`-file but also in `shelve`-dbase 
-`<ALGNAME>_tistos.db`.  If really large statistics is required there are some utilities to merge the 
+`<ALGNAME>_tistos.db`.  
+If really large statistics is required there are some utilities to merge the 
 information from these `<ALGNAME>_tistos.db` together, e.g. on the output of Ganga jobs.
 {% enddiscussion %}
 
 {% challenge "Challenge" %}
-  1. Add `decisions`-function into your into your previous Bender module with n-tuples. (Do not  forget to instrument `initialize` method!).
+  1. Add `decisions`-function for your previous Bender module with n-tuples. 
+     * (Do not  forget to instrument the `initialize` method)
   2. Run it and observe the output summary table 
   3. Identify the relevant  `L0-TOS`, `Hlt1-TOS` and `Hlt2-TOS` lines for your decay 
      * Does it correspond to your  expectations?
