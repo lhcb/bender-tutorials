@@ -487,7 +487,54 @@ All of them are (well) documented and one can easily inspect them:</p>
 <span class="hljs-keyword">from</span> Bender.Main <span class="hljs-keyword">import</span> Algo
 help(Algo.treatPions)
 </code></pre>
-<p>Also all these methods  print  detailed how-to infomratino  in log-file  at the moment of the first invoke, and it vasn be very helpful to understand the branches in n-tuple/tree.<br>The typical usage of these methods is: </p>
+<p>Also all these methods  print  detailed how-to infomratino  in log-file  at the moment of the first invoke, and it vasn be very helpful to understand the branches in n-tuple/tree, e.g.</p>
+<pre><code class="lang-python"><span class="hljs-comment"># BenderTools.Fill          INFO    treatTracks: The method adds track-specific information into n-tuple</span>
+<span class="hljs-comment">#     ...</span>
+<span class="hljs-comment">#     tup = ... ## n-tuple </span>
+<span class="hljs-comment">#     b   = ... ## the particle  (or looping object)</span>
+<span class="hljs-comment">#     self.treatTracks ( tup , b , &apos;_B&apos; ) ## suffix is optional </span>
+<span class="hljs-comment">#     ...                </span>
+<span class="hljs-comment">#     Following variables are added into n-tuple:</span>
+<span class="hljs-comment">#     - deltaM2_min_track_ss/os[+suffix]:</span>
+<span class="hljs-comment">#     Minimal value of delta_m2(track1, track2) for all pairs of same-sign (``_ss&apos;&apos;)</span>
+<span class="hljs-comment">#     and opposite sign ``_os&apos;&apos; tracks, where function minm2 is</span>
+<span class="hljs-comment">#     delta_M2(p1,p2) = (m^2(p1+p2) - 2*m^2(p1)-2*m^2(p2) )/m^2(p1+p2)</span>
+<span class="hljs-comment">#     see  LoKi::Kinematics::deltaM2</span>
+<span class="hljs-comment">#     - deltaAlpha_min_track_ss/os[+suffix]:</span>
+<span class="hljs-comment">#     Minimal value of the angle between two momenta for all pairs of same-sign (``_ss&apos;&apos;)</span>
+<span class="hljs-comment">#     and opposite sign ``_os&apos;&apos; tracks</span>
+<span class="hljs-comment">#     see  LoKi::Kinematics::deltaAlpha</span>
+<span class="hljs-comment">#     - overlap_max_track_ss/os[+suffix]:</span>
+<span class="hljs-comment">#     Maximal value ``overlap&apos;&apos; for all pairs of same-sign (``_ss&apos;&apos;)</span>
+<span class="hljs-comment">#     and opposite sign ``_os&apos;&apos; tracks</span>
+<span class="hljs-comment">#     ``Overlap&apos;&apos; is defined as fraction of common/shared hits between two tracks </span>
+<span class="hljs-comment">#     see LHCb::HasIDs::overlap </span>
+<span class="hljs-comment">#     - minPt_track[+suffix]</span>
+<span class="hljs-comment">#     Minimal pT of the tracks</span>
+<span class="hljs-comment">#     - min/maxEta_track[+suffix]</span>
+<span class="hljs-comment">#     Minimal/maximal eta/pseudorapidity of the tracks</span>
+<span class="hljs-comment">#     - maxChi2_track[+suffix]</span>
+<span class="hljs-comment">#     Maximal chi2/ndf for the track</span>
+<span class="hljs-comment">#     - minKL_track[+suffix]</span>
+<span class="hljs-comment">#     Minimal value of Kullback-Leibler divergency for the tracks</span>
+<span class="hljs-comment">#     - maxTrGh_track[+suffix]</span>
+<span class="hljs-comment">#     Maximal value of Track Ghost probability for the tracks (track-based)</span>
+<span class="hljs-comment">#     - maxAnnGh_track[+suffix]</span>
+<span class="hljs-comment">#     Maximal value of       Ghost probability for the tracks (PID-based)</span>
+<span class="hljs-comment">#     - n_track[+suffix] </span>
+<span class="hljs-comment">#     Number of tracks in the decay</span>
+<span class="hljs-comment">#     </span>
+<span class="hljs-comment">#     And then for each track in the decay:</span>
+<span class="hljs-comment">#     - p_track[+suffux]     momentum of the track</span>
+<span class="hljs-comment">#     - pt_track[+suffux]    transverse momentum of the track</span>
+<span class="hljs-comment">#     - eta_track[+suffux]   eta/pseudorapidity  of the track</span>
+<span class="hljs-comment">#     - phi_track[+suffux]   phi (azimuth angle) of the track</span>
+<span class="hljs-comment">#     - chi2_track[+suffux]  chi2/ndf of the track</span>
+<span class="hljs-comment">#     - PChi2_track[+suffux] fit probability calculated from chi2/ndf of the track</span>
+<span class="hljs-comment">#     - ann_track[+suffix]   Ghost probability (PID-based)</span>
+<span class="hljs-comment">#     - trgh_track[+suffix]  Track Ghost probability (Track-based)</span>
+</code></pre>
+<p>The typical usage of these methods is: </p>
 <pre><code class="lang-python">tup = self.nTuple(<span class="hljs-string">&apos;MyTuple&apos;</span>)
 <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> particles :
 
@@ -503,7 +550,7 @@ help(Algo.treatPions)
 
     tup.write()
 </code></pre>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7947717879);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-7947717879"></span></h3></div><div class="panel-body" id="panel-7947717879"><ol>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4022904087);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-4022904087"></span></h3></div><div class="panel-body" id="panel-4022904087"><ol>
 <li>Add (some of) these functions into your previous Bender module with n-tuples.</li>
 <li>Run it and observe the detailed  printout in log-file </li>
 <li>Observe new variables in your n-tuple/tree and find their description in the log-file or via <code>help(Algo.&lt;THEMETHOD&gt;)</code><ul>
@@ -511,7 +558,7 @@ help(Algo.treatPions)
 </ul>
 </li>
 </ol>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1108356486);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-1108356486"></span></h3></div><div class="panel-body" id="panel-1108356486"><p>The complete module is accessible [here] (<a href="https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53" target="_blank">https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53</a>)</p>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6782617629);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-6782617629"></span></h3></div><div class="panel-body" id="panel-6782617629"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53" target="_blank">here</a> and the corresponsing log-file is <a href="https://gist.github.com/VanyaBelyaev/03dc3bc117940dc8a52f8796cc737985" target="_blank">here</a></p>
 </div></div></div></div></p>
 
                                 
@@ -556,7 +603,7 @@ help(Algo.treatPions)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"next":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},"previous":{"title":"Advanced Bender","level":"3.1","depth":1,"path":"advanced-bender/README.md","ref":"advanced-bender/README.md","articles":[{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/fill.md","mtime":"2018-03-03T13:02:46.502Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T13:05:25.829Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"next":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},"previous":{"title":"Advanced Bender","level":"3.1","depth":1,"path":"advanced-bender/README.md","ref":"advanced-bender/README.md","articles":[{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/fill.md","mtime":"2018-03-03T13:12:20.094Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T13:14:13.503Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
