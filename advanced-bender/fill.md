@@ -25,3 +25,31 @@ import BenderTools.Fill
 from Bender.Main import Algo
 help(Algo.treatPions)
 ```
+Also all these methods  print  detailed how-to infomratino  in log-file  at the moment of the first invoke, and it vasn be very helpful to understand the branches in n-tuple/tree.  
+The typical usage of these methods is: 
+```python
+tup = self.nTuple('MyTuple')
+for p in particles :
+            
+    psi = p(1) ## the first daughter: J/psi 
+            
+    ## fill few kinematic variables for the particles:
+    self.treatKine   ( tup , p   , '_b'   )  ## use the suffix to mark variables 
+    self.treatKine   ( tup , psi , '_psi' )  ## use the suffix to mark variables 
+            
+    self.treatKaons  ( tup , p ) ## fill some basic information for all kaons
+    self.treatMuons  ( tup , p ) ## fill some basic information for all muons
+    self.treatTracks ( tup , p ) ## fill some basic information for all charged tracks
+
+    tup.write()     
+```
+{% challenge "Challenge" %}
+  1. Add (some of) these functions into your previous Bender module with n-tuples.
+  2. Run it and observe the detailed  printout in log-file 
+  3. Observe new variables in your n-tuple/tree 
+{% solution "Solution" %}
+The complete module is accessible [here] (https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53)
+{% endchallenge %}
+
+
+
