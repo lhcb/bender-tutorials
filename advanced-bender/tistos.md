@@ -335,3 +335,21 @@ The fragment from log-file:
 {% enddiscussion %}
  
 
+{% challenge "Challenge" %}
+  1. Add `tistos`-function for your previous Bender module with n-tuples. 
+     * (Do not  forget to instrument the `initialize` method)
+  2. Run it and observe new variables in n-tuple/tree
+  3. Make a plot of B-mass  for all candidates, and for candiated that are `L0-TOS`, `Hlt-TOS` and `Hlt2-TOS` with respect to the set of selected trigger lines. 
+{% solution "Solution" %}
+The complete module is accessible [here](https://gist.github.com/VanyaBelyaev/7ec39d549454388d46292a0bc9e7dbe3)
+and the corresponsing log-file is [here](https://gist.github.com/VanyaBelyaev/14522f14672f84c171eac9b29df31f68)
+To make the corresponsing plot, e.g. start `(i)python`:
+```python
+import ROOT
+f = ROOT.TFile('TisTosTuples.root','READ')
+t = f.Get('TisTos/MyTuple')
+t.Draw ( 'm_b'  ,'' , 'e1' )
+t.Draw ( 'm_b' , ' psi_l0tos_tos && psi_l1tos_tos && psi_l2tos_tos' , 'same hist' )
+```
+The result is here:![alt image text](https://lhcb.github.io/bender-tutorials/advanced-bender/img/TisTos.png)
+{% endchallenge %}
