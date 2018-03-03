@@ -506,8 +506,7 @@ the method <code>decisions</code> for each particles  in interest:</p>
   <span class="hljs-keyword">return</span> SUCCESS
 </code></pre>
 <p>Thats all. Then when jobs runs  it dumps to the log-file the running trigger statistics, 
-and the statistics is dumped into the file <code>TrgLines_tistos.txt</code> (<code>&lt;ALGONAME&gt;_tistos.txt</code> in general) 
-amd into <code>shelve</code>-dbase <code>TrgLines_tistos.db</code> (<code>&lt;ALGONAME&gt;_tistos.db</code> in general).
+and the statistics is dumped into the file <code>TrgLines_tistos.txt</code> (<code>&lt;ALGNAME&gt;_tistos.txt</code> in general).
 The summary table looks like:</p>
 <pre><code>******************************************************************************************
  Triggers for  psi
@@ -541,38 +540,36 @@ Hlt1_TPS psi   #lines:     6 #events 321
  (  4.67 +- 1.18 )       Hlt1TrackMuonDecision 
  (100.00 +- 0.31 )       TOTAL
 </code></pre><p>Only a short fragment is shown here, one gets similar fragments for all declared 
-particles (<code>psi</code>, <code>K</code> and <code>B</code>) and for all trigegr levels (<code>L0</code>, <code>Hlt1</code> and <code>Hlt2</code>).
+particles (<code>psi</code>, <code>K</code> and <code>B</code>) and for all trigger levels (<code>L0</code>, <code>Hlt1</code> and <code>Hlt2</code>).
 The full table is accessible <a href="https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3" target="_blank">here</a>
 The content of the summaty table is rather intuitive: it summarizes the fire frequences for 
 varios trugegr lines for three regimes <code>TIS</code>, <code>TOS</code> and <code>TPS</code>. 
-Inspecting such table, one can immediately conclude that 
-the possible choice of trigger <code>Hlt1-TOS</code> lines is </p>
-<ul>
-<li><code>Hlt1DiMuonHighMassDecision</code></li>
-<li><code>Hlt1DiMuonLowMassDecision</code></li>
-<li><code>Hlt1TrackAllL0Decision</code></li>
-<li><code>Hlt1TrackMuonDecision</code>
-Other <code>Hlt1-TOS</code>-lines are  not very relevant. 
-But pleaae note that here only vey small statistics is used (321 event), 
-and with larger statistics some conclusion coudl be corrected.
+Inspecting such table, one immediately concludes that the most relevan <code>Hlt1-TOS</code>-line
+is <code>Hlt1DiMuonHighMassDecision</code>. Other <code>Hlt1-TOS</code>-lines are  less relevant here. 
+But please note that here only very small statistics is used (321 event), 
+and with larger statistics sthe conclusions could be corrected.
 E.g. due to  small statistics here, for <code>Hlt1-TIS</code>-lines the choice is not evident:
 one clearly see that <code>Hlt1TrackAllL0Decision</code> line is important, but for 
 importance of other lines one csn judge only after the 
-significant increase of the statistics.</li>
-</ul>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7342373214);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-7342373214">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-7342373214"><p>The trigger statistics is  saved not only in <code>&lt;ALGNAME&gt;_tistos.txt</code>-file but also in <code>shelve</code>-dbase 
-<code>&lt;ALGNAME&gt;_tistos.db</code>.  If really large statistics is required there are some utilities to merge the 
+significant increase of the statistics.</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9087762708);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-9087762708">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-9087762708"><p>In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
+And here these files are very useful. 
+The trigger statistics is  saved not only in <code>&lt;ALGNAME&gt;_tistos.txt</code>-file but also in <code>shelve</code>-dbase 
+<code>&lt;ALGNAME&gt;_tistos.db</code>.<br>If really large statistics is required there are some utilities to merge the 
 information from these <code>&lt;ALGNAME&gt;_tistos.db</code> together, e.g. on the output of Ganga jobs.</p>
 </div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4259021645);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-4259021645"></span></h3></div><div class="panel-body" id="panel-4259021645"><ol>
-<li>Add <code>decisions</code>-function into your into your previous Bender module with n-tuples. (Do not  forget to instrument <code>initialize</code> method!).</li>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1512820638);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-1512820638"></span></h3></div><div class="panel-body" id="panel-1512820638"><ol>
+<li>Add <code>decisions</code>-function for your previous Bender module with n-tuples. <ul>
+<li>(Do not  forget to instrument the <code>initialize</code> method)</li>
+</ul>
+</li>
 <li>Run it and observe the output summary table </li>
 <li>Identify the relevant  <code>L0-TOS</code>, <code>Hlt1-TOS</code> and <code>Hlt2-TOS</code> lines for your decay <ul>
 <li>Does it correspond to your  expectations?</li>
 </ul>
 </li>
 </ol>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4506757510);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-4506757510"></span></h3></div><div class="panel-body" id="panel-4506757510"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9663594688);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-9663594688"></span></h3></div><div class="panel-body" id="panel-9663594688"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
 and the corresponsing summary table is <a href="https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3" target="_blank">here</a></p>
 </div></div></div></div></p>
 
@@ -618,7 +615,7 @@ and the corresponsing summary table is <a href="https://gist.github.com/VanyaBel
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T13:57:02.538Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T13:58:51.024Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T14:07:25.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T14:12:42.615Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
