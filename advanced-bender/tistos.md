@@ -111,7 +111,7 @@ Hlt1_TPS psi   #lines:     6 #events 321
 ```
 Only a short fragment is shown here, one gets similar fragments for all declared 
 particles (`psi`, `K` and `B`) and for all trigegr levels (`L0`, `Hlt1` and `Hlt2`).
-The full table is accessible [here] (https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3)
+The full table is accessible [here](https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3)
 The content of the summaty table is rather intuitive: it summarizes the fire frequences for 
 varios trugegr lines for three regimes `TIS`, `TOS` and `TPS`. 
 Inspecting such table, one can immediately conclude that 
@@ -128,9 +128,18 @@ one clearly see that `Hlt1TrackAllL0Decision` line is important, but for
 importance of other lines one csn judge only after the 
 significant increase of the statistics.
 
-{% discussion "What are `*.db` files?" %}
-The trigger statistics is  saved not only in `*_tistos.txt`-file but also in `shelve`-dbase 
-`*_tistos.db`.  If really large statistics is required there are some utilities to merge the 
-information from these `*_tistos.db` together, e.g. on the outpue of Ganga jobs.
+{% discussion "What is `<ALGNAME>_tistos.db` file?" %}
+The trigger statistics is  saved not only in `<ALGNAME>_tistos.txt`-file but also in `shelve`-dbase 
+`<ALGNAME>_tistos.db`.  If really large statistics is required there are some utilities to merge the 
+information from these `<ALGNAME>_tistos.db` together, e.g. on the output of Ganga jobs.
 {% enddiscussion %}
 
+{% challenge "Challenge" %}
+  1. Add `decisions`-function into your into your previous Bender module with n-tuples. (Do not  forget to instrument `initialize` method!).
+  2. Run it and observe the output summary table 
+  3. Identify the relevant  `L0-TOS`, `Hlt1-TOS` and `Hlt2-TOS` lines for your decay 
+     * Does it correspond to your  expectations?
+{% solution "Solution" %}
+The complete module is accessible [here](https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727)
+and the corresponsing summary table is [here](https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3)
+{% endchallenge %}
