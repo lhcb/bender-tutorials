@@ -423,7 +423,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="handling-of-tistos-information-in-bender--bendertoolstistos-module">Handling of <code>TisTos</code> information in Bender  (<code>BenderTools.TisTos</code> module)</h1>
+                                <h1 id="handling-of-tistos-information-in-bender">Handling of <code>TisTos</code>-information in Bender</h1>
 <p>Bender offers set of methods to handle <code>TisTos</code>-information in (relatively) easy way.
 This functionality  comes from <code>BenderTools.TisTos</code> module.
 In short, it adds three relates method in the base class <code>Algo</code>:</p>
@@ -552,13 +552,13 @@ E.g. due to  small statistics here, for <code>Hlt1-TIS</code>-lines the choice i
 one clearly see that <code>Hlt1TrackAllL0Decision</code> line is important, but for 
 importance of other lines one csn judge only after the 
 significant increase of the statistics.</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9087762708);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-9087762708">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-9087762708"><p>In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6131327079);" id="what-is-tistosdb-fileclick-to-expand"><i class="fa fa-bell"></i> What is `<algname>_tistos.db` file?<span id="heading-6131327079">Click to expand</span></algname></h3></div><div class="panel-body" style="display: none" id="panel-6131327079"><p>In practice to make a decision, large statistics is required (for real data and/or for simulated samples).
 And here these files are very useful. 
 The trigger statistics is  saved not only in <code>&lt;ALGNAME&gt;_tistos.txt</code>-file but also in <code>shelve</code>-dbase 
 <code>&lt;ALGNAME&gt;_tistos.db</code>.<br>If really large statistics is required there are some utilities to merge the 
 information from these <code>&lt;ALGNAME&gt;_tistos.db</code> together, e.g. on the output of Ganga jobs.</p>
 </div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1512820638);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-1512820638"></span></h3></div><div class="panel-body" id="panel-1512820638"><ol>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6652460591);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-6652460591"></span></h3></div><div class="panel-body" id="panel-6652460591"><ol>
 <li>Add <code>decisions</code>-function for your previous Bender module with n-tuples. <ul>
 <li>(Do not  forget to instrument the <code>initialize</code> method)</li>
 </ul>
@@ -569,9 +569,194 @@ information from these <code>&lt;ALGNAME&gt;_tistos.db</code> together, e.g. on 
 </ul>
 </li>
 </ol>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9663594688);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-9663594688"></span></h3></div><div class="panel-body" id="panel-9663594688"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3616859119);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-3616859119"></span></h3></div><div class="panel-body" id="panel-3616859119"><p>The complete module is accessible <a href="https://gist.github.com/VanyaBelyaev/0e12d07b705dcd4af48aea8dad02f727" target="_blank">here</a>
 and the corresponsing summary table is <a href="https://gist.github.com/VanyaBelyaev/90cc0f9b1ab84c8e40e2cd2ccf321bc3" target="_blank">here</a></p>
 </div></div></div></div></p>
+<h2 id="how-to-add-the-tistos-information-to-n-tupletree">How to add the <code>TisTos</code>-information to n-tuple/tree?</h2>
+<p>Now, when we have the lists of the relevant lines, one  wants to add infrommation   about the decisions of these lines into  n-tuple/tree.
+The method <code>tistos</code> is out friend here. To use this method one needs to instrument <code>initialize</code>-method:</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TisTosTuple</span><span class="hljs-params">(Algo)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;Enhanced functionality for n-tuples 
+    &quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span> <span class="hljs-params">( self )</span> :</span>
+
+        sc = Algo.initialize ( self ) <span class="hljs-comment">## initialize the base class</span>
+        <span class="hljs-keyword">if</span> sc.isFailure() : <span class="hljs-keyword">return</span> sc
+
+        <span class="hljs-comment">#</span>
+        <span class="hljs-comment">## container to collect trigger information, e.g. list of fired lines </span>
+        <span class="hljs-comment">#</span>
+        triggers = {}
+        triggers [<span class="hljs-string">&apos;psi&apos;</span>] = {} <span class="hljs-comment">## slot to keep information for J/psi </span>
+
+        <span class="hljs-comment">#</span>
+        <span class="hljs-comment">## the lines to be investigated in details</span>
+        <span class="hljs-comment">#</span>
+        lines    = {}
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ] = {} <span class="hljs-comment">## trigger lines for J/psi</span>
+
+        <span class="hljs-comment">## six mandatory keys:</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][   <span class="hljs-string">&apos;L0TOS&apos;</span> ] = <span class="hljs-string">&apos;L0(DiMuon|Muon)Decision&apos;</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][   <span class="hljs-string">&apos;L0TIS&apos;</span> ] = <span class="hljs-string">&apos;L0(Hadron|DiMuon|Muon|Electron|Photon)Decision&apos;</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][ <span class="hljs-string">&apos;Hlt1TOS&apos;</span> ] = <span class="hljs-string">&apos;Hlt1(DiMuon|TrackMuon).*Decision&apos;</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][ <span class="hljs-string">&apos;Hlt1TIS&apos;</span> ] = <span class="hljs-string">&apos;Hlt1(DiMuon|SingleMuon|Track).*Decision&apos;</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][ <span class="hljs-string">&apos;Hlt2TOS&apos;</span> ] = <span class="hljs-string">&apos;Hlt2DiMuon.*Decision&apos;</span>
+        lines    [ <span class="hljs-string">&quot;psi&quot;</span> ][ <span class="hljs-string">&apos;Hlt2TIS&apos;</span> ] = <span class="hljs-string">&apos;Hlt2(Charm|Topo|DiMuon|Single).*Decision&apos;</span>
+
+        sc = self.tisTos_initialize ( triggers , lines )
+        <span class="hljs-keyword">if</span> sc.isFailure() : <span class="hljs-keyword">return</span> sc
+
+        <span class="hljs-keyword">return</span> SUCCESS
+</code></pre>
+<p>Here one defines six <code>regex</code>-patterns that describe the six sets of triggers lines:
+<code>L0</code>, <code>Hlt1</code>, <code>Hlt2</code> vs <code>TIS</code>, <code>TOS</code>. These expressions are coded according to the infomration, 
+obtainer earlier. The next step is rather trivial: in <code>analyse</code> method one need to invoke 
+the method <code>tistos</code> for the given particle, J/psi in our case:</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">analyse</span><span class="hljs-params">( self )</span> :</span>  
+    <span class="hljs-string">&quot;&quot;&quot;The main &apos;analysis&apos; method&quot;&quot;&quot;</span>
+    ...
+    tup = self.nTuple(<span class="hljs-string">&apos;MyTuple&apos;</span>)
+    <span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> particles :            
+        psi =b(<span class="hljs-number">1</span>) <span class="hljs-comment">## the first daughter: J/psi             </span>
+        ...             
+        <span class="hljs-comment">## fill n-tuple with TISTOS information for J/psi</span>
+        self.tisTos      (
+            psi               , <span class="hljs-comment">## particle </span>
+            tup               , <span class="hljs-comment">## n-tuple</span>
+            <span class="hljs-string">&apos;psi_&apos;</span>            , <span class="hljs-comment">## prefix for variable name in n-tuple</span>
+            self.lines[<span class="hljs-string">&apos;psi&apos;</span>] , <span class="hljs-comment">## trigger lines to be inspected</span>
+            verbose = <span class="hljs-keyword">True</span>      <span class="hljs-comment">## good ooption for those who hates bit-wise operations </span>
+            )            
+        tup.write()             
+   ... 
+   <span class="hljs-keyword">return</span> SUCCESS
+</code></pre>
+<p>This code adds several variables into  n-tuple/tree, see log-file or use <code>help(Algo.tistos)</code>.
+Also <code>TisTos</code>-information for  <em>global</em> and <em>physics</em> triggers is added.
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5585813682);" id="in-detailsclick-to-expand"><i class="fa fa-bell"></i> In details,<span id="heading-5585813682">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-5585813682"><p>The fragment from log-file:</p>
+<pre><code># BenderTools.TisTos        INFO    tisTos: Fill TisTos information into n-tuple
+#    
+#    # for d in particles : 
+#    #    self.tisTos ( d     ,
+#    #                  tup   ,
+#    #                 &apos;d0_&apos;  ,
+#    #                 self.lines [&apos;D0&apos;] , 
+#    #                 self.l0tistos     ,
+#    #                 self.l1tistos     ,
+#    #                 self.l2tistos     )
+#    
+#    ``lines&apos;&apos; here is a dictionary of lines (or regex-patterns) with
+#    following keys:
+#    - L0TOS
+#    - L0TIS
+#    - Hlt1TOS
+#    - Hlt1TIS
+#    - Hlt2TOS
+#    - Hlt2TIS
+#
+#    e.g.
+#    
+#    # lines = {}
+#    # lines [&apos;L0TOS&apos;  ] = &apos;L0HadronDecision&apos;
+#    # lines [&apos;L0TIS&apos;  ] = &apos;L0(Hadron|Muon|DiMuon)Decision&apos;
+#    # lines [&apos;Hlt1TOS&apos;] = ...
+#    # lines [&apos;Hlt1TIS&apos;] = &apos;Hlt1Topo.*Decision&apos;
+#    # lines [&apos;Hlt2TOS&apos;] = ...
+#    # lines [&apos;Hlt2TIS&apos;] = ...
+#    
+#    Technically it is useful to keep it as ``per-particle-type&apos;&apos; dictionary
+#    
+#    # def initialize ( self ) :
+#    #     ...
+#    #     self.lines           = {}
+#    #     self.lines [&apos;B&apos;  ]   = {}
+#    #     self.lines [&apos;B&apos;  ][&apos;L0TOS&apos;] = ...
+#    #     self.lines [&apos;B&apos;  ][&apos;L0TOS&apos;] = ...
+#    #     ...
+#    #     self.lines [&apos;psi&apos;]   = {}
+#    #     self.lines [&apos;psi&apos;][&apos;L0TOS&apos;] = ...
+#    #     ...
+#    #     return SUCCESS
+#    
+#    # def analyse ( self ) : 
+#        
+#    #     particles = ...
+#        
+#    #     for B in particles : 
+#    #         self.tisTos ( B     ,
+#    #                       tup   ,
+#    #                       &apos;B0_&apos; ,
+#    #                       self.lines[&apos;B&apos;]   , 
+#    #                       self.l0tistos     ,
+#    #                       self.l1tistos     ,
+#    #                       self.l2tistos     )
+#
+#    #     ...
+#    #     return SUCCESS
+#    
+#    The function adds few columns to n-tuple, the most important are
+#    - ``&lt;label&gt;l0tos&apos;&apos; that corresponds to   &apos;L0-TOS&apos;  
+#    - ``&lt;label&gt;l0tis&apos;&apos; that corresponds to   &apos;L0-TIS&apos;  
+#    - ``&lt;label&gt;l1tos&apos;&apos; that corresponds to &apos;Hlt1-TOS&apos;  
+#    - ``&lt;label&gt;l1tis&apos;&apos; that corresponds to &apos;Hlt1-TIS&apos;  
+#    - ``&lt;label&gt;l2tos&apos;&apos; that corresponds to &apos;Hlt2-TOS&apos;  
+#    - ``&lt;label&gt;l2tis&apos;&apos; that corresponds to &apos;Hlt2-TIS&apos;
+#    Additionally information for five predefined lists is stored:
+#    - ``&lt;label&gt;l0phys&apos;&apos; : L0-physics lines,
+#    - ``&lt;label&gt;l1phys&apos;&apos; : Hlt1-physics lines  (routing bit #46)
+#    - ``&lt;label&gt;l2phys&apos;&apos; : Hlt2-physics lines  (routing bit #77)
+#    - ``&lt;label&gt;l1glob&apos;&apos; : Hlt1Global decision 
+#    - ``&lt;label&gt;l2glob&apos;&apos; : Hlt2Global decision 
+#    
+#    The stored value is unsigned short, a bit-representaion of ITisTos::TisTosTob object
+#    - see ITisTos
+#    - see ITisTos::TisTosTob
+#    
+#    Later, in processing of TTree one can use these flags as :
+#    
+#    &gt;&gt;&gt; tree = ...
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;                )  ## no trigger requirements
+#    
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0tos&amp;2)==2&apos;)  ## require L0-tos   with respect to the list of &apos;L0TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l1tos&amp;2)==2&apos;)  ## require Hlt1-tos with respect to the list of &apos;Hlt1TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l2tos&amp;2)==2&apos;)  ## require Hlt2-tos with respect to the list of &apos;Hlt2TOS&apos;-lines 
+#
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0tis&amp;4)==4&apos;)  ## require L0-tis   with respect to the list of &apos;L0TIS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l1tis&amp;4)==4&apos;)  ## require Hlt1-tis with respect to the list of &apos;Hlt1TIS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l2tis&amp;4)==4&apos;)  ## require Hlt2-tis with respect to the list of &apos;Hlt2TIS&apos;-lines
+#    
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0tos&amp;3)==3&apos;)  ## require L0-tus   with respect to the list of &apos;L0TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l1tos&amp;3)==3&apos;)  ## require Hlt1-tus with respect to the list of &apos;Hlt1TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l2tos&amp;3)==3&apos;)  ## require Hlt2-tus with respect to the list of &apos;Hlt2TOS&apos;-lines
+#    
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0tos&amp;1)==1&apos;)  ## require L0-tps   with respect to the list of &apos;L0TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l1tos&amp;1)==1&apos;)  ## require Hlt1-tps with respect to the list of &apos;Hlt1TOS&apos;-lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l2tos&amp;1)==1&apos;)  ## require Hlt2-tps with respect to the list of &apos;Hlt2TOS&apos;-lines 
+#    
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0phys&amp;2)==2&apos;) ## require L0-tos   with respect to L0-physics lines 
+#    &gt;&gt;&gt; tree.Draw(&apos;M&apos;, &apos;(l0phys&amp;4)==4&apos;) ## require L0-tis   with respect to L0-physics lines 
+#    
+#    One can avoid bit-wise operations using ``verbose=True&apos;&apos; flag.
+#    In this case one gets following boolean variables in n-tuple:
+#    - ``&lt;labeltag&gt;_tos&apos;&apos;  Trigger On Signal 
+#    - ``&lt;labeltag&gt;_tis&apos;&apos;  Trigger Independently on Signal 
+#    - ``&lt;labeltag&gt;_tps&apos;&apos;  Trigger Partially on Signal
+#    - ``&lt;labeltag&gt;_tus&apos;&apos;  Trigger Used Signal (== TOS || TPS )
+#    - ``&lt;labeltag&gt;_dec&apos;&apos;  Trigger decision
+#    
+#    where ``&lt;labeltag&gt;&apos;&apos; is
+#    - ``&lt;label&gt;l0tos&apos;&apos;
+#    - ``&lt;label&gt;l0tis&apos;&apos;
+#    - ``&lt;label&gt;l0phys&apos;
+#    - ``&lt;label&gt;l1tos&apos;&apos;
+#    - ``&lt;label&gt;l1tis&apos;&apos;
+#    - ``&lt;label&gt;l1phys&apos;
+#    - ``&lt;label&gt;l1glob&apos;
+#    - ``&lt;label&gt;l2tos&apos;&apos;
+#    - ``&lt;label&gt;l2tis&apos;&apos;
+#    - ``&lt;label&gt;l2phys&apos;
+#    - ``&lt;label&gt;l2glob&apos;
+</code></pre></div></div></p>
 
                                 
                                 </section>
@@ -615,7 +800,7 @@ and the corresponsing summary table is <a href="https://gist.github.com/VanyaBel
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T14:07:25.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T14:12:42.615Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"next":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"previous":{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"advanced-bender/tistos.md","mtime":"2018-03-03T14:25:46.078Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-03T14:28:53.042Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
