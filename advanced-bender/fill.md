@@ -25,7 +25,56 @@ import BenderTools.Fill
 from Bender.Main import Algo
 help(Algo.treatPions)
 ```
-Also all these methods  print  detailed how-to infomratino  in log-file  at the moment of the first invoke, and it vasn be very helpful to understand the branches in n-tuple/tree.  
+Also all these methods  print  detailed how-to infomratino  in log-file  at the moment of the first invoke, and it vasn be very helpful to understand the branches in n-tuple/tree, e.g.
+```python
+# BenderTools.Fill          INFO    treatTracks: The method adds track-specific information into n-tuple
+#     ...
+#     tup = ... ## n-tuple 
+#     b   = ... ## the particle  (or looping object)
+#     self.treatTracks ( tup , b , '_B' ) ## suffix is optional 
+#     ...                
+#     Following variables are added into n-tuple:
+#     - deltaM2_min_track_ss/os[+suffix]:
+#     Minimal value of delta_m2(track1, track2) for all pairs of same-sign (``_ss'')
+#     and opposite sign ``_os'' tracks, where function minm2 is
+#     delta_M2(p1,p2) = (m^2(p1+p2) - 2*m^2(p1)-2*m^2(p2) )/m^2(p1+p2)
+#     see  LoKi::Kinematics::deltaM2
+#     - deltaAlpha_min_track_ss/os[+suffix]:
+#     Minimal value of the angle between two momenta for all pairs of same-sign (``_ss'')
+#     and opposite sign ``_os'' tracks
+#     see  LoKi::Kinematics::deltaAlpha
+#     - overlap_max_track_ss/os[+suffix]:
+#     Maximal value ``overlap'' for all pairs of same-sign (``_ss'')
+#     and opposite sign ``_os'' tracks
+#     ``Overlap'' is defined as fraction of common/shared hits between two tracks 
+#     see LHCb::HasIDs::overlap 
+#     - minPt_track[+suffix]
+#     Minimal pT of the tracks
+#     - min/maxEta_track[+suffix]
+#     Minimal/maximal eta/pseudorapidity of the tracks
+#     - maxChi2_track[+suffix]
+#     Maximal chi2/ndf for the track
+#     - minKL_track[+suffix]
+#     Minimal value of Kullback-Leibler divergency for the tracks
+#     - maxTrGh_track[+suffix]
+#     Maximal value of Track Ghost probability for the tracks (track-based)
+#     - maxAnnGh_track[+suffix]
+#     Maximal value of       Ghost probability for the tracks (PID-based)
+#     - n_track[+suffix] 
+#     Number of tracks in the decay
+#     
+#     And then for each track in the decay:
+#     - p_track[+suffux]     momentum of the track
+#     - pt_track[+suffux]    transverse momentum of the track
+#     - eta_track[+suffux]   eta/pseudorapidity  of the track
+#     - phi_track[+suffux]   phi (azimuth angle) of the track
+#     - chi2_track[+suffux]  chi2/ndf of the track
+#     - PChi2_track[+suffux] fit probability calculated from chi2/ndf of the track
+#     - ann_track[+suffix]   Ghost probability (PID-based)
+#     - trgh_track[+suffix]  Track Ghost probability (Track-based)
+```
+
+
 The typical usage of these methods is: 
 ```python
 tup = self.nTuple('MyTuple')
@@ -49,7 +98,7 @@ for p in particles :
   3. Observe new variables in your n-tuple/tree and find their description in the log-file or via `help(Algo.<THEMETHOD>)`
      * Is the description for all new varibales clear enough? 
 {% solution "Solution" %}
-The complete module is accessible [here] (https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53)
+The complete module is accessible [here](https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53) and the corresponsing log-file is [here](https://gist.github.com/VanyaBelyaev/03dc3bc117940dc8a52f8796cc737985)
 {% endchallenge %}
 
 
