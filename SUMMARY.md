@@ -12,8 +12,8 @@
 ----
 
 * [Advanced Bender](advanced-bender/README.md)
-    * [`Fill` family of methods](advanced-bender/fill.md)
-    * [`TisTos` family of methods](advanced-bender/tistos.md)
+    * [`Fill`-family of methods](advanced-bender/fill.md)
+    * [`TisTos`-family of methods](advanced-bender/tistos.md)
     * [Using tools](advanced-bender/tools.md)
 ----
 

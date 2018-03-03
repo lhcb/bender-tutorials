@@ -46,7 +46,8 @@ for p in particles :
 {% challenge "Challenge" %}
   1. Add (some of) these functions into your previous Bender module with n-tuples.
   2. Run it and observe the detailed  printout in log-file 
-  3. Observe new variables in your n-tuple/tree 
+  3. Observe new variables in your n-tuple/tree and find their description in the log-file or via `help(Algo.<THEMETHOD>)`
+     * Is the description for all new varibales clear enough? 
 {% solution "Solution" %}
 The complete module is accessible [here] (https://gist.github.com/VanyaBelyaev/becc26fe5dea90aa96cb8f929faf6a53)
 {% endchallenge %}
