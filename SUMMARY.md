@@ -1,6 +1,6 @@
 # Summary
 
-* [The bender tutorials](README.md)
+* [The Bender tutorials](README.md)
 
 ----
 
@@ -28,8 +28,12 @@
 
 ----
 
- * [Contributing](CONTRIBUTING.md)
- * [Examples of formatting](getting-started/formatting-examples.md)
+* [ BenderScript ](bender-script/README.md) 
 
 ----
- * [Download PDF](ref://bender-tutorials.pdf)
+
+* [Contributing](CONTRIBUTING.md)
+* [Examples of formatting](getting-started/formatting-examples.md)
+
+----
+* [Download PDF](ref://bender-tutorials.pdf)
