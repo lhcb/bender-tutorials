@@ -28,11 +28,13 @@ dv = DaVinci ( Simulation      = True                      , ##
 Correct `DDDB/SIMCOND`-tags can be retrived in several  ways: 
   1. from `bookkeeping-DB` for the given production type
 {% challenge "Challenge (only for those who knows how to do it)" %}
-Do you know how to do it? If so make a try to use  this way. Please use the timer for comparison. 
+Do you know how to do it? If so make a try to use  this way. 
+  * Please use the timer for comparison. 
 {% endchallenge %}
   2. using the helper Bender scripts `get-dbtags` or `get-metainfo` for the given file 
 {% challenge "Challenge" %}
-Try to use these  scripts form the command line. Start with `get-dbtags -h` and `get-metainfo -h` and follow the instructions.
+Try to use these  scripts form the command line. 
+  * Start with `get-dbtags -h` and `get-metainfo -h` and follow the instructions.
 {% solution "Solution" %}
 <script src="https://gist.github.com/VanyaBelyaev/8e316f81caaccda69cb3b7ced2abd5d5.js"/></script>
 {% endchallenge %}
@@ -41,8 +43,9 @@ Try to use these  scripts form the command line. Start with `get-dbtags -h` and 
 lb-run -c x86_64-slc6-gcc49-opt LHCbDirac/prod dirac-bookkeeping-decays-path 13104231
 ``` 
 {% challenge "Challenge" %}
-Make a try with this command. (Do not forget to obtain valid Grid proxy)
- * Is the output clear enough? 
+Make a try with this command. 
+  * (Do not forget to obtain valid Grid proxy)
+  * Is the output clear enough? 
 {% solution "Solution" %}
 The output is a list tuples. For each tuple one gets (in order)
    - The path in `bookkeeping-DB`
@@ -96,6 +99,8 @@ setData  ( inputdata , catalogs , castor , useDBtags = True ) ## <--- HERE!
 This is, probably, the most robust, safe and simultaneously the most convinient way 
 to treat `DDDB/SIMCOND`-tags for your application :-) 
 
-  
+The price to pay: since internally it relies on the functionality provided by `get-dbtags`-script, 
+for processing it could take addtional O(1-2) minutes to open the first input file 
+and to read `DDDB/SIMCOND`-tags from it.  
 
 
