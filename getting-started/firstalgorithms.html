@@ -444,13 +444,13 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="the-first-bender-algorithms">The first Bender algorithms</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1777055886);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-1777055886"></span></h3></div><div class="panel-body" id="panel-1777055886"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(404544873);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-404544873"></span></h3></div><div class="panel-body" id="panel-404544873"><ul>
 <li>One needs to undertand the stucture of Bender <em>module</em> : <code>run</code>, <code>configure</code> functions 
 and the <code>__main__</code> clause</li>
 <li>One needs to know the sctructure and the content of <code>configure</code> function</li>
 </ul>
 </div></div></p>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8910773088);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-8910773088"></span></h3></div><div class="panel-body" id="panel-8910773088"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9609732477);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-9609732477"></span></h3></div><div class="panel-body" id="panel-9609732477"><ul>
 <li>Understand Bender algorithms<ul>
 <li>How to code them?</li>
 <li>How to embedd them into the application?  </li>
@@ -481,7 +481,7 @@ The simplest algorithm is rather trivial:</p>
 <code>initialize</code> , <code>finalize</code>, etc...
 In particular <code>initialize</code> could be used to locate some <em>tools</em> and or pre-define some
 useful code  fragments, e.g. some <em>expensive</em> or non-trivial LoKi-functors.</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2806687862);" id="where-to-put-the-algorithm-codeclick-to-expand"><i class="fa fa-bell"></i> Where to put the algorithm code?<span id="heading-2806687862">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-2806687862"><p>It is recommended to put the algorithm code directly in the main body of your module, 
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(386848605);" id="where-to-put-the-algorithm-codeclick-to-expand"><i class="fa fa-bell"></i> Where to put the algorithm code?<span id="heading-386848605">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-386848605"><p>It is recommended to put the algorithm code directly in the main body of your module, 
 outside of <code>configure</code> function. It allows to have visual separation of 
 the algorithmic and configuration parts.  Also it helps for independent reuse of both parts. </p>
 </div></div></p>
@@ -501,7 +501,7 @@ with a single <code>HelloWorld</code> algorithm:</p>
 alg   = HelloWorld(<span class="hljs-string">&apos;Hello&apos;</span>)
 gaudi.setAlgorithms( [ alg ] )
 </code></pre>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6040539533);" id="more-on-an-optional-dynamic-configurationclick-to-expand"><i class="fa fa-bell"></i> More on an optional _dynamic configuration_<span id="heading-6040539533">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6040539533"><p>As it has been said earlier, the part of <code>configure</code> function, placed after <code>gaudi=appMgr()</code> line 
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7102719984);" id="more-on-an-optional-dynamic-configurationclick-to-expand"><i class="fa fa-bell"></i> More on an optional _dynamic configuration_<span id="heading-7102719984">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7102719984"><p>As it has been said earlier, the part of <code>configure</code> function, placed after <code>gaudi=appMgr()</code> line 
 corresponds to <em>dynamic configuration</em>, 
 and here one can continue the further configuration of the algorthm, e.g. </p>
 <pre><code class="lang-python">gaudi    = appMgr() 
@@ -613,7 +613,7 @@ t = self.nTuple(<span class="hljs-string">&apos;TupleName&apos;</span>)
  t.column_float ( <span class="hljs-string">&apos;m_kk&apos;</span>  , M23(p)/GeV) 
  t.write()
 </code></pre>
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9666060675);" id="for-n-tuplesclick-to-expand"><i class="fa fa-bell"></i> For n-tuples...<span id="heading-9666060675">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-9666060675"><p>Sicne n-tuples( ROOT&apos;s <code>TTree</code> objects) resides in ROOT-file, 
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1441281096);" id="for-n-tuplesclick-to-expand"><i class="fa fa-bell"></i> For n-tuples...<span id="heading-1441281096">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-1441281096"><p>Sicne n-tuples( ROOT&apos;s <code>TTree</code> objects) resides in ROOT-file, 
 to use n-tuples, one also need to declare the output file for <code>TTree</code>s:
 The easiest   way is to rely  on <code>TupleFile</code> property of <code>DaVinci</code>:</p>
 <pre><code class="lang-python">dv = DaVinci ( DataType   = <span class="hljs-string">&apos;2012&apos;</span>          ,
@@ -623,10 +623,10 @@ The easiest   way is to rely  on <code>TupleFile</code> property of <code>DaVinc
 </code></pre>
 </div></div> </li>
 </ul>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1498090944);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-1498090944"></span></h3></div><div class="panel-body" id="panel-1498090944"><p>Add  <code>select</code> statements, histos and tuples to your <code>HelloWorld</code> algorithm, created earlier, and run it.</p>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6680855557);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-6680855557"></span></h3></div><div class="panel-body" id="panel-6680855557"><p>The complete module is accesible <a href="https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881" target="_blank">here</a></p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7493502414);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-7493502414"></span></h3></div><div class="panel-body" id="panel-7493502414"><p>Add  <code>select</code> statements, histos and tuples to your <code>HelloWorld</code> algorithm, created earlier, and run it.</p>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9498222047);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-9498222047"></span></h3></div><div class="panel-body" id="panel-9498222047"><p>The complete module is accesible <a href="https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881" target="_blank">here</a></p>
 </div></div></div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5563031368);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-5563031368"></span></h3></div><div class="panel-body" id="panel-5563031368"><p>Wth these two examples, you should aready be able to </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5099429863);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-5099429863"></span></h3></div><div class="panel-body" id="panel-5099429863"><p>Wth these two examples, you should aready be able to </p>
 <ul>
 <li>code Bender <em>algorithms</em> and insetr them into overall algorithm flow </li>
 <li>loop over data,  fill historgrams and n-tuples</li>
@@ -675,7 +675,7 @@ The easiest   way is to rely  on <code>TupleFile</code> property of <code>DaVinc
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first algorithms","level":"2.1.2","depth":2,"next":{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]},"previous":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/firstalgorithms.md","mtime":"2018-03-05T12:33:55.738Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T12:35:58.615Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first algorithms","level":"2.1.2","depth":2,"next":{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]},"previous":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/firstalgorithms.md","mtime":"2018-03-05T15:01:13.921Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T15:03:13.642Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
