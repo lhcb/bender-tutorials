@@ -312,12 +312,12 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../ganga/">
+        <li class="chapter " data-level="5.1" data-path="../bender-script/">
             
-                <a href="../ganga/">
+                <a href="../bender-script/">
             
                     
-                     Bender & Ganga
+                     BenderScript 
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../bender-script/">
+        <li class="chapter " data-level="6.1" data-path="../ganga/">
             
-                <a href="../bender-script/">
+                <a href="../ganga/">
             
                     
-                     BenderScript 
+                     Bender & Ganga
             
                 </a>
             
@@ -443,7 +443,93 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="processing-of-simulated-data-in-bender">Processing of simulated data in Bender</h1>
+<p>Processing of simulation data in Bender is rather simple, one just needs to inherit the algortihm from base class <code>AlgoMC</code>, this class can be imported from  <code>Bender.MainMC</code> module.</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> Bender.MainMC <span class="hljs-keyword">import</span> *  <span class="hljs-comment"># it imports also the whole content of Bender.Main module</span>
+</code></pre>
+<h2 id="important-notes-simulationtrue-and-dddbsimcond-tags">Important notes: <code>Simulation=True</code> and <code>DDDB/SIMCOND</code>-tags</h2>
+<ul>
+<li>One needs to use <code>Simulation=True</code> flag for <code>DaVinci</code>-configurable<pre><code class="lang-python"><span class="hljs-keyword">from</span> Configurables <span class="hljs-keyword">import</span> DaVinci
+dv = DaVinci ( Simulation      = <span class="hljs-keyword">True</span>           , <span class="hljs-comment">## &lt;--- HERE!</span>
+           ...
+           TupleFile       = <span class="hljs-string">&apos;MCtruth.root&apos;</span> )
+</code></pre>
+</li>
+<li>It is <em>very</em> important to specify the correct <code>DDDB/SIMCOND</code>-tags for the simulated data. It is very easy to get efficinecied wrong upto 30% if simulated data a processed with the wrong <code>DDDB/SIMCOND</code>-tags. <pre><code class="lang-python"><span class="hljs-keyword">from</span> Configurables <span class="hljs-keyword">import</span> DaVinci
+dv = DaVinci ( Simulation      = <span class="hljs-keyword">True</span>                      , <span class="hljs-comment">##</span>
+           ...
+           DDDBtag         = <span class="hljs-string">&apos;dddb-20130929-1&apos;</span>         , <span class="hljs-comment">## &lt;--- HERE!</span>
+           CondDBtag       = <span class="hljs-string">&apos;sim-20130522-1-vc-mu100&apos;</span> , <span class="hljs-comment">## &lt;--- HERE!</span>
+           ...
+           TupleFile       = <span class="hljs-string">&apos;MCtruth.root&apos;</span> )
+</code></pre>
+</li>
+</ul>
+<p>Correct <code>DDDB/SIMCOND</code>-tags can be retrived in several  ways: </p>
+<ol>
+<li>from <code>bookkeeping-DB</code> for the given production type
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2446597178);" id="challenge-only-for-those-who-knows-how-to-do-it"><i class="fa fa-square-o"></i> Challenge (only for those who knows how to do it)<span id="heading-2446597178"></span></h3></div><div class="panel-body" id="panel-2446597178"><p>Do you know how to do it? If so make a try to use  this way. Please use the timer for comparison. </p>
+</div></div></li>
+<li>using the helper Bender scripts <code>get-dbtags</code> or <code>get-metainfo</code> for the given file 
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(766654387);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-766654387"></span></h3></div><div class="panel-body" id="panel-766654387"><p>Try to use these  scripts form the command line. Start with <code>get-dbtags -h</code> and <code>get-metainfo -h</code> and follow the instructions.</p>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(940616994);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-940616994"></span></h3></div><div class="panel-body" id="panel-940616994"><script src="https://gist.github.com/VanyaBelyaev/8e316f81caaccda69cb3b7ced2abd5d5.js"></script>
+</div></div></div></div></li>
+<li>Using <code>dirac-bookkeeping-decays-path</code> from <code>LHCbDirac</code> for the given eventype:<pre><code class="lang-bash">lb-run -c x86_64-slc6-gcc49-opt LHCbDirac/prod dirac-bookkeeping-decays-path 13104231
+</code></pre>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6484436268);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-6484436268"></span></h3></div><div class="panel-body" id="panel-6484436268"><p>Make a try with this command. (Do not forget to obtain valid Grid proxy)</p>
+<ul>
+<li>Is the output clear enough? </li>
+</ul>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(816951445);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-816951445"></span></h3></div><div class="panel-body" id="panel-816951445"><p>The output is a list tuples. For each tuple one gets (in order)</p>
+<ul>
+<li>The path in <code>bookkeeping-DB</code></li>
+<li><code>DDDB</code>-tag</li>
+<li><code>SIMCOND</code>-tag</li>
+<li>Number of files </li>
+<li>Number of events </li>
+<li>production ID <script src="https://gist.github.com/VanyaBelyaev/8f057332459d03bd0ea040b05d124f53.js"></script>
+</li>
+</ul>
+</div></div></div></div></li>
+<li>for Ganga/Grid there is a way to combine the function <code>getBKInfo2/getBKInfo</code> to obtain the information on flight from <code>bookkeeping-DB</code> and to propagate this information to Bender using <code>params</code>-argument of the <code>configure</code>function. This way is built around (3)
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4552377502);" id="in-detailsclick-to-expand"><i class="fa fa-bell"></i> In details,...<span id="heading-4552377502">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-4552377502"><pre><code class="lang-python">templ = JobTemplate( 
+   application  = prepareBender (
+    version      = <span class="hljs-string">&apos;v31r0&apos;</span>                 ,
+    module       = my_module               ,
+    use_tmp      = <span class="hljs-keyword">True</span>                    ) ,
+    ...
+    ) 
+productions = getBKInfo2 ( <span class="hljs-number">13104231</span> )
+<span class="hljs-keyword">for</span> entry <span class="hljs-keyword">in</span> productions :
+    <span class="hljs-keyword">print</span> <span class="hljs-string">&apos;INFORMATION: %s&apos;</span> % entry 
+    path      = entry [<span class="hljs-string">&apos;path&apos;</span>     ] <span class="hljs-comment">## &quot;long path&quot;</span>
+    dddbtag   = entry [<span class="hljs-string">&apos;DDDBtag&apos;</span>  ] 
+    conddbtag = entry [<span class="hljs-string">&apos;CondDBtag&apos;</span>]
+
+    j = Job (  template ) 
+    j.name = ... <span class="hljs-comment">## construct name here</span>
+    j.inputdata = BKQuery ( path ).getDataset() 
+    j.application.params = { <span class="hljs-string">&apos;DDBtag&apos;</span> : dddbtag , <span class="hljs-string">&apos;CondDBtag&apos;</span> : conddbtag } 
+    j.submit() 
+</code></pre>
+<p>where it is assumed that <code>configure</code>-function is instrumented properly to accept <code>params</code> and to propagate the tags further to <code>DaVinci</code>-configurable. The function <code>getBKInfo2</code> comes from here:</p>
+<script src="https://gist.github.com/VanyaBelyaev/6a6ddd1ff87757ab322b2d6e23b7ede0.js"></script>
+</div></div></li>
+</ol>
+<h2 id="easy-safe-and-robust-alternative--">Easy, safe and robust alternative :-)</h2>
+<p>In practice, none of the step described above are really needed, since one can just instruct  Bender to obtain the tags directly from the input files.   In this <em>recommended</em> scenario, no <code>DDDBtag/CondDBtags</code> to be specified  for <code>DaVinci</code>-configurable, but one needs to activate <code>useDBtags=True</code> flag for <code>setData</code>-function:</p>
+<pre><code class="lang-python">dv = DaVinci ( Simulation      = <span class="hljs-keyword">True</span>                      , 
+               ...
+               <span class="hljs-comment">## DDDBtag         = &apos;dddb-20130929-1&apos;         , ## NOT NEEDED</span>
+               <span class="hljs-comment">## CondDBtag       = &apos;sim-20130522-1-vc-mu100&apos; , ## NOT NEEDED</span>
+               ...
+               TupleFile       = <span class="hljs-string">&apos;MCtruth.root&apos;</span> )
+...
+setData  ( inputdata , catalogs , castor , useDBtags = <span class="hljs-keyword">True</span> ) <span class="hljs-comment">## &lt;--- HERE!</span>
+</code></pre>
+<p>This is, probably, the most robust, safe and simultaneously the most convinient way 
+to treat <code>DDDB/SIMCOND</code>-tags for your application :-) </p>
+
                                 
                                 </section>
                             
@@ -486,7 +572,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Bender & simulation ","level":"4.1","depth":1,"next":{"title":"MC truth","level":"4.1.1","depth":2,"path":"simulation/mctruth.md","ref":"simulation/mctruth.md","articles":[]},"previous":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"simulation/README.md","mtime":"2018-03-05T15:01:13.921Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T15:03:13.642Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Bender & simulation ","level":"4.1","depth":1,"next":{"title":"MC truth","level":"4.1.1","depth":2,"path":"simulation/mctruth.md","ref":"simulation/mctruth.md","articles":[]},"previous":{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"simulation/README.md","mtime":"2018-03-05T16:49:13.813Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T16:52:06.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
