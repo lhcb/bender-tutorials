@@ -47,7 +47,6 @@ dcalc     = self.distanceCalculator()
 pp        = self.ppSvc()  ##  particle property service 
 ```
 
- 
 ## Using _tuple tools_ in Bender
 
 {% challenge "Challenge for the fans of tuple tools use" %}
