@@ -29,6 +29,10 @@
 
 ----
 
+* [ Standard scripts ](standard-scripts/README.md) 
+
+----
+
 * [ Bender & Ganga/GRID](ganga/README.md) 
 
 ----
