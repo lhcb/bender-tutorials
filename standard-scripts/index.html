@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title> Standard scripts  · GitBook</title>
+        <title> Standard Bender scripts  · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../ganga/" />
+    <link rel="next" href="./" />
     
     
     <link rel="prev" href="../bender-script/" />
@@ -337,11 +337,82 @@
                 <a href="./">
             
                     
-                     Standard scripts 
+                     Standard Bender scripts 
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="6.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    dst-dump
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    get-dbtags
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    get-metainfo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    trg-check
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.1.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    no-mc-decays
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -378,19 +449,6 @@
             
                     
                     Contributing
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="8.2" data-path="../getting-started/formatting-examples.html">
-            
-                <a href="../getting-started/formatting-examples.html">
-            
-                    
-                    Examples of formatting
             
                 </a>
             
@@ -448,7 +506,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." > Standard scripts </a>
+        <a href=".." > Standard Bender scripts </a>
     </h1>
 </div>
 
@@ -463,7 +521,17 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="standard-bender-scripts">Standard Bender scripts</h1>
+<p>There are several preconfigured <a href="../bender-script/"><code>bender</code> scripts</a> that helps to solve frequent problems. The list includes:</p>
+<ul>
+<li><code>dst-dump</code> :  the script that allows to <em>dump the content sumamry</em> for the certain (x,u,...)DST-file. </li>
+<li><code>get-dbtags</code> : the script that helps  to get <code>DDDB/CONDB</code>-tags from certain data file. It coudl be useful for <a href="../simulation/">processing of simulated samples</a></li>
+<li><code>get-metainfo</code> : the script that help  to a lot of available meta-information (including <code>DDDB/CONDB</code>-tags) from certain data file and corresponisng entry in <code>RunDB</code>. It could be useful for <a href="../simulation/">processing of simulated samples</a> of other purposes</li>
+<li><code>trg-check</code> : the  script that  helps to get <a href="../advanced-bender/tistos.html">the list of the relevant</a> <code>L0TIS</code>, <code>L0TOS</code>, <code>Hlt1TIS</code>, <code>Hlt1TOS</code>, <code>Hlt2TIS</code> and <code>Hlt2TOS</code> trigger lines fo the given selection</li>
+<li><code>no-mc-decays</code> : helper script that often helps to understand why not all MC-truth  decays are <a href="../simulation/mctruth.html">selected</a>  using certain [decay descriptor]](<a href="https://twiki.cern.ch/twiki/bin/view/LHCb/FAQ/LoKiNewDecayFinders_" target="_blank">https://twiki.cern.ch/twiki/bin/view/LHCb/FAQ/LoKiNewDecayFinders_</a>. It allows to tune the  decay descriptor properly to accept the missing entries.   </li>
+</ul>
+<p>All there scripts are properly documented and one can invoke them using <code>-h</code> option.</p>
+
                                 
                                 </section>
                             
@@ -495,7 +563,7 @@
                 </a>
                 
                 
-                <a href="../ganga/" class="navigation navigation-next " aria-label="Next page:  Bender & Ganga/GRID">
+                <a href="./" class="navigation navigation-next " aria-label="Next page: dst-dump">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -506,7 +574,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":" Standard scripts ","level":"6.1","depth":1,"next":{"title":" Bender & Ganga/GRID","level":"7.1","depth":1,"path":"ganga/README.md","ref":"ganga/README.md","articles":[]},"previous":{"title":" BenderScript ","level":"5.1","depth":1,"path":"bender-script/README.md","ref":"bender-script/README.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"standard-scripts/README.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":" Standard Bender scripts ","level":"6.1","depth":1,"next":{"title":"dst-dump","level":"6.1.1","depth":2,"path":"standard-scripts/README.md","ref":"standard-scripts/README.md","articles":[]},"previous":{"title":" BenderScript ","level":"5.1","depth":1,"path":"bender-script/README.md","ref":"bender-script/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"standard-scripts/README.md","mtime":"2018-03-06T12:16:34.212Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T12:18:52.170Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
