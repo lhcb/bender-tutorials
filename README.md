@@ -9,7 +9,7 @@ effectively reused for interactivity.  The main purpose of top-level scripts is 
 
 Bender dependencies are  sketched here: ![dependencies](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/dependencies.svg) 
 
-Doxigen documentation for Bender is accessible [here](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/index.html).
+Doxygen documentation for Bender is accessible [here](http://lhcb-doxygen.web.cern.ch/lhcb-doxygen/bender/latest/index.html).
 
 It is assumed that users are already has _some_ knowledge of LHCb software, in particular [DaVinci](http://cern.ch/LHCb-release-area/DOC/davinci) and  are familiar with [LHCb Starterkit][starterkit].
 

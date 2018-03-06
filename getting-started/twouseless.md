@@ -13,7 +13,7 @@
 Any _valid_ Bender module must have two essential parts 
 
  - function `run`  with the predefined signature 
- - function `configure` with the predefined dignature 
+ - function `configure` with the predefined signature 
 
 For the most trivial (_"do-nothing"_) scenario function `run` is
 ```python
@@ -49,14 +49,14 @@ Thats all! From this snippet you see:
  - the code must have the structure of python _module_, namely no executable lines should appear in the main body of the file  
     - (note  the difference with respect to the _script_)
  - it must have two functions `run` and `configure`  
-    - (everythnig else is not used)
+    - (everything else is not used)
 {% enddiscussion %}
 The whole module is here:
 <script src="https://gist.github.com/VanyaBelyaev/328a015a409ebe3c04f94feba8f9e16f.js"></script>
 
 
 In practice, before the submission the jobs to Ganga/Grid, the code needs to be tested using some test-data. 
-This, formally unnesessary, but very important step can be easily embedded into your module using 
+This, formally unnecessary, but very important step can be easily embedded into your module using 
 python's `__main__` clause:
 ```python
 if '__main__' == __name__ : 
@@ -76,16 +76,16 @@ lb-run Bender/prod python DoNothing.py
 ```
 That's all. Make a try and see what you get!
 
-{% discussion "Unnesessary but very useful decorations:" %}
+{% discussion "Unnecessary but very useful decorations:" %}
 It is highly desirable and _recommended_ to put some _"decorations"_ a top of this minimalistic lines:
  - add magic  `#!/usr/bin/env python` line as the top line of the module/script 
  - make the script executable: `chmod +x ./DoNothing.py`
  - add a python documentation close to the begin of the script
-   - fill some useful python attributes with the proper informaton
+   - fill some useful python attributes with the proper information
       * `__author__`
       * `__date__`
       * `__version__`
-   - do not forget to add documenation in Doxygen-style and use in  comments following tags 
+   - do not forget to add documentation in Doxygen-style and use in  comments following tags 
       *  `@file`
       *  `@author`
       *  ... 
@@ -125,7 +125,7 @@ dv = DaVinci ( DataType   = '2012'    ,
 ```
 Here we are preparing application to read `PSIX.MDST` - uDST with few useful selections for B&Q Working Group.
 Note that in this part one can use all power of DaVinci/Gaudi `Congifurables`. 
-In practice, for physics analyses, it is veyr convinient to use here `Selection` framework, 
+In practice, for physics analyzes, it is very convenient to use here `Selection` framework, 
 that  allows to configure `DaVinci` in a very compact, safe, robust and nicely  readable way, 
 e.g. let's get from Transient Store some `selection` and print its content
 ```python
@@ -202,7 +202,7 @@ You can use the result of this excersize for subsequent lessons.
 Bender is smart  enough, and for many cases it can efficiently convert input `LFN` into 
 the real file name.
   1. First, if you have Grid proxy enabled (`lhcb-proxy-init`) is uses internally `LHCbDirac` to locate and access the file. 
-This way is not very fast, but for all practial cases  this look-up is almost always successful, 
+This way is not very fast, but for all practical cases  this look-up is almost always successful, 
 however for some cases certain hints could be very useful.
 In particular, you can specify the list of Grid sites to look for data files: 
 ```python
@@ -210,14 +210,14 @@ In particular, you can specify the list of Grid sites to look for data files:
 setData  ( inputdata , catalogs , castor = castor ,  grid = ['RAL','CERN','GRIDKA'] )
 ```
   2. Second, for CERN, one can use option `castor = True`, that activates the 
-local look-up on input files at CERN-CASTOR and CERN-EOS storages
+local look-up on input files at CERN-CASTOR and CERN-EOS storage
 (`root://castorlhcb.cern.ch` and `root://eoslhcb.cern.ch`).
 This look-up is much faster than the first option, 
 but here the success is not guaranteed, since not all files have their replicas at CERN.
   3. Third, for access to special locations, e.g. some local files, Bender also makes a try to look into 
      directories specified via the environment variable `BENDERDATAPATH` (column separated list of paths)
      and also  try to contruct the file names using the content of environment variable `BENDERDATAPREFIX` 
-     (semicolumn separated list of prefixes used for constryction the final file name).
+     (semicolon separated list of prefixes used for construction the final file name).
      The  file name is constructed using all `(n+1)*(m+1)` variants, where `n` is number of items in 
      `BENDERDATAPATH` and  `m` is number of items in `BENDERDATAPREFIX`.
      Using the combination of  `BENDERDATAPATH` and `BENDERDATAPREFIX` variables one can make very powerful 
@@ -228,7 +228,7 @@ but here the success is not guaranteed, since not all files have their replicas 
 
 
 {% keypoints "Keypoints" %}
-Wth these two examples, you should aready be able to 
-* code sove _valid_ (but useless)  Bender modules 
+With these two examples, you should aready be able to 
+* code the _valid_ (but useless)  Bender modules 
 * run them interactively
 {% endkeypoints %}
