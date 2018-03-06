@@ -29,7 +29,12 @@
 
 ----
 
-* [ Standard scripts ](standard-scripts/README.md) 
+* [ Standard Bender scripts ](standard-scripts/README.md) 
+    * [dst-dump](standard-scripts/README.md) 
+    * [get-dbtags](standard-scripts/README.md) 
+    * [get-metainfo](standard-scripts/README.md) 
+    * [trg-check](standard-scripts/README.md) 
+    * [no-mc-decays](standard-scripts/README.md) 
 
 ----
 
@@ -38,7 +43,7 @@
 ----
 
 * [Contributing](CONTRIBUTING.md)
-* [Examples of formatting](getting-started/formatting-examples.md)
 
 ----
+
 * [Download PDF](ref://bender-tutorials.pdf)
