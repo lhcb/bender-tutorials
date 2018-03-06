@@ -1,9 +1,11 @@
 # Processing of simulated data in Bender
 
-Processing of simulation data in Bender is rather simple, one just needs to inherit the algortihm from base class `AlgoMC`, this class can be imported from  `Bender.MainMC` module.
+Processing of simulation data in Bender is rather simple, one just needs to inherit the algorithm from base class `AlgoMC`, this class can be imported from  `Bender.MainMC` module.
 ```python
 from Bender.MainMC import *  # it imports also the whole content of Bender.Main module 
+class MyAlg(AlgoMC):
 ```   
+And the corresponsing wrapper for `Selection`-framework is `BenderMCSelection`
 
 ## Important notes: `Simulation=True` and `DDDB/SIMCOND`-tags 
 
@@ -14,7 +16,7 @@ dv = DaVinci ( Simulation      = True           , ## <--- HERE!
                ...
                TupleFile       = 'MCtruth.root' )
 ``` 
-  * It is *very* important to specify the correct `DDDB/SIMCOND`-tags for the simulated data. It is very easy to get efficinecied wrong upto 30% if simulated data a processed with the wrong `DDDB/SIMCOND`-tags. 
+  * It is *very* important to specify the correct `DDDB/SIMCOND`-tags for the simulated data. It is very easy to get efficiencies wrong up to 30% if simulated data a processed with the wrong `DDDB/SIMCOND`-tags. 
 ```python
 from Configurables import DaVinci
 dv = DaVinci ( Simulation      = True                      , ##
@@ -38,28 +40,27 @@ Try to use these  scripts form the command line.
 {% solution "Solution" %}
 <script src="https://gist.github.com/VanyaBelyaev/8e316f81caaccda69cb3b7ced2abd5d5.js"/></script>
 {% endchallenge %}
-  3. Using `dirac-bookkeeping-decays-path` from `LHCbDirac` for the given eventype:
+  3. using `dirac-bookkeeping-decays-path` script from `LHCbDirac/prod` for the given MC eventype:
 ```bash
 lb-run -c x86_64-slc6-gcc49-opt LHCbDirac/prod dirac-bookkeeping-decays-path 13104231
 ``` 
 {% challenge "Challenge" %}
-Make a try with this command. 
-  * (Do not forget to obtain valid Grid proxy)
+Make a try with this command (do not forget to obtain valid Grid proxy).
   * Is the output clear enough? 
 {% solution "Solution" %}
-The output is a list tuples. For each tuple one gets (in order)
-   - The path in `bookkeeping-DB`
-   - `DDDB`-tag
-   - `SIMCOND`-tag
-   - Number of files 
-   - Number of events 
-   - production ID 
+The output is a list of record. Each record consists of
+    1. The path in `bookkeeping-DB`
+    2. `DDDB`-tag
+    3. `SIMCOND`-tag
+    4. Number of files 
+    5. Number of events 
+    6. Unique production ID, that coudl be used to get more detailed information 
 <script src="https://gist.github.com/VanyaBelyaev/8f057332459d03bd0ea040b05d124f53.js"/></script>
 {% endchallenge %}
   4. for Ganga/Grid there is a way to combine the function `getBKInfo2/getBKInfo` to obtain the information on flight from `bookkeeping-DB` and to propagate this information to Bender using `params`-argument of the `configure`function. This way is built around (3)
 {% discussion "In details,..." %}
 ```python
-templ = JobTemplate( 
+template = JobTemplate( 
    application  = prepareBender (
     version      = 'v31r0'                 ,
     module       = my_module               ,
@@ -72,11 +73,12 @@ for entry in productions :
     path      = entry ['path'     ] ## "long path"
     dddbtag   = entry ['DDDBtag'  ] 
     conddbtag = entry ['CondDBtag']
+    year      = entry ['Year']
 
     j = Job (  template ) 
-    j.name = ... ## construct name here
+    j.name      = ... ## construct name here
     j.inputdata = BKQuery ( path ).getDataset() 
-    j.application.params = { 'DDBtag' : dddbtag , 'CondDBtag' : conddbtag } 
+    j.application.params = { 'DDBtag' : dddbtag , 'CondDBtag' : conddbtag , 'Year' : year } 
     j.submit() 
  ```
 where it is assumed that `configure`-function is instrumented properly to accept `params` and to propagate the tags further to `DaVinci`-configurable. The function `getBKInfo2` comes from here:

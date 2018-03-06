@@ -20,7 +20,7 @@
 * [Bender & simulation ](simulation/README.md)
     * [MC truth](simulation/mctruth.md)
     * [MC match](simulation/mcmatch.md)
-    * [processing of `HepMC`](simulation/hepmc.md)
+    * [Processing of `HepMC`](simulation/hepmc.md)
 
 
 ----
@@ -29,7 +29,7 @@
 
 ----
 
-* [ Bender & Ganga](ganga/README.md) 
+* [ Bender & Ganga/GRID](ganga/README.md) 
 
 ----
 
