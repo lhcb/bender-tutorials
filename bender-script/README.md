@@ -5,6 +5,8 @@
  - Many _tools_ do not work without the significant efforts. The results of _tools_ often are very difficult to save to be used/reused e.g. for subsequent processing (e.g. save manually created particles and vertices to TES and to output file)
  - Some very important and popular  LoKi functors do not operate (mainly due to the issues from the previous item), e.g `BPV*` or `*DV` or `DTF_*` - those are not easy to use from the plain command line. There are some alternatives , but not for all functors.
 
+See also a little bit more  detailed [TWiki-based tutorial](https://twiki.cern.ch/twiki/bin/view/LHCb/BenderScriptTutorial) on `BenderScript` 
+
 ## `bender` script
 
 `BenderScript` session is started using the command `bender`. There are many command line options and keys for this script.
@@ -106,6 +108,8 @@ that is defined via the command line option `--tuplefile`, e.g. `bender ... --tu
 
 
  
+
+
 
 
 
