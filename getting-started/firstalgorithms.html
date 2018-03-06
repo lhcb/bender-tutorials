@@ -522,23 +522,23 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="the-first-bender-algorithms">The first Bender algorithms</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8212903885);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-8212903885"></span></h3></div><div class="panel-body" id="panel-8212903885"><ul>
-<li>One needs to undertand the stucture of Bender <em>module</em> : <code>run</code>, <code>configure</code> functions 
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6501232663);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-6501232663"></span></h3></div><div class="panel-body" id="panel-6501232663"><ul>
+<li>One needs to understand the structure of Bender <em>module</em> : <code>run</code>, <code>configure</code> functions 
 and the <code>__main__</code> clause</li>
-<li>One needs to know the sctructure and the content of <code>configure</code> function</li>
+<li>One needs to know the structure and the content of <code>configure</code> function</li>
 </ul>
 </div></div></p>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7920058937);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-7920058937"></span></h3></div><div class="panel-body" id="panel-7920058937"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3052569054);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-3052569054"></span></h3></div><div class="panel-body" id="panel-3052569054"><ul>
 <li>Understand Bender algorithms<ul>
 <li>How to code them?</li>
-<li>How to embedd them into the application?  </li>
+<li>How to embed them into the application?  </li>
 </ul>
 </li>
 </ul>
 </div></div></p>
 <h2 id="hello-world"><em>Hello, world!</em></h2>
 <p>Traditionally for tutorials, the first algorithm prints <code>Hello, world</code>. The Bender algorithm inherits from the class <code>Algo</code>,  imported from <code>Bender.Main</code> module. This python base is indeed a <code>C++</code>-class, that inherits from <code>LoKi::Algo</code> class, that in turn inherits from <code>DaVinciTupleAlgorithm</code>. The simplest algorithm is rather trivial:</p>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> Bender.Main iport Algo, SUCCESS 
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> Bender.Main <span class="hljs-keyword">import</span> Algo, SUCCESS 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span><span class="hljs-params">(Algo)</span>:</span>
     <span class="hljs-string">&quot;&quot;&quot;The most trivial algorithm to print &apos;Hello,world!&apos;&quot;&quot;&quot;</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">analyse</span><span class="hljs-params">( self )</span> :</span>   <span class="hljs-comment">## IMPORTANT! </span>
@@ -552,12 +552,12 @@ and the <code>__main__</code> clause</li>
 <li>one <em>must</em> implement the method <code>analyse</code> that gets no argument and returns <code>StatusCode</code></li>
 </ul>
 <p>Optionally one can (re)implement other important methods, like <code>__init__</code>, <code>initialize</code> , <code>finalize</code>, etc... In particular <code>initialize</code> could be used to locate some <em>tools</em> and or pre-define some useful code  fragments, e.g. some <em>expensive</em> or non-trivial LoKi-functors.</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(249642198);" id="where-to-put-the-algorithm-codeclick-to-expand"><i class="fa fa-bell"></i> Where to put the algorithm code?<span id="heading-249642198">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-249642198"><p>It is recommended to put the algorithm code directly in the main body of your module, outside of <code>configure</code> function. It allows to have visual separation of the algorithmic and configuration parts.  Also it helps for independent reuse of both parts. </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4454551722);" id="where-to-put-the-algorithm-codeclick-to-expand"><i class="fa fa-bell"></i> Where to put the algorithm code?<span id="heading-4454551722">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-4454551722"><p>It is recommended to put the algorithm code directly in the main body of your module, outside of <code>configure</code> function. It allows to have visual separation of the algorithmic and configuration parts.  Also it helps for independent reuse of both parts. </p>
 </div></div></p>
-<h3 id="how-to-embedd-the-algorithm-into-the-application-">How to embedd the algorithm into the application ?</h3>
+<h3 id="how-to-embed-the-algorithm-into-the-application-">How to embed the algorithm into the application ?</h3>
 <p>There are two approaches <em>brute-force</em>, that works nicely with such primitive code as <code>HelloWorld</code> algorithm above and the intelligent/recommended approach, that smoothly insert the algorithm into the overall flow of algorithms, provided by <code>DaVinci</code></p>
 <h4 id="brute-force"><em>Brute-force</em></h4>
-<p>One can instantiate the algorithm in <strong>configure</strong> method  <strong>after</strong> the instantiation of application manager, and add the algorithm, into the list of top-level algorithms, known to Gaudi:</p>
+<p>One can instantiate the algorithm in <strong>configure</strong> method  <strong>after</strong> the instance of application manager is created, and add the algorithm, into the list of top-level algorithms, known to Gaudi:</p>
 <pre><code class="lang-python">gaudi = appMgr() 
 alg   = HelloWorld(<span class="hljs-string">&apos;Hello&apos;</span>)
 gaudi.addAlgorithm( alg )
@@ -567,7 +567,7 @@ gaudi.addAlgorithm( alg )
 alg   = HelloWorld(<span class="hljs-string">&apos;Hello&apos;</span>)
 gaudi.setAlgorithms( [ alg ] )
 </code></pre>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4114068363);" id="more-on-an-optional-dynamic-configurationclick-to-expand"><i class="fa fa-bell"></i> More on an optional _dynamic configuration_<span id="heading-4114068363">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-4114068363"><p>As it has been said earlier, the part of <code>configure</code> function, placed after <code>gaudi=appMgr()</code> line corresponds to <em>dynamic configuration</em>, and here one can continue the further configuration of the algorthm, e.g. </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6203715335);" id="more-on-an-optional-dynamic-configurationclick-to-expand"><i class="fa fa-bell"></i> More on an optional _dynamic configuration_<span id="heading-6203715335">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6203715335"><p>As it has been said earlier, the part of <code>configure</code> function, placed after <code>gaudi=appMgr()</code> line corresponds to <em>dynamic configuration</em>, and here one can continue the further configuration of the algorthm, e.g. </p>
 <pre><code class="lang-python">gaudi    = appMgr() 
 alg      = HelloWorld(<span class="hljs-string">&apos;Hello&apos;</span>)
 alg.QUQU = <span class="hljs-string">&apos;qu-qu!&apos;</span>  <span class="hljs-comment">## define and set some &quot;parameter&quot; </span>
@@ -591,9 +591,9 @@ alg2.decay_mode = <span class="hljs-string">&apos;[D0 -&gt; K-  K+ ]CC&apos;</sp
 alg3.decay_mode = <span class="hljs-string">&apos;[D0 -&gt; pi- pi+]CC&apos;</span>
 </code></pre>
 </div></div></p>
-<p>This approach is very easy and rather intuitive, but is not so easy to insert the algorithm into existing non-trivial flow of algorithms without  a danger to destroy the flow. In this  way one destroys various standard actions, like (pre)filtering, luminosity calculation etc.,  therfore it could not be recommended for the real physics analyses, but it could be used for some  simple special cases.</p>
+<p>This approach is very easy and rather intuitive, but is not so easy to insert the algorithm into existing non-trivial flow of algorithms without  a danger to destroy the flow. In this  way one destroys various standard actions, like (pre)filtering, luminosity calculation etc.,  therefore it could not be recommended for the real physics analyses, but it could be used for some  simple special cases.</p>
 <h4 id="intelligent-approach"><em>Intelligent approach</em></h4>
-<p>For <em>intelligent</em> approach one uses <code>Selection</code> wrapper for Bender algotithm, <code>BenderSelection</code>.  This wrapper behaves as any other selection-objects, and it lives  in <em>static configuration</em> part of <code>configure</code> function:</p>
+<p>For <em>intelligent</em> approach one uses <code>Selection</code> wrapper for Bender algorithm, <code>BenderSelection</code>.  This wrapper behaves as any other selection-objects, and it lives  in <em>static configuration</em> part of <code>configure</code> function:</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> PhysConf.Selections <span class="hljs-keyword">import</span> AutomaticData,  PrintSelection
 particles = AutomaticData  ( <span class="hljs-string">&apos;Phys/SelPsi2KForPsiX/Particles&apos;</span> ) 
 particle  = PrintSelection ( particles )  
@@ -603,7 +603,7 @@ particle  = PrintSelection ( particles )
 hello = BenderSelection ( <span class="hljs-string">&apos;Hello&apos;</span> , inputs = [ particle ]  )  
 dv.UserAlgorithms.append ( hello )
 </code></pre>
-<p>As the next step in <em>dynamic configuration</em> part of <code>configure</code> function one instantiates the  algoritm taking all the configuration from  the selection-object:</p>
+<p>As the next step in <em>dynamic configuration</em> part of <code>configure</code> function one instantiates the  algorithm taking all the configuration from  the selection-object:</p>
 <pre><code class="lang-python">gaudi = appMgr() 
 alg   = HelloWorld( hello )
 </code></pre>
@@ -616,7 +616,7 @@ alg   = HelloWorld( hello )
 </ol>
 <p>The complete module can be accessed <a href="https://gist.github.com/VanyaBelyaev/82c6b51790a9a692f04569aa51a879d2" target="_blank">here</a></p>
 <h2 id="get-data-fill-histos--n-tuples"><em>Get data, fill histos &amp; n-tuples</em></h2>
-<p>Well, now your Bender algorithm knows how to print <code>Hello,world!</code>.  Note that it also gets some data: in the previous example we fed it with <code>particles</code>-selection. Now try to get this data inside the algorithm and make first simpel manipulations with data.</p>
+<p>Well, now your Bender algorithm knows how to print <code>Hello,world!</code>.  Note that it also gets some data: in the previous example we fed it with <code>particles</code>-selection. Now try to get this data inside the algorithm and make first simple manipulations with data.</p>
 <h3 id="select-method"><code>select</code> method</h3>
 <p>The method <code>select</code>  is a heart of Bender algorithm. It allows to select/filter  the particles that satisfies some criteria from the input particles. The basic usage is:</p>
 <pre><code class="lang-python">myB = self.select ( <span class="hljs-string">&apos;myB&apos;</span> , (<span class="hljs-string">&apos;B0&apos;</span> ==  ABSID ) | (<span class="hljs-string">&apos;B0&apos;</span> ==  ABSID ) )
@@ -624,7 +624,7 @@ alg   = HelloWorld( hello )
 <p>The method returns collection filtered particles. The first argument is the tag, that will be associated with    selected particles, the second    argument is the selection  criteria. The tag <em><em>must</em></em> be unique, and the selection  criteria could be in a form of</p>
 <ul>
 <li><em>LoKi predicate</em>:  LoKi-functor that get the particle as  argument and return the boolean value</li>
-<li><a href="https://twiki.cern.ch/twiki/bin/view/LHCb/FAQ/LoKiNewDecayFinders" target="_blank"><em>decay descriptor</em></a> , e.g.  <code>&apos;Beauty --&gt; J/psi(1S) K+ K-&apos;</code>. Some components of the decay descriptor can be  <em>marked</em>, and in this case, only the <em>marked</em> partcles will be selected:<pre><code class="lang-python">myB = self.select ( <span class="hljs-string">&apos;beauty&apos;</span> , <span class="hljs-string">&apos;Beauty --&gt; J/psi(1S)  K+  K-&apos;</span>)   <span class="hljs-comment">## get the heads of the decay</span>
+<li><a href="https://twiki.cern.ch/twiki/bin/view/LHCb/FAQ/LoKiNewDecayFinders" target="_blank"><em>decay descriptor</em></a> , e.g.  <code>&apos;Beauty --&gt; J/psi(1S) K+ K-&apos;</code>. Some components of the decay descriptor can be  <em>marked</em>, and in this case, only the <em>marked</em> particles will be selected:<pre><code class="lang-python">myB = self.select ( <span class="hljs-string">&apos;beauty&apos;</span> , <span class="hljs-string">&apos;Beauty --&gt; J/psi(1S)  K+  K-&apos;</span>)   <span class="hljs-comment">## get the heads of the decay</span>
 myK = self.select ( <span class="hljs-string">&apos;kaons&apos;</span>  , <span class="hljs-string">&apos;Beauty --&gt; J/psi(1S) ^K+ ^K-&apos;</span>)   <span class="hljs-comment">## get only kaons</span>
 </code></pre>
 </li>
@@ -659,7 +659,7 @@ t = self.nTuple(<span class="hljs-string">&apos;TupleName&apos;</span>)
  t.column_float ( <span class="hljs-string">&apos;m_kk&apos;</span>  , M23(p)/GeV) 
  t.write()
 </code></pre>
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6460588620);" id="for-n-tuplesclick-to-expand"><i class="fa fa-bell"></i> For n-tuples...<span id="heading-6460588620">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6460588620"><p>Sicne n-tuples( ROOT&apos;s <code>TTree</code> objects) resides in ROOT-file,  to use n-tuples, one also need to declare the output file for <code>TTree</code>s: The easiest   way is to rely  on <code>TupleFile</code> property of <code>DaVinci</code>:</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(41773232);" id="for-n-tuplesclick-to-expand"><i class="fa fa-bell"></i> For n-tuples...<span id="heading-41773232">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-41773232"><p>Sicne n-tuples( ROOT&apos;s <code>TTree</code> objects) resides in ROOT-file,  to use n-tuples, one also need to declare the output file for <code>TTree</code>s: The easiest   way is to rely  on <code>TupleFile</code> property of <code>DaVinci</code>:</p>
 <pre><code class="lang-python">dv = DaVinci ( DataType   = <span class="hljs-string">&apos;2012&apos;</span>          ,
                InputType  = <span class="hljs-string">&apos;MDST&apos;</span>          ,
                TupleFile  = <span class="hljs-string">&apos;MyTuples.root&apos;</span> ,  <span class="hljs-comment">## SEE HERE !!! </span>
@@ -667,10 +667,10 @@ t = self.nTuple(<span class="hljs-string">&apos;TupleName&apos;</span>)
 </code></pre>
 </div></div> </li>
 </ul>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2083392102);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-2083392102"></span></h3></div><div class="panel-body" id="panel-2083392102"><p>Add  <code>select</code> statements, histos and tuples to your <code>HelloWorld</code> algorithm, created earlier, and run it.</p>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6130279806);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-6130279806"></span></h3></div><div class="panel-body" id="panel-6130279806"><p>The complete module is accesible <a href="https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881" target="_blank">here</a></p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7045211399);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-7045211399"></span></h3></div><div class="panel-body" id="panel-7045211399"><p>Add  <code>select</code> statements, histos and tuples to your <code>HelloWorld</code> algorithm, created earlier, and run it.</p>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3143204412);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-3143204412"></span></h3></div><div class="panel-body" id="panel-3143204412"><p>The complete module is accesible <a href="https://gist.github.com/VanyaBelyaev/6fb71fe694f9235c7fb8af84636b7881" target="_blank">here</a></p>
 </div></div></div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8566212091);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-8566212091"></span></h3></div><div class="panel-body" id="panel-8566212091"><p>Wth these two examples, you should aready be able to </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1158038951);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-1158038951"></span></h3></div><div class="panel-body" id="panel-1158038951"><p>Wth these two examples, you should aready be able to </p>
 <ul>
 <li>code Bender <em>algorithms</em> and insetr them into overall algorithm flow </li>
 <li>loop over data,  fill historgrams and n-tuples</li>
@@ -719,7 +719,7 @@ t = self.nTuple(<span class="hljs-string">&apos;TupleName&apos;</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first algorithms","level":"2.1.2","depth":2,"next":{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]},"previous":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/firstalgorithms.md","mtime":"2018-03-06T12:35:36.706Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T12:37:44.938Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first algorithms","level":"2.1.2","depth":2,"next":{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]},"previous":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/firstalgorithms.md","mtime":"2018-03-06T14:18:12.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T14:20:25.030Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
