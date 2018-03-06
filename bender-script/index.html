@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../ganga/" />
+    <link rel="next" href="../standard-scripts/" />
     
     
     <link rel="prev" href="../simulation/hepmc.html" />
@@ -292,7 +292,7 @@
                 <a href="../simulation/hepmc.html">
             
                     
-                    processing of HepMC
+                    Processing of HepMC
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../ganga/">
+        <li class="chapter " data-level="6.1" data-path="../standard-scripts/">
             
-                <a href="../ganga/">
+                <a href="../standard-scripts/">
             
                     
-                     Bender & Ganga
+                     Standard scripts 
             
                 </a>
             
@@ -352,7 +352,27 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../CONTRIBUTING.html">
+        <li class="chapter " data-level="7.1" data-path="../ganga/">
+            
+                <a href="../ganga/">
+            
+                    
+                     Bender & Ganga/GRID
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../CONTRIBUTING.html">
             
                 <a href="../CONTRIBUTING.html">
             
@@ -365,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="../getting-started/formatting-examples.html">
+        <li class="chapter " data-level="8.2" data-path="../getting-started/formatting-examples.html">
             
                 <a href="../getting-started/formatting-examples.html">
             
@@ -385,7 +405,7 @@
         
         
     
-        <li class="chapter " data-level="8.1" >
+        <li class="chapter " data-level="9.1" >
             
                 <a target="_blank" href="ref://bender-tutorials.pdf">
             
@@ -443,7 +463,92 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="benderscript"><code>BenderScript</code></h1>
+<p><code>BenderScript</code> is a kind of <em>steroid-enhanced</em> and <em>doped</em> <code>GaudiPython</code> session. <code>BenderScript</code> shares all pros and contras with <code>GaudiPython</code>. It definitely provides very simple and efficient way for exploring the data, in particular very simple way for investigation of the content for the input data and TES. One can easily loop over events, data containers, make simple calcualtions, apply large part of LoKi functors, use some part of DaVinci machinery, etc. Howver there is large part of tasks that are very difficult in <code>BenderScrip</code>:</p>
+<ul>
+<li>large part of <code>DaVinci</code> <em>tools</em> is not working. It includes all <em>tools</em> and functionality related to e.g. actions with the associated best primary vertex. These manipulations are very complicated or some of them (e.g. PV-refit) is practically impossible to perform in a correct way without proper DaVinci context.</li>
+<li>Many <em>tools</em> do not work without the significant efforts. The results of <em>tools</em> often are very difficult to save to be used/reused e.g. for subsequent processing (e.g. save manually created particles and vertices to TES and to output file)</li>
+<li>Some very important and popular  LoKi functors do not operate (mainly due to the issues from the previous item), e.g <code>BPV*</code> or <code>*DV</code> or <code>DTF_*</code> - those are not easy to use from the plain command line. There are some alternatives , but not for all functors.</li>
+</ul>
+<h2 id="bender-script"><code>bender</code> script</h2>
+<p><code>BenderScript</code> session is started using the command <code>bender</code>. There are many command line options and keys for this script.
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4949055977);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-4949055977"></span></h3></div><div class="panel-body" id="panel-4949055977"><p>Invoke this command using <code>-h</code> option. Is the displayed help clear enough? </p>
+</div></div>
+Many of the options/keys can be deduced from the input data itself, in particular from the names of centrally produced files.</p>
+<h3 id="input-data">Input data</h3>
+<p>It is mandatory to supply <code>bender</code> session with input data.  There are two  ways to do it </p>
+<ol>
+<li>supply data files as command like parameters<pre><code class="lang-bash">lb-run Bender/prod bender /lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst
+</code></pre>
+</li>
+<li><em>import</em> the python file with data in a form of Gaudi Configurables, e.g. with <code>IOHelper().Input = [ ...]</code><pre><code class="lang-bash">lb-run Bender/prod bender -i data.py
+</code></pre>
+where <code>data.py</code> is<pre><code class="lang-python"><span class="hljs-keyword">from</span> GaudiConf <span class="hljs-keyword">import</span> IOHelper
+IOHelper().inputFiles([
+<span class="hljs-string">&apos;root://eoslhcb.cern.ch//eos/lhcb/grid/prod/lhcb/LHCb/Collision12/PSIX.MDST/00035290/0000/00035290_00000221_1.psix.mdst&apos;</span>,
+], clear=<span class="hljs-keyword">True</span>)
+</code></pre>
+Xml-catalogs can be supplied  either via import from <code>data.py</code> or explicitely via <code>-x</code>-key<pre><code class="lang-bash">lb-run Bender/prod bender -i data.py -x xml_catalog.xml
+</code></pre>
+Many of the options/keys (<code>DataType</code>, <code>Simulation</code>, <code>Turbo</code>, &apos;RootInTES&apos;, <code>InputType</code> , ... ) can be deduced from the input data itself, in particular from the names of centrally produced files.</li>
+</ol>
+<h3 id="the-basic-action-at-command-prompt">The basic action at command prompt</h3>
+<p>The incomplete list of the basic commands at the command prompts is :</p>
+<ul>
+<li><code>ls</code></li>
+<li><code>get</code> </li>
+<li><code>run</code></li>
+<li><code>skip</code></li>
+<li><code>rewind</code></li>
+</ul>
+<p>Do not forget that <code>bender</code> session is just a python session, therefore one always can invoke the  commands <code>dir</code> and <code>help</code>. </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7879612829);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-7879612829"></span></h3></div><div class="panel-body" id="panel-7879612829"><p>Start <code>bender</code> session and check the description for these method. Is it clear enough? </p>
+</div></div></p>
+<p>More advanced commands are:</p>
+<ul>
+<li><code>seekForData</code></li>
+<li><code>seekStripDecision</code></li>
+<li><code>seekForODIN</code></li>
+<li><code>seekForEvtRun</code></li>
+<li><code>seekForAlgDecision</code></li>
+<li><code>seekForVoidDecision</code></li>
+</ul>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3208420234);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-3208420234"></span></h3></div><div class="panel-body" id="panel-3208420234"><p>Start <code>bender</code> session and check the description for these method. Is it clear enough? </p>
+</div></div></p>
+<p>The functions that help coding the actual scripts:</p>
+<ul>
+<li><code>irun</code> </li>
+<li><code>execute</code> </li>
+</ul>
+<h3 id="histograms">Histograms</h3>
+<p>Of course one can book &amp; <code>ROOT</code> histograms at the command line</p>
+<pre><code class="lang-python">h1 = ROOT.TH1D(<span class="hljs-string">&apos;h1&apos;</span>,<span class="hljs-string">&apos;histo&apos;</span>,<span class="hljs-number">10</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1000</span>) 
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> irun ( ... ) :
+     data = get ( .... ) 
+     h1.Fill ( len (  data )
+</code></pre>
+<p>Of course at the end one needs to save this histogram into some ROOT-file</p>
+<p>As viable and practical alternative one can rely here on <code>Gaudi</code>-histograms:</p>
+<pre><code class="lang-python">h1 = book ( <span class="hljs-string">&apos;some_path_here&apos;</span> , <span class="hljs-string">&apos;title&apos;</span> , <span class="hljs-number">100</span> , <span class="hljs-number">0</span> , <span class="hljs-number">100</span> )
+...
+h1.fill( x )
+</code></pre>
+<p>In this case all created histograms will be automaticlaly saved into the outout file with historgams, 
+that is defined via the command line option <code>--histofile</code>, e.g. <code>bender ... --histofile DVhistos.root</code></p>
+<h3 id="n-tuplestrees">N-tuples/Trees</h3>
+<p>Again, oen can  rely on bare <code>ROOT</code> (e.g. <code>PyROOT</code>) here to book/fill/save the tuples, 
+but one can also use the functionality from <code>Gaudi</code>:</p>
+<pre><code class="lang-python">t = nTuple(<span class="hljs-string">&apos;QQQ&apos;</span>,<span class="hljs-string">&apos;MyTuple&apos;</span>)
+data = ... 
+<span class="hljs-keyword">for</span> b <span class="hljs-keyword">in</span> data :
+   t.column_float ( <span class="hljs-string">&apos;pt&apos;</span> , PT ( b ) )
+   t.column_int   ( <span class="hljs-string">&apos;id&apos;</span> , int ( ID ( b ) ) )
+   t.column_float ( <span class="hljs-string">&apos;mass&apos;</span> , M ( b ) )
+   t.write()
+</code></pre>
+<p>In this case all created histograms will be automaticlaly saved into the outout file with historgams, 
+that is defined via the command line option <code>--tuplefile</code>, e.g. <code>bender ... --tuplefile DVtuples.root</code></p>
+
                                 
                                 </section>
                             
@@ -470,12 +575,12 @@
 
             
                 
-                <a href="../simulation/hepmc.html" class="navigation navigation-prev " aria-label="Previous page: processing of HepMC">
+                <a href="../simulation/hepmc.html" class="navigation navigation-prev " aria-label="Previous page: Processing of HepMC">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../ganga/" class="navigation navigation-next " aria-label="Next page:  Bender & Ganga">
+                <a href="../standard-scripts/" class="navigation navigation-next " aria-label="Next page:  Standard scripts ">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -486,7 +591,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":" BenderScript ","level":"5.1","depth":1,"next":{"title":" Bender & Ganga","level":"6.1","depth":1,"path":"ganga/README.md","ref":"ganga/README.md","articles":[]},"previous":{"title":"processing of HepMC","level":"4.1.3","depth":2,"path":"simulation/hepmc.md","ref":"simulation/hepmc.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"bender-script/README.md","mtime":"2018-03-05T17:03:45.291Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T17:06:46.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":" BenderScript ","level":"5.1","depth":1,"next":{"title":" Standard scripts ","level":"6.1","depth":1,"path":"standard-scripts/README.md","ref":"standard-scripts/README.md","articles":[]},"previous":{"title":"Processing of HepMC","level":"4.1.3","depth":2,"path":"simulation/hepmc.md","ref":"simulation/hepmc.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"bender-script/README.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

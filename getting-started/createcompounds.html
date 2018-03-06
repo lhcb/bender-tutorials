@@ -292,7 +292,7 @@
                 <a href="../simulation/hepmc.html">
             
                     
-                    processing of HepMC
+                    Processing of HepMC
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../ganga/">
+        <li class="chapter " data-level="6.1" data-path="../standard-scripts/">
             
-                <a href="../ganga/">
+                <a href="../standard-scripts/">
             
                     
-                     Bender & Ganga
+                     Standard scripts 
             
                 </a>
             
@@ -352,7 +352,27 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../CONTRIBUTING.html">
+        <li class="chapter " data-level="7.1" data-path="../ganga/">
+            
+                <a href="../ganga/">
+            
+                    
+                     Bender & Ganga/GRID
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../CONTRIBUTING.html">
             
                 <a href="../CONTRIBUTING.html">
             
@@ -365,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="formatting-examples.html">
+        <li class="chapter " data-level="8.2" data-path="formatting-examples.html">
             
                 <a href="formatting-examples.html">
             
@@ -385,7 +405,7 @@
         
         
     
-        <li class="chapter " data-level="8.1" >
+        <li class="chapter " data-level="9.1" >
             
                 <a target="_blank" href="ref://bender-tutorials.pdf">
             
@@ -444,11 +464,11 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="create-the-compound-particles-in-bender">Create the compound particles in Bender</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2617032539);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-2617032539"></span></h3></div><div class="panel-body" id="panel-2617032539"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3325722383);" id="prequisites"><i class="fa fa-rocket"></i> Prequisites<span id="heading-3325722383"></span></h3></div><div class="panel-body" id="panel-3325722383"><ul>
 <li>One needs to understand the way how Bender accesses the data </li>
 </ul>
 </div></div></p>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6036963686);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-6036963686"></span></h3></div><div class="panel-body" id="panel-6036963686"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5514358358);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-5514358358"></span></h3></div><div class="panel-body" id="panel-5514358358"><ul>
 <li>Understand how Bender algorithm combines the particles and creates the compound particles   </li>
 </ul>
 </div></div></p>
@@ -498,7 +518,7 @@ subsequent steps under some unique tag:  </p>
     m.save(<span class="hljs-string">&apos;MyB&apos;</span>)
 </code></pre>
 <p>Obviously the looping can be combnied with filling of historgams and n-tuples.</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6432741205);" id="how-to-deal-with-charge-conjugationclick-to-expand"><i class="fa fa-bell"></i> How to deal with charge conjugation?<span id="heading-6432741205">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6432741205"><p>One can make two loops: </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3578773373);" id="how-to-deal-with-charge-conjugationclick-to-expand"><i class="fa fa-bell"></i> How to deal with charge conjugation?<span id="heading-3578773373">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-3578773373"><p>One can make two loops: </p>
 <pre><code class="lang-python">psis    = self.select ( <span class="hljs-string">&apos;psi&apos;</span> , <span class="hljs-string">&apos;J/psi(1S) -&gt; mu+ mu-&apos;</span> )
 kplus   = self.select ( <span class="hljs-string">&apos;k+&apos;</span>  , ( <span class="hljs-string">&apos;K+&apos;</span> == ID ) &amp; ( PT &gt; <span class="hljs-number">1</span> * GeV ) &amp;  ( PROBNNk &gt; <span class="hljs-number">0.2</span> ) )
 kminus  = self.select ( <span class="hljs-string">&apos;k-&apos;</span>  , ( <span class="hljs-string">&apos;K-&apos;</span> == ID ) &amp; ( PT &gt; <span class="hljs-number">1</span> * GeV ) &amp;  ( PROBNNk &gt; <span class="hljs-number">0.2</span> ) )
@@ -546,7 +566,7 @@ bsel = BenderSelection ( <span class="hljs-string">&apos;MakeB&apos;</span> , [ 
 </code></pre>
 <p>The complete example of creation of <code>B+ -&gt; J/psi(1S) K+</code> decays starting from <code>DIMUON.DST</code> 
  is accessible from <a href="https://gist.github.com/VanyaBelyaev/c3f2df0e0f23221b4fe7fd74d27fb287" target="_blank">here</a></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7746562689);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-7746562689"></span></h3></div><div class="panel-body" id="panel-7746562689"><p>Wth these example, you should be able to do  </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7426342721);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-7426342721"></span></h3></div><div class="panel-body" id="panel-7426342721"><p>Wth these example, you should be able to do  </p>
 <ul>
 <li>code Bender <em>algorithm</em> that   perofem loopint, combianig anc creation of compound particles </li>
 </ul>
@@ -594,7 +614,7 @@ bsel = BenderSelection ( <span class="hljs-string">&apos;MakeB&apos;</span> , [ 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Loops & compounds","level":"2.1.3","depth":2,"next":{"title":"Advanced Bender","level":"3.1","depth":1,"path":"advanced-bender/README.md","ref":"advanced-bender/README.md","articles":[{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]}]},"previous":{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/createcompounds.md","mtime":"2018-03-05T17:03:45.291Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T17:06:46.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Loops & compounds","level":"2.1.3","depth":2,"next":{"title":"Advanced Bender","level":"3.1","depth":1,"path":"advanced-bender/README.md","ref":"advanced-bender/README.md","articles":[{"title":"Fill-family of methods","level":"3.1.1","depth":2,"path":"advanced-bender/fill.md","ref":"advanced-bender/fill.md","articles":[]},{"title":"TisTos-family of methods","level":"3.1.2","depth":2,"path":"advanced-bender/tistos.md","ref":"advanced-bender/tistos.md","articles":[]},{"title":"Using tools","level":"3.1.3","depth":2,"path":"advanced-bender/tools.md","ref":"advanced-bender/tools.md","articles":[]}]},"previous":{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/createcompounds.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -292,7 +292,7 @@
                 <a href="hepmc.html">
             
                     
-                    processing of HepMC
+                    Processing of HepMC
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../ganga/">
+        <li class="chapter " data-level="6.1" data-path="../standard-scripts/">
             
-                <a href="../ganga/">
+                <a href="../standard-scripts/">
             
                     
-                     Bender & Ganga
+                     Standard scripts 
             
                 </a>
             
@@ -352,7 +352,27 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../CONTRIBUTING.html">
+        <li class="chapter " data-level="7.1" data-path="../ganga/">
+            
+                <a href="../ganga/">
+            
+                    
+                     Bender & Ganga/GRID
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../CONTRIBUTING.html">
             
                 <a href="../CONTRIBUTING.html">
             
@@ -365,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="../getting-started/formatting-examples.html">
+        <li class="chapter " data-level="8.2" data-path="../getting-started/formatting-examples.html">
             
                 <a href="../getting-started/formatting-examples.html">
             
@@ -385,7 +405,7 @@
         
         
     
-        <li class="chapter " data-level="8.1" >
+        <li class="chapter " data-level="9.1" >
             
                 <a target="_blank" href="ref://bender-tutorials.pdf">
             
@@ -443,7 +463,39 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="match-reco-with-mc-truth">Match <em>reco</em> with MC-truth</h1>
+<p>Matching of recontructed candidates with MC-truth is performed using <code>MCTRUTH</code> functors, that allows to answer on the <em>basic</em> question: <em>does this MC-particle makes the contribution to this reconstructed particle?</em>. Note that this question is different from e.g. <em>what is MC-truth for this reconstructed particle?</em>. These are <em>different</em> questions, and therefore one should not misinterpret the answers. For more details see the chapter 15 in <a href="https://cds.cern.ch/record/721922" target="_blank">LHCb-2004-023</a>.</p>
+<p>There are helper methods <code>mcTruth</code>, that are needed to create the functor <code>MCTRUTH</code></p>
+<pre><code class="lang-python">mcK = self.mcselect ( <span class="hljs-string">&apos;mcK&apos;</span> , <span class="hljs-string">&apos;[Beauty ==&gt;  J/psi(1S) ^K+ ^K- pi+ pi-]CC&apos;</span> ) <span class="hljs-comment">## get true MC-kaons </span>
+trueK = MCTRUTH ( mcK , mc.mcTruth() ) <span class="hljs-comment">## &lt;--- HERE: create MCTRUTH    functor</span>
+</code></pre>
+<p>The created object <code>trueK</code> is <em>LoKi fuctor</em>, that evaluates to <code>True</code> for reconstructed particles, that get the contribution from true MC kaons, selected by the <code>mcselect</code> method, 
+otherwise it evalautes to `False&apos;:</p>
+<pre><code class="lang-python">reco_kaons = self.select ( ... )
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> reco_kaons : 
+    <span class="hljs-keyword">print</span> <span class="hljs-string">&apos; True(MC-truth matched) kaon?  %s&apos;</span> % trueK ( k )
+</code></pre>
+<p>Since it is an ordinary <em>LoKi functor</em> is could be combined with all other functors, e.g. one can select from the input only MC-truth matcehd kaons:</p>
+<pre><code class="lang-python">truth_matched_kaons = self.select ( <span class="hljs-string">&apos;K&apos;</span> ,  ( <span class="hljs-string">&apos;K+&apos;</span> == ABSID ) &amp; trueK )
+</code></pre>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1027097830);" id="could-it-be-invertedclick-to-expand"><i class="fa fa-bell"></i> Could it be inverted?<span id="heading-1027097830">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-1027097830"><p>the short answer is <em>yes, there is inverse for <code>MCTRUTH</code>  functor</em>. 
+The inverse functor is <code>RCTRUTH</code>, it evalauted for <code>True</code> for any MC particle, that makes contribution to the selected recontructed candidate, and <code>False</code> otherwise.</p>
+<pre><code class="lang-python">B = self.select ( <span class="hljs-string">&apos;B&apos;</span> ,  <span class="hljs-string">&apos;Beauty -&gt; J/psi(1S)  K+  K- pi+ pi-&apos;</span> ) 
+<span class="hljs-comment">## get kaons from our reconstrcuted B-candidates </span>
+K = self.select ( <span class="hljs-string">&apos;K&apos;</span> , <span class="hljs-string">&apos;[Beauty -&gt; J/psi(1S) ^K+ ^K- pi+ pi-&apos;</span> )
+
+recoK = RCTRUTH ( K , self.mcTruth() )
+
+<span class="hljs-comment">##  get all MC-particles that makes contribution to recontructed Kaon</span>
+mc = self.mcselect ( <span class="hljs-string">&apos;mc&apos;</span> , recoK ) 
+<span class="hljs-keyword">print</span> mc 
+</code></pre>
+<p>Note that the list of found MC-particles here could be rather long (do you remember <em>the basic question</em>?)</p>
+</div></div></p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9020311548);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-9020311548"></span></h3></div><div class="panel-body" id="panel-9020311548"><p>Try to code some MC-truth match algorithm, that get some MC-decays, some reconstructed decays, and perform MC-truth macth between them. Try to select as an example the <em>ordinary</em> <code>ALLSTREAMS.DST</code>  (not Turbo version!). Processing of <code>ALLSTREAMS.DST/Turbo</code> and  various kinds of <code>ALLSTREAMS.MDST</code> and <code>MC-Turbo</code> requires a bit different configurtaion steos, that we&apos;ll discuss later. For a time being y ou can use e.g. the MC-file <code>&apos;/lhcb/MC/2012/ALLSTREAMS.DST/00033494/0000/00033494_00000013_1.allstreams.dst&apos;</code>, that contains the true MC-decays  <em>Bs -&gt; J/psi K+ K- pi+ pi-</em> with many intermediate resonances. </p>
+<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3575220939);" id="solution"><i class="fa fa-line-chart"></i> Solution<span id="heading-3575220939"></span></h3></div><div class="panel-body" id="panel-3575220939"><p>The complete module, that processes the events of <code>[B_s0 ==&gt; J/psi(1S) K+ K- pi+ pi-]CC</code> with very rich structure of intermediate resonances is available <a href="https://gist.github.com/VanyaBelyaev/0f831ee3a997d005e7b9f490ee200409" target="_blank">here</a></p>
+</div></div></div></div></p>
+
                                 
                                 </section>
                             
@@ -475,7 +527,7 @@
                 </a>
                 
                 
-                <a href="hepmc.html" class="navigation navigation-next " aria-label="Next page: processing of HepMC">
+                <a href="hepmc.html" class="navigation navigation-next " aria-label="Next page: Processing of HepMC">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -486,7 +538,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"MC match","level":"4.1.2","depth":2,"next":{"title":"processing of HepMC","level":"4.1.3","depth":2,"path":"simulation/hepmc.md","ref":"simulation/hepmc.md","articles":[]},"previous":{"title":"MC truth","level":"4.1.1","depth":2,"path":"simulation/mctruth.md","ref":"simulation/mctruth.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"simulation/mcmatch.md","mtime":"2018-03-05T17:03:45.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T17:06:46.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"MC match","level":"4.1.2","depth":2,"next":{"title":"Processing of HepMC","level":"4.1.3","depth":2,"path":"simulation/hepmc.md","ref":"simulation/hepmc.md","articles":[]},"previous":{"title":"MC truth","level":"4.1.1","depth":2,"path":"simulation/mctruth.md","ref":"simulation/mctruth.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"simulation/mcmatch.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

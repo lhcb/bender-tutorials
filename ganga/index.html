@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title> Bender & Ganga · GitBook</title>
+        <title> Bender & Ganga/GRID · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -68,7 +68,7 @@
     <link rel="next" href="../CONTRIBUTING.html" />
     
     
-    <link rel="prev" href="../bender-script/" />
+    <link rel="prev" href="../standard-scripts/" />
     
 
     </head>
@@ -292,7 +292,7 @@
                 <a href="../simulation/hepmc.html">
             
                     
-                    processing of HepMC
+                    Processing of HepMC
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter active" data-level="6.1" data-path="./">
+        <li class="chapter " data-level="6.1" data-path="../standard-scripts/">
             
-                <a href="./">
+                <a href="../standard-scripts/">
             
                     
-                     Bender & Ganga
+                     Standard scripts 
             
                 </a>
             
@@ -352,7 +352,27 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../CONTRIBUTING.html">
+        <li class="chapter active" data-level="7.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                     Bender & Ganga/GRID
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../CONTRIBUTING.html">
             
                 <a href="../CONTRIBUTING.html">
             
@@ -365,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="../getting-started/formatting-examples.html">
+        <li class="chapter " data-level="8.2" data-path="../getting-started/formatting-examples.html">
             
                 <a href="../getting-started/formatting-examples.html">
             
@@ -385,7 +405,7 @@
         
         
     
-        <li class="chapter " data-level="8.1" >
+        <li class="chapter " data-level="9.1" >
             
                 <a target="_blank" href="ref://bender-tutorials.pdf">
             
@@ -428,7 +448,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." > Bender & Ganga</a>
+        <a href=".." > Bender & Ganga/GRID</a>
     </h1>
 </div>
 
@@ -443,7 +463,47 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="bender--gangagrid">Bender &amp; Ganga/GRID</h1>
+<h2 id="bendermodule-in--ganga"><code>BenderModule</code> in  <code>Ganga</code></h2>
+<p>To submit the GRID job in <code>Ganga</code> with your module, there is an application <code>BenderModule</code> in Ganga, writted by Vladimir Romanovsky.  The usage of this application is rather simple:</p>
+<pre><code class="lang-python">job = Job  ( ... )
+job.application = BenderModule ( 
+   module     =     <span class="hljs-string">&apos;the_path/my_module.py&apos;</span> , <span class="hljs-comment">## &lt;--- HERE  </span>
+   directory  = ...   , <span class="hljs-comment">## the  directory where the existing project lives  </span>
+   platform   = <span class="hljs-string">&apos;x86_64-slc6-gcc62-opt&apos;</span>
+)
+</code></pre>
+<p>There us helper function <code>prepareBender</code> that allows to prepare the application </p>
+<pre><code class="lang-python">job = Job  ( ... )
+job.application = prepareBender ( 
+   version    = <span class="hljs-string">&apos;v31r0&apos;</span> , 
+   platform   = <span class="hljs-string">&apos;x86_64-slc6-gcc62-opt&apos;</span> , 
+   <span class="hljs-comment">## path       = &apos;$HOME/cmtuser&apos; ## use this  directory to prepare the project</span>
+   use_tmp    = <span class="hljs-keyword">True</span>               <span class="hljs-comment">## use  some temporary directory </span>
+   params     = ...  <span class="hljs-comment">## optionally feed it with params arguments for configure method</span>
+   )
+</code></pre>
+<p>For more details consult <code>help(BenderModule)</code> and <code>help(prepareBender)</code> in <code>Ganga</code></p>
+<h2 id="benderrun-in--ganga"><code>BenderRun</code> in  <code>Ganga</code></h2>
+<p><code>BenderRun</code> is a dedicated application in <code>Ganga</code> to run  <a href="../bedner-script/README.py"><em>bender script</em></a>. The usage is fairly  trivial</p>
+<pre><code class="lang-python">j.application = BenderRun    ( scripts   = [ <span class="hljs-string">&apos;the_path/the_module.py&apos;</span>     ] ,
+                               imports   = [ <span class="hljs-string">&apos;some_miport_file.py&apos;</span>        ] ,
+                               commands  = [ <span class="hljs-string">&apos;ls()&apos;</span> , <span class="hljs-string">&apos;run(10)&apos;</span>  , <span class="hljs-string">&apos;ls()&apos;</span> ] ,
+                               arguments = [ ... ] ,
+                               directory =  ...  )
+</code></pre>
+<p>Again, there is helper function <code>prepareBenderRun</code>
+j.applictaion =  prepareBenderRun ( 
+   version   = &apos;v30r1&apos; , 
+   scripts   = [&apos;the_path/the_script.py&apos; , &apos;another_script.py&apos; ] , 
+   commands  = [ ... ] , 
+   arguments = [ ... ] ,
+   use_tmp   = True    , 
+   ...
+)
+<code>``
+For more details consult</code>help(BenderRun)<code>and</code>help(prepareBenderRun)<code>in</code>Ganga`</p>
+
                                 
                                 </section>
                             
@@ -470,7 +530,7 @@
 
             
                 
-                <a href="../bender-script/" class="navigation navigation-prev " aria-label="Previous page:  BenderScript ">
+                <a href="../standard-scripts/" class="navigation navigation-prev " aria-label="Previous page:  Standard scripts ">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -486,7 +546,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":" Bender & Ganga","level":"6.1","depth":1,"next":{"title":"Contributing","level":"7.1","depth":1,"path":"CONTRIBUTING.md","ref":"CONTRIBUTING.md","articles":[]},"previous":{"title":" BenderScript ","level":"5.1","depth":1,"path":"bender-script/README.md","ref":"bender-script/README.md","articles":[]},"dir":"neutral"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"ganga/README.md","mtime":"2018-03-05T17:03:45.291Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T17:06:46.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":" Bender & Ganga/GRID","level":"7.1","depth":1,"next":{"title":"Contributing","level":"8.1","depth":1,"path":"CONTRIBUTING.md","ref":"CONTRIBUTING.md","articles":[]},"previous":{"title":" Standard scripts ","level":"6.1","depth":1,"path":"standard-scripts/README.md","ref":"standard-scripts/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"ganga/README.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

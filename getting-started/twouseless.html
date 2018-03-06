@@ -292,7 +292,7 @@
                 <a href="../simulation/hepmc.html">
             
                     
-                    processing of HepMC
+                    Processing of HepMC
             
                 </a>
             
@@ -332,12 +332,12 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../ganga/">
+        <li class="chapter " data-level="6.1" data-path="../standard-scripts/">
             
-                <a href="../ganga/">
+                <a href="../standard-scripts/">
             
                     
-                     Bender & Ganga
+                     Standard scripts 
             
                 </a>
             
@@ -352,7 +352,27 @@
         
         
     
-        <li class="chapter " data-level="7.1" data-path="../CONTRIBUTING.html">
+        <li class="chapter " data-level="7.1" data-path="../ganga/">
+            
+                <a href="../ganga/">
+            
+                    
+                     Bender & Ganga/GRID
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../CONTRIBUTING.html">
             
                 <a href="../CONTRIBUTING.html">
             
@@ -365,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="formatting-examples.html">
+        <li class="chapter " data-level="8.2" data-path="formatting-examples.html">
             
                 <a href="formatting-examples.html">
             
@@ -385,7 +405,7 @@
         
         
     
-        <li class="chapter " data-level="8.1" >
+        <li class="chapter " data-level="9.1" >
             
                 <a target="_blank" href="ref://bender-tutorials.pdf">
             
@@ -444,12 +464,12 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="the-first-two-almost-useless-but-very-important-examples">The first two <em>almost useless</em>, but <em>very important</em> examples</h1>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4560940663);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-4560940663"></span></h3></div><div class="panel-body" id="panel-4560940663"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(5892267403);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-5892267403"></span></h3></div><div class="panel-body" id="panel-5892267403"><ul>
 <li>Understand the overall structure of Bender <em>module</em> and the configuration of the application </li>
 </ul>
 </div></div></p>
 <h2 id="do-nothing"><em>Do-nothing</em></h2>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6260192700);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-6260192700"></span></h3></div><div class="panel-body" id="panel-6260192700"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8294292696);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-8294292696"></span></h3></div><div class="panel-body" id="panel-8294292696"><ul>
 <li>Understand the overall structure of Bender <em>module</em> using the oversimplified example</li>
 </ul>
 </div></div></p>
@@ -474,7 +494,7 @@ to be classified as the first Bender code.
 Moreover, the python module with these two function
 can already be submitted to Ganga/Grid, and Ganga will classify it as valid Bender code.
 Therefore this code is already <em>&quot;ready-for-Ganga/Grid&quot;</em>!
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1525024239);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-1525024239">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-1525024239"><p>Actually Ganga executes at the remote node the following wrapper code</p>
+<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7718858172);" id="the-details-for-the-curious-students-how-gangagrid-treat-bender-modulesclick-to-expand"><i class="fa fa-bell"></i> The details for the curious students: how Ganga/Grid treat Bender modules?<span id="heading-7718858172">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7718858172"><p>Actually Ganga executes at the remote node the following wrapper code</p>
 <pre><code class="lang-python">files    = ... <span class="hljs-comment">## this one comes from DIRAC</span>
 catalogs = ... <span class="hljs-comment">## ditto </span>
 params   = ... <span class="hljs-comment">## extra parameters (if needed): this comes from the user</span>
@@ -517,7 +537,7 @@ python&apos;s <code>__main__</code> clause:</p>
 <pre><code class="lang-bash">lb-run Bender/prod python DoNothing.py
 </code></pre>
 <p>That&apos;s all. Make a try and see what you get!</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2131451762);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-2131451762">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-2131451762"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2488452421);" id="unnesessary-but-very-useful-decorationsclick-to-expand"><i class="fa fa-bell"></i> Unnesessary but very useful decorations:<span id="heading-2488452421">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-2488452421"><p>It is highly desirable and <em>recommended</em> to put some <em>&quot;decorations&quot;</em> a top of this minimalistic lines:</p>
 <ul>
 <li>add magic  <code>#!/usr/bin/env python</code> line as the top line of the module/script </li>
 <li>make the script executable: <code>chmod +x ./DoNothing.py</code></li>
@@ -541,11 +561,11 @@ python&apos;s <code>__main__</code> clause:</p>
 </div></div></p>
 <p>For all subsequent lessons we&apos;ll gradually extend this script<br>with the additional functionality,  step-by-step converting 
 it to something much more useful.   </p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(2009338036);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-2009338036">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-2009338036"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of the main Bender module <code>Bender.Main</code>,
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(6626733892);" id="in-practice-click-to-expand"><i class="fa fa-bell"></i> In practice, ...<span id="heading-6626733892">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-6626733892"><p>In practice, the prepared and <em>ready-to-use</em> function <code>run</code> is imported from some of the main Bender module <code>Bender.Main</code>,
 and the only one really important task for the user is to code the function <code>configure</code>.</p>
 </div></div></p>
 <h2 id="davinci"><em>DaVinci</em></h2>
-<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7304178120);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-7304178120"></span></h3></div><div class="panel-body" id="panel-7304178120"><ul>
+<p><div class="panel panel-warning"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7631512089);" id="learning-objectives"><i class="fa fa-line-chart"></i> Learning objectives<span id="heading-7631512089"></span></h3></div><div class="panel-body" id="panel-7631512089"><ul>
 <li>Understand the internal structure of the <em>configure</em> function</li>
 </ul>
 </div></div></p>
@@ -575,7 +595,7 @@ particle  = PrintSelection ( particles )
 <p>As the last sub-step of (1), one needs to pass the selection object to <code>DaVinci</code></p>
 <pre><code class="lang-python">dv.UserAlgorithms.append ( particles )
 </code></pre>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7814356397);" id="where-is-selectionsequence-click-to-expand"><i class="fa fa-bell"></i> Where is `SelectionSequence` ?<span id="heading-7814356397">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7814356397"><p>The underlying <code>SelectionSequence</code> object will be created automatically. 
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(991274126);" id="where-is-selectionsequence-click-to-expand"><i class="fa fa-bell"></i> Where is `SelectionSequence` ?<span id="heading-991274126">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-991274126"><p>The underlying <code>SelectionSequence</code> object will be created automatically. 
 You should not worry about it. </p>
 </div></div></p>
 <h3 id="input-data-and-application-manager"><em>Input data and application manager</em></h3>
@@ -615,10 +635,10 @@ The <code>__main__</code> clause in our case contains some input data for local 
 <pre><code class="lang-bash">lb-run Bender/prod python DoNothing.py
 </code></pre>
 <p>That&apos;s all. Make a try and see what you get!</p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(610244261);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-610244261"></span></h3></div><div class="panel-body" id="panel-610244261"><p>Try to convert any of your existing <code>DaVinci</code> simple <em>script</em> into Bender <em>module</em> and run it interactively.
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(8259255253);" id="challenge"><i class="fa fa-square-o"></i> Challenge<span id="heading-8259255253"></span></h3></div><div class="panel-body" id="panel-8259255253"><p>Try to convert any of your existing <code>DaVinci</code> simple <em>script</em> into Bender <em>module</em> and run it interactively.
 You can use the result of this excersize for subsequent lessons. </p>
 </div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(9100972876);" id="what-is-castor--why-lfn-is-used-as-input-file-nameclick-to-expand"><i class="fa fa-bell"></i> What is `castor` ? Why `LFN` is used as input file name?<span id="heading-9100972876">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-9100972876"><p>Bender is smart  enough, and for many cases it can efficiently convert input <code>LFN</code> into 
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4643559163);" id="what-is-castor--why-lfn-is-used-as-input-file-nameclick-to-expand"><i class="fa fa-bell"></i> What is `castor` ? Why `LFN` is used as input file name?<span id="heading-4643559163">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-4643559163"><p>Bender is smart  enough, and for many cases it can efficiently convert input <code>LFN</code> into 
 the real file name.</p>
 <ol>
 <li>First, if you have Grid proxy enabled (<code>lhcb-proxy-init</code>) is uses internally <code>LHCbDirac</code> to locate and access the file. 
@@ -645,7 +665,7 @@ Using these variables one can easily perform
 a local and efficient access to Grid files from some <em>close</em> Tier-1/2 center.   </li>
 </ol>
 </div></div></p>
-<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(4907836506);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-4907836506"></span></h3></div><div class="panel-body" id="panel-4907836506"><p>Wth these two examples, you should aready be able to </p>
+<p><div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7574560515);" id="keypoints"><i class="fa fa-key"></i> Keypoints<span id="heading-7574560515"></span></h3></div><div class="panel-body" id="panel-7574560515"><p>Wth these two examples, you should aready be able to </p>
 <ul>
 <li>code sove <em>valid</em> (but useless)  Bender modules </li>
 <li>run them interactively</li>
@@ -694,7 +714,7 @@ a local and efficient access to Grid files from some <em>close</em> Tier-1/2 cen
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"next":{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},"previous":{"title":"Getting started","level":"2.1","depth":1,"path":"getting-started/README.md","ref":"getting-started/README.md","articles":[{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-05T17:03:45.291Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-05T17:06:46.446Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"next":{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},"previous":{"title":"Getting started","level":"2.1","depth":1,"path":"getting-started/README.md","ref":"getting-started/README.md","articles":[{"title":"The first two (almost useless) examples","level":"2.1.1","depth":2,"path":"getting-started/twouseless.md","ref":"getting-started/twouseless.md","articles":[]},{"title":"The first algorithms","level":"2.1.2","depth":2,"path":"getting-started/firstalgorithms.md","ref":"getting-started/firstalgorithms.md","articles":[]},{"title":"Loops & compounds","level":"2.1.3","depth":2,"path":"getting-started/createcompounds.md","ref":"getting-started/createcompounds.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-sharing","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#master","katex-auto-render@git+https://github.com/lhcb/gitbook-plugin-katex-auto-render.git#master","collapsible-menu","otherlink"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-menu":{},"search":{},"otherlink":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"katex-auto-render":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"The Starterkit team and contributors","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"getting-started/twouseless.md","mtime":"2018-03-06T11:48:40.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-06T11:50:56.306Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
