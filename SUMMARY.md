@@ -42,6 +42,10 @@
 
 ----
 
+* [Tricks and HOWTO](howto/README.md) 
+
+----
+
 * [Contributing](CONTRIBUTING.md)
 
 ----
